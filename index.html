@@ -5,276 +5,276 @@
 <title>For My Love 💙</title>
 
 <style>
-body{
-margin:0;
-font-family:Georgia;
-background:linear-gradient(#021a30,#00101f);
-color:white;
-text-align:center;
-overflow:hidden;
+body {
+  margin: 0;
+  font-family: Georgia, serif;
+  background: linear-gradient(#010f24, #03274a); 
+  color: #000000; /* Global text color set to black */
+  overflow: hidden;
+  text-align: center;
 }
 
 /* slides */
-.slide{
-position:absolute;
-width:100%;
-height:100vh;
-display:none;
-justify-content:center;
-align-items:center;
-flex-direction:column;
-z-index:5;
+.slide {
+  position: absolute;
+  width: 100%;
+  height: 100vh;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding: 20px;
+  box-sizing: border-box;
 }
 
-.active{
-display:flex;
+.active { display: flex; }
+
+/* headings */
+h1 {
+  font-size: 3em;
+  color: #000000; /* Black text */
+  text-shadow: 0 0 10px rgba(255,255,255,0.5); /* Soft glow to help black stand out */
+  background: rgba(255, 255, 255, 0.2); /* Light backing for readability */
+  padding: 10px 20px;
+  border-radius: 15px;
+}
+
+/* paragraphs */
+p {
+  font-size: 1.6em;
+  color: #000000; /* Black text */
+  max-width: 700px;
+  background: rgba(255, 255, 255, 0.3); /* Semi-transparent white background */
+  padding: 15px;
+  border-radius: 10px;
+  margin-top: 10px;
 }
 
 /* button */
-button{
-padding:15px 40px;
-font-size:20px;
-border:none;
-border-radius:40px;
-background:#1da1f2;
-color:white;
-cursor:pointer;
-margin:10px;
+button {
+  padding: 16px 40px;
+  font-size: 20px;
+  border: none;
+  border-radius: 30px;
+  background: #0ea5e9;
+  color: white; /* Buttons keep white text for UI standard */
+  cursor: pointer;
+  margin-top: 20px;
+  box-shadow: 0 0 20px #38bdf8;
+  transition: transform 0.2s;
+}
+
+button:hover {
+  transform: scale(1.05);
 }
 
 /* images */
-img{
-width:260px;
-border-radius:20px;
-margin:20px;
-box-shadow:0 0 30px #7fdfff;
+img {
+  width: 300px;
+  border-radius: 20px;
+  margin: 25px 0;
+  box-shadow: 0 0 40px #38bdf8;
 }
 
 /* stars */
-.star{
-position:absolute;
-width:2px;
-height:2px;
-background:white;
-border-radius:50%;
-opacity:.7;
-pointer-events:none;
+.star {
+  position: absolute;
+  width: 2px;
+  height: 2px;
+  background: white;
+  animation: twinkle 2s infinite alternate;
+}
+@keyframes twinkle {
+  from { opacity: .2; }
+  to { opacity: 1; }
 }
 
 /* flowers */
-.flower{
-position:absolute;
-font-size:22px;
-animation:fall linear infinite;
-pointer-events:none;
+.flower {
+  position: absolute;
+  font-size: 22px;
+  animation: fall linear infinite;
+  z-index: 10;
 }
-@keyframes fall{
-0%{transform:translateY(-10vh)}
-100%{transform:translateY(110vh)}
+@keyframes fall {
+  from { transform: translateY(-10vh); }
+  to { transform: translateY(110vh); }
 }
 
 /* fireworks */
-.spark{
-position:absolute;
-width:6px;
-height:6px;
-background:#7fdfff;
-border-radius:50%;
-animation:boom 1s linear forwards;
-pointer-events:none;
+.firework {
+  position: absolute;
+  font-size: 28px;
+  animation: boom 1s ease-out forwards;
 }
-@keyframes boom{
-0%{opacity:1}
-100%{transform:translate(var(--x),var(--y));opacity:0}
+@keyframes boom {
+  0% { transform: scale(0); }
+  100% { transform: scale(3); opacity: 0; }
 }
 
-#timer{
-font-size:32px;
-margin-top:20px;
-color:#aee8ff;
+/* ending */
+#countdown {
+  font-size: 1.8em;
+  color: #000000;
+  margin-top: 20px;
+  background: rgba(255, 255, 255, 0.4);
+  padding: 10px;
+  border-radius: 10px;
 }
 </style>
 </head>
-
 <body>
 
-<!-- MUSIC -->
+<script>
+for (let i = 0; i < 160; i++) {
+  let s = document.createElement("div");
+  s.className = "star";
+  s.style.left = Math.random() * 100 + "vw";
+  s.style.top = Math.random() * 100 + "vh";
+  document.body.appendChild(s);
+}
+</script>
+
+<script>
+setInterval(() => {
+  let f = document.createElement("div");
+  f.className = "flower";
+  f.innerHTML = "🌸";
+  f.style.left = Math.random() * 100 + "vw";
+  f.style.animationDuration = (Math.random() * 5 + 5) + "s";
+  document.body.appendChild(f);
+  setTimeout(() => f.remove(), 9000);
+}, 500);
+</script>
+
 <audio id="music" loop>
-<source src="music.mp3" type="audio/mpeg">
+  <source src="WhatsApp Audio 2026-02-19 at 6.08.26 PM.mpeg" type="audio/mpeg">
+  Your browser does not support the audio tag.
 </audio>
 
-<!-- SLIDE 1 -->
+<button style="position:fixed;bottom:15px;right:15px;z-index:99; padding: 10px 20px; font-size: 14px;"
+onclick="document.getElementById('music').play()">🔊 Play Music</button>
+
 <div class="slide active">
-<h1>I'm sorry for misunderstanding 💙</h1>
-<button onclick="startSlides()">Open My Heart ❤️</button>
-</div>
-
-<!-- SLIDE 2 -->
-<div class="slide">
-<h1>Will you be my forever home? 💍</h1>
-<button onclick="yes()">YES 💖</button>
-<button onclick="no()">NO 😜</button>
-<p id="noMsg"></p>
-</div>
-
-<!-- MESSAGE -->
-<div class="slide">
-<h1>You are my peace 💙</h1>
-</div>
-
-<!-- IMAGES -->
-<div class="slide">
-<img src="Image 1.jpg">
-<p>I just want us together forever 🌍</p>
+  <h1>I’m sorry for misunderstanding 💙</h1>
+  <button onclick="start()">Open My Heart ❤️</button>
 </div>
 
 <div class="slide">
-<img src="Image 2.jpg">
-<p>You are my safe place 🤍</p>
+  <h1>Will you be my forever home? 💍</h1>
+  <div style="display: flex; gap: 20px;">
+    <button onclick="yes()">YES 💖</button>
+    <button onclick="no()">NO 😭</button>
+  </div>
+  <p id="noMsg" style="background:none;"></p>
 </div>
 
 <div class="slide">
-<img src="Image 3.jpg">
-<p>Every moment with you is magic ✨</p>
+  <img src="Image%201.jpg">
+  <p>I want a life where we always find peace in each other's arms 🤍</p>
 </div>
 
 <div class="slide">
-<img src="Image 4.jpg">
-<p>You + Me = Always 💞</p>
+  <img src="Image%202.jpg">
+  <p>I want to look at you every day like the first day 💫</p>
 </div>
 
 <div class="slide">
-<img src="Image 5.jpg">
-<p>My favorite story is us 📖</p>
+  <img src="Image%203.jpg">
+  <p>I want us to dance through every high and low together 💙</p>
 </div>
 
 <div class="slide">
-<img src="Image 7.jpg">
-<p>I want to grow old beside you 👴🏻👵🏻</p>
+  <img src="Image%204.jpg">
+  <p>I want adventures with you 🌎</p>
 </div>
 
 <div class="slide">
-<img src="Image 8.jpg">
-<p>Forever with you 💙</p>
+  <img src="Image%205.jpg">
+  <p>I want endless memories together 📸</p>
 </div>
 
-<!-- TIMER -->
 <div class="slide">
-<h1>I have loved you for 💙</h1>
-<div id="timer"></div>
+  <img src="Image%207.jpg">
+  <p>I want to grow old beside you 👴🏻👵🏻</p>
 </div>
 
-<!-- END -->
 <div class="slide">
-<h1>You are my forever ❤️</h1>
+  <img src="Image%208.jpg">
+  <p>You are my safe place 💖</p>
+</div>
+
+<div class="slide">
+  <h1>You are my forever 💙</h1>
+  <p>I don't need the world… only you ❤️</p>
+  <div id="countdown"></div>
 </div>
 
 <script>
+let slides = document.querySelectorAll(".slide");
+let index = 0;
 
-/* slide logic */
-let slides=document.querySelectorAll(".slide");
-let i=0;
-
-/* next slide */
-function next(){
-slides[i].classList.remove("active");
-i++;
-if(i<slides.length){
-slides[i].classList.add("active");
-}
+function show(i) {
+  slides[index].classList.remove("active");
+  index = i;
+  slides[index].classList.add("active");
 }
 
-/* start button */
-function startSlides(){
-playMusic();
-next();
+function start() {
+  document.getElementById("music").play().catch(err => console.log("Audio play blocked: ", err));
+  show(1);
 }
 
-/* yes */
-function yes(){
-fireworks();
-setTimeout(()=>{
-next();
-autoSlides();
-},1200);
+function yes() {
+  fireworks();
+  show(2);
+  autoSlides();
 }
 
-/* no */
-function no(){
-document.getElementById("noMsg").innerHTML=
-"I know you love me 😌 click YES 💙";
+function no() {
+  document.getElementById("noMsg").innerHTML =
+    "Please click YES 🥺 I know you love me deeply 💙";
 }
 
-/* auto slide */
-function autoSlides(){
-setInterval(()=>{
-if(i<slides.length-1){
-next();
-}
-},4000);
-}
-
-/* fireworks */
-function fireworks(){
-for(let k=0;k<40;k++){
-let s=document.createElement("div");
-s.className="spark";
-s.style.left="50%";
-s.style.top="50%";
-s.style.setProperty("--x",(Math.random()*500-250)+"px");
-s.style.setProperty("--y",(Math.random()*500-250)+"px");
-document.body.appendChild(s);
-setTimeout(()=>s.remove(),1000);
-}
+function autoSlides() {
+  let i = 2;
+  let timer = setInterval(() => {
+    i++;
+    if (i >= slides.length) {
+      clearInterval(timer);
+    } else {
+      show(i);
+    }
+  }, 5500);
 }
 
-/* music */
-function playMusic(){
-let m=document.getElementById("music");
-m.volume=0;
-m.play().catch(()=>{});
-let v=0;
-let fade=setInterval(()=>{
-if(v<1){
-v+=0.05;
-m.volume=v;
-}else clearInterval(fade);
-},200);
+function fireworks() {
+  for (let i = 0; i < 40; i++) {
+    let f = document.createElement("div");
+    f.className = "firework";
+    f.innerHTML = "💙";
+    f.style.left = Math.random() * 100 + "vw";
+    f.style.top = Math.random() * 100 + "vh";
+    document.body.appendChild(f);
+    setTimeout(() => f.remove(), 1000);
+  }
 }
 
 /* countdown */
-let startDate=new Date("July 17, 2025").getTime();
-setInterval(()=>{
-let now=new Date().getTime();
-let diff=now-startDate;
+function update() {
+  let start = new Date("July 17, 2025 00:00:00");
+  let now = new Date();
+  let diff = now - start;
+  
+  let days = Math.floor(diff / (1000 * 60 * 60 * 24));
+  let hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  let months = Math.floor(days / 30.44); // more accurate month average
 
-let days=Math.floor(diff/(1000*60*60*24));
-let hours=Math.floor((diff%(1000*60*60*24))/(1000*60*60));
-
-document.getElementById("timer").innerHTML=
-days+" days "+hours+" hours";
-},1000);
-
-/* stars */
-for(let s=0;s<80;s++){
-let star=document.createElement("div");
-star.className="star";
-star.style.left=Math.random()*100+"vw";
-star.style.top=Math.random()*100+"vh";
-document.body.appendChild(star);
+  document.getElementById("countdown").innerHTML =
+    "I have loved you for 💙 " + months + " months, " + (days % 30) + " days, and " + hours + " hours";
 }
-
-/* flowers */
-setInterval(()=>{
-let f=document.createElement("div");
-f.className="flower";
-f.innerHTML="🌸";
-f.style.left=Math.random()*100+"vw";
-f.style.animationDuration=(5+Math.random()*5)+"s";
-document.body.appendChild(f);
-setTimeout(()=>f.remove(),10000);
-},700);
-
+setInterval(update, 1000);
+update();
 </script>
 
 </body>
