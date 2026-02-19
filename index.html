@@ -5,31 +5,27 @@
 <title>For My Love 💙</title>
 
 <style>
-
 body{
 margin:0;
 font-family:Georgia;
 background:linear-gradient(#000814,#001d3d);
 color:white;
 text-align:center;
-overflow-x:hidden;
+overflow:hidden;
 }
 
-/* INTRO */
-#intro{
-position:fixed;
-width:100%;
-height:100%;
-background:black;
-display:flex;
-flex-direction:column;
+/* screens */
+.screen{
+display:none;
+height:100vh;
 justify-content:center;
 align-items:center;
-z-index:9999;
+flex-direction:column;
 }
+.active{display:flex}
 
-/* heartbeat */
-#beatHeart{
+/* heart beat */
+.heart{
 font-size:90px;
 animation:beat 1s infinite;
 }
@@ -37,38 +33,6 @@ animation:beat 1s infinite;
 0%{transform:scale(1)}
 50%{transform:scale(1.3)}
 100%{transform:scale(1)}
-}
-
-/* stars */
-.star{
-position:fixed;
-background:white;
-border-radius:50%;
-animation:twinkle 2s infinite alternate;
-}
-@keyframes twinkle{
-from{opacity:.3}
-to{opacity:1}
-}
-
-/* floating hearts */
-.heart{
-position:fixed;
-color:#7fd6ff;
-animation:floatUp linear forwards;
-}
-@keyframes floatUp{
-from{transform:translateY(100vh)}
-to{transform:translateY(-10vh)}
-}
-
-/* box */
-.box{
-background:rgba(255,255,255,.05);
-padding:30px;
-border-radius:25px;
-margin:40px auto;
-max-width:700px;
 }
 
 /* button */
@@ -80,182 +44,136 @@ background:#0077b6;
 color:white;
 font-size:18px;
 cursor:pointer;
+margin-top:25px;
 }
 
-/* popup */
-#proposal{
+/* secret text */
+#secret{
 display:none;
-position:fixed;
-top:0;
-left:0;
-width:100%;
-height:100%;
-background:rgba(0,0,0,.9);
-justify-content:center;
-align-items:center;
-z-index:999;
-}
-
-/* secret message */
-.secret{
-display:none;
-font-size:26px;
-margin-top:20px;
+font-size:30px;
 color:#7fd6ff;
+margin-top:20px;
 }
 
 /* images */
 img{
-width:100%;
-max-width:500px;
+width:300px;
 border-radius:15px;
 margin-top:20px;
+display:none;
 }
 
+/* fireworks hearts */
+.fire{
+position:fixed;
+font-size:30px;
+pointer-events:none;
+animation:boom 1.5s ease-out forwards;
+}
+
+@keyframes boom{
+0%{transform:translate(0,0);opacity:1}
+100%{transform:translate(var(--x),var(--y));opacity:0}
+}
 </style>
 </head>
 
 <body>
 
 <!-- MUSIC -->
-<audio id="music" loop>
+<audio id="music" autoplay loop>
 <source src="music.mp3" type="audio/mpeg">
 </audio>
 
-<!-- INTRO SCREEN -->
-<div id="intro">
-<div id="beatHeart">💙</div>
+<!-- SCREEN 1 -->
+<div class="screen active" id="s1">
+<div class="heart">💙</div>
 <h2>For My Love</h2>
+<button onclick="next(2)">Open ❤️</button>
 </div>
 
-<!-- PROPOSAL POPUP -->
-<div id="proposal">
-<div class="box">
+<!-- SCREEN 2 PROPOSAL -->
+<div class="screen" id="s2">
 <h2>Will you be my forever home? 💍</h2>
 <button onclick="yes()">YES 💖</button>
 </div>
+
+<!-- SCREEN 3 SECRET -->
+<div class="screen" id="s3">
+<h1 id="secret">He said yes 💍💙</h1>
+<button onclick="next(4)">Continue ➜</button>
 </div>
 
-<!-- MAIN MESSAGE -->
-<div class="box">
-
-<h1>💙</h1>
-
+<!-- SCREEN 4 MESSAGE -->
+<div class="screen" id="s4">
 <p>
 I'm sorry for every misunderstanding...<br>
 Meeting you on that bus was the best moment of my life.<br>
 Since that day I keep loving you more and more 💙
 </p>
 
-<button onclick="openHeart()">Open My Heart ❤️</button>
-
-<div id="secretMsg" class="secret"></div>
-
+<button onclick="showPhotos()">See Our Future ➜</button>
 </div>
 
-<!-- DREAM LIFE IMAGES -->
-<div class="box">
+<!-- SCREEN 5 PHOTOS -->
+<div class="screen" id="s5">
 <h2>The Life I Wish To Live With You 💙</h2>
 
 <img src="Image 1.jpg">
-<p>I want a life where we always find peace in each other's arms.</p>
-
 <img src="Image 2.jpg">
-<p>I want to look at you every day with the same love as the first day.</p>
-
 <img src="Image 3.jpg">
-<p>I want us to dance through every high and low together forever.</p>
-
 <img src="Image 4.jpg">
-<p>I want to explore the world with you beside me always.</p>
-
 <img src="Image 5.jpg">
-<p>I want endless laughter and smiles with you every day.</p>
-
 <img src="Image 7.jpg">
-<p>I want a future filled with love, warmth, and dreams together.</p>
-
 <img src="Image 8.jpg">
-<p>I want forever with you — always and always 💙</p>
 
 </div>
 
 <script>
 
-/* AUTO INTRO CLOSE */
-setTimeout(()=>{
-document.getElementById("intro").style.display="none";
-},3500);
-
-/* STARS */
-for(let i=0;i<120;i++){
-let s=document.createElement("div");
-s.className="star";
-s.style.width=s.style.height=Math.random()*3+"px";
-s.style.left=Math.random()*100+"vw";
-s.style.top=Math.random()*100+"vh";
-document.body.appendChild(s);
+/* screen switch */
+function next(n){
+document.querySelector(".active").classList.remove("active");
+document.getElementById("s"+n).classList.add("active");
 }
 
-/* FLOAT HEARTS */
-setInterval(()=>{
-let h=document.createElement("div");
-h.className="heart";
-h.innerHTML="💙";
-h.style.left=Math.random()*100+"vw";
-h.style.fontSize=(Math.random()*20+15)+"px";
-h.style.animationDuration=(Math.random()*5+5)+"s";
-document.body.appendChild(h);
-setTimeout(()=>h.remove(),10000);
-},400);
-
-/* OPEN PROPOSAL */
-function openHeart(){
-document.getElementById("proposal").style.display="flex";
-}
-
-/* YES CLICK */
+/* YES BUTTON */
 function yes(){
 
-document.getElementById("proposal").style.display="none";
+next(3);
 
-/* MUSIC START */
-let music=document.getElementById("music");
-music.volume=0;
-music.play();
+/* show message */
+document.getElementById("secret").style.display="block";
 
-/* VOLUME FADE */
-let vol=0;
-let fade=setInterval(()=>{
-if(vol<1){
-vol+=0.02;
-music.volume=vol;
-}else{
-clearInterval(fade);
-}
-},120);
-
-/* MESSAGE */
-let m=document.getElementById("secretMsg");
-m.style.display="block";
-m.innerHTML="He said yes 💍💙";
-
-/* GLOW EFFECT */
-document.body.style.boxShadow="inset 0 0 200px #7fd6ff";
-
-/* HEART FIREWORKS */
-for(let i=0;i<80;i++){
-let h=document.createElement("div");
-h.className="heart";
-h.innerHTML="💙";
-h.style.left="50%";
-h.style.top="50%";
-h.style.fontSize="30px";
-h.style.transform=`translate(${Math.random()*600-300}px,${Math.random()*600-300}px)`;
-document.body.appendChild(h);
-setTimeout(()=>h.remove(),2000);
+/* fireworks */
+for(let i=0;i<60;i++){
+let f=document.createElement("div");
+f.className="fire";
+f.innerHTML="💙";
+f.style.left="50%";
+f.style.top="50%";
+f.style.setProperty("--x",(Math.random()*600-300)+"px");
+f.style.setProperty("--y",(Math.random()*600-300)+"px");
+document.body.appendChild(f);
+setTimeout(()=>f.remove(),1500);
 }
 
+}
+
+/* photos appear one by one */
+function showPhotos(){
+
+next(5);
+
+let imgs=document.querySelectorAll("#s5 img");
+let i=0;
+
+let show=setInterval(()=>{
+if(i<imgs.length){
+imgs[i].style.display="block";
+i++;
+}else clearInterval(show);
+},1200);
 }
 
 </script>
