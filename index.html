@@ -13,16 +13,16 @@
 
 body{
 margin:0;
-font-family:Georgia;
+font-family:Georgia,serif;
 background:linear-gradient(var(--bg1),var(--bg2));
 color:white;
 text-align:center;
 overflow:hidden;
 opacity:0;
-transition:3s;
+transition:2s;
 }
 
-/* intro screen */
+/* INTRO SCREEN */
 #intro{
 position:fixed;
 top:0;
@@ -35,55 +35,58 @@ flex-direction:column;
 justify-content:center;
 align-items:center;
 z-index:9999;
+transition:2s;
 }
 
-/* glowing heart */
 #beatHeart{
 font-size:80px;
 animation:beat 1s infinite;
 }
+
 @keyframes beat{
 0%{transform:scale(1)}
 50%{transform:scale(1.3)}
 100%{transform:scale(1)}
 }
 
-/* stars */
+/* STARS */
 .star{
 position:absolute;
 background:white;
 border-radius:50%;
 animation: twinkle 2s infinite alternate;
 }
+
 @keyframes twinkle{
 from{opacity:.3}
 to{opacity:1}
 }
 
-/* hearts */
+/* HEARTS */
 .heart{
 position:absolute;
 color:#7fdbff;
 animation: floatUp linear infinite;
 }
+
 @keyframes floatUp{
 0%{transform:translateY(100vh)}
 100%{transform:translateY(-10vh)}
 }
 
-/* floating names */
+/* FLOATING NAMES */
 .name{
 position:absolute;
 color:#7fdbff;
 font-size:22px;
 animation: floatName 15s linear infinite;
 }
+
 @keyframes floatName{
 0%{transform:translateY(100vh)}
 100%{transform:translateY(-10vh)}
 }
 
-/* content */
 .container{
 position:relative;
 z-index:1;
@@ -94,6 +97,7 @@ h1{
 font-size:3rem;
 animation:glow 2s infinite alternate;
 }
+
 @keyframes glow{
 from{text-shadow:0 0 10px #7fdbff}
 to{text-shadow:0 0 40px #7fdbff}
@@ -107,7 +111,9 @@ background:#0077b6;
 color:white;
 font-size:18px;
 cursor:pointer;
+margin-top:20px;
 }
+
 button:hover{
 background:#00b4d8;
 transform:scale(1.1);
@@ -152,23 +158,25 @@ display:none;
 margin-top:20px;
 color:#7fdbff;
 font-size:22px;
+white-space:pre-line;
 }
 </style>
 </head>
 
 <body>
 
-<!-- music -->
+<!-- MUSIC -->
 <audio autoplay loop>
-<source src="song.mp3" type="audio/mpeg">
+<source src="song.mp3.mp3" type="audio/mpeg">
 </audio>
 
-<!-- intro -->
+<!-- INTRO -->
 <div id="intro">
 <div id="beatHeart">💙</div>
 <h1 id="introText"></h1>
 </div>
 
+<!-- PROPOSAL -->
 <div id="proposal">
 <div class="box">
 <h2>Will you be my forever home? 💍</h2>
@@ -181,20 +189,43 @@ font-size:22px;
 
 <h1>Ram 💙</h1>
 
-<p>I’m sorry for every misunderstanding…  
+<p>
+I'm sorry for every misunderstanding…  
 Meeting you on that bus was the best moment of my life.  
-Since that day I keep loving you more and more 💙</p>
+Since that day I keep loving you more and more 💙
+</p>
 
 <button onclick="openHeart()">Open My Heart ❤️</button>
 
 <div id="message" class="secret"></div>
 
 <div class="box story">
-<h2>Our Memories</h2>
-<img src="image1.jpg">
-<img src="image2.jpg">
-<img src="image3.jpg">
+<h2>The Life I Wish To Live With You 💙</h2>
+
+<img src="Image 1.jpg">
+<p>I want a life where we always find peace in each other's arms.</p>
+
+<img src="Image 2.jpg">
+<p>I want to look at you every day with the same love as the first day.</p>
+
+<img src="Image 3.jpg">
+<p>I want us to dance through every high and low together forever.</p>
+
+<img src="Image 4.jpg">
+<p>I want a life full of adventures where every path leads me back to you.</p>
+
+<img src="Image 5.jpg">
+<p>I want a life where every journey feels beautiful because you’re beside me.</p>
+
+<img src="Image 7.jpg">
+<p>I want a future filled with laughter, love, and a home built with you.</p>
+
+<img src="Image 8.jpg">
+<p>I want forever to feel soft, safe, and warm — just like your love.</p>
+
 </div>
+
+
 
 <div id="counter"></div>
 
@@ -202,7 +233,7 @@ Since that day I keep loving you more and more 💙</p>
 
 <script>
 
-/* intro cinematic */
+/* INTRO TEXT */
 const lines=[
 "For My Love 💙",
 "A world made only for you…",
@@ -211,25 +242,36 @@ const lines=[
 ];
 
 let i=0;
-function intro(){
+
+function introSequence(){
 let t=document.getElementById("introText");
+
 if(i<lines.length){
 t.style.opacity=0;
-setTimeout(()=>{t.innerHTML=lines[i];t.style.opacity=1;},500);
+setTimeout(()=>{
+t.innerHTML=lines[i];
+t.style.opacity=1;
+},500);
+
 i++;
-setTimeout(intro,2500);
+setTimeout(introSequence,2500);
 }
 else{
 setTimeout(()=>{
 document.getElementById("intro").style.opacity=0;
 document.body.style.opacity=1;
-setTimeout(()=>intro.remove(),3000);
+
+setTimeout(()=>{
+document.getElementById("intro").remove();
+},2000);
+
 },2500);
 }
 }
-intro();
 
-/* stars */
+introSequence();
+
+/* STARS */
 for(let i=0;i<120;i++){
 let s=document.createElement("div");
 s.className="star";
@@ -239,7 +281,7 @@ s.style.top=Math.random()*100+"vh";
 document.body.appendChild(s);
 }
 
-/* hearts */
+/* HEARTS */
 setInterval(()=>{
 let h=document.createElement("div");
 h.className="heart";
@@ -251,7 +293,7 @@ document.body.appendChild(h);
 setTimeout(()=>h.remove(),10000);
 },300);
 
-/* names */
+/* FLOATING NAMES */
 setInterval(()=>{
 let n=document.createElement("div");
 n.className="name";
@@ -261,25 +303,25 @@ document.body.appendChild(n);
 setTimeout(()=>n.remove(),15000);
 },2000);
 
-/* open proposal */
+/* PROPOSAL */
 function openHeart(){
 document.getElementById("proposal").style.display="flex";
 }
 
-/* typing text */
-function type(txt,el){
+/* TYPING EFFECT */
+function type(text,el){
 let i=0;
 el.innerHTML="";
-(function t(){
-if(i<txt.length){
-el.innerHTML+=txt.charAt(i);
+(function typing(){
+if(i<text.length){
+el.innerHTML+=text.charAt(i);
 i++;
-setTimeout(t,40);
+setTimeout(typing,40);
 }
 })();
 }
 
-/* yes explosion */
+/* YES EXPLOSION */
 function yes(){
 
 for(let i=0;i<80;i++){
@@ -307,31 +349,39 @@ document.getElementById("proposal").style.display="none";
 let m=document.getElementById("message");
 m.style.display="block";
 
-type("I never proposed properly… 💍\nRam will you be my forever home? 💙",m);
+type("I never proposed properly… 💍\nRam… will you be my forever home? 💙",m);
 }
 
-/* secret */
+/* SECRET */
 function secret(){
 let p=prompt("Enter our special word 💙");
+
 if(p==="buslove"){
 let m=document.getElementById("message");
 m.style.display="block";
 type("My secret — I will always choose you. Always. 💙",m);
-}else alert("Wrong password 😢");
+}
+else{
+alert("Wrong password 😢");
+}
 }
 
-/* timer */
+/* LOVE TIMER */
 const start=new Date("July 1 2025");
+
 setInterval(()=>{
 let d=new Date()-start;
 let days=Math.floor(d/86400000);
 let hrs=Math.floor(d/3600000)%24;
 let mins=Math.floor(d/60000)%60;
 let secs=Math.floor(d/1000)%60;
+
 document.getElementById("counter").innerHTML=
 "I've loved you for 💙<br>"+days+" days "+hrs+" hrs "+mins+" mins "+secs+" secs";
 },1000);
 
 </script>
+
 </body>
 </html>
+
