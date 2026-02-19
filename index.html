@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
 <meta charset="UTF-8">
-<title>My Heart 💙</title>
+<title>My Love 💙</title>
 
 <style>
 body{
@@ -31,24 +31,12 @@ animation:fade 1.5s;
 /* text */
 h1{color:black;font-size:2.6em;}
 p{
-font-size:1.5em;
 color:black;
-background:rgba(255,255,255,.6);
+background:rgba(255,255,255,.65);
 padding:25px;
 border-radius:20px;
-max-width:750px;
-}
-
-/* button */
-button{
-padding:18px 40px;
-font-size:20px;
-border:none;
-border-radius:50px;
-background:#0ea5e9;
-color:white;
-cursor:pointer;
-margin-top:20px;
+font-size:1.5em;
+max-width:700px;
 }
 
 /* images */
@@ -57,12 +45,45 @@ max-height:55vh;
 border-radius:20px;
 margin:20px;
 box-shadow:0 0 40px #38bdf8;
+animation:zoom 7s infinite alternate;
+}
+@keyframes zoom{
+from{transform:scale(1);}
+to{transform:scale(1.07);}
 }
 
 /* petals */
 @keyframes fall{
 from{transform:translateY(-10vh) rotate(0deg);}
 to{transform:translateY(110vh) rotate(360deg);}
+}
+
+/* spotlight */
+#spotlight{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:radial-gradient(circle at center, transparent 120px, rgba(0,0,0,.9) 350px);
+opacity:0;
+transition:opacity 2s;
+pointer-events:none;
+z-index:999;
+}
+
+.proposal h1{
+animation:zoomIn 3s forwards;
+}
+@keyframes zoomIn{
+from{transform:scale(.6);opacity:0;}
+to{transform:scale(1.1);opacity:1;}
+}
+
+/* boom hearts */
+@keyframes boom{
+0%{transform:scale(0);opacity:1;}
+100%{transform:scale(4);opacity:0;}
 }
 </style>
 </head>
@@ -108,20 +129,20 @@ setTimeout(()=>f.remove(),8000);
 <p id="countdown"></p>
 </div>
 
-<!-- couple photos -->
+<!-- couple -->
 <div class="slide"><img src="Image 1.jpg"><p>Life feels peaceful with you 🤍</p></div>
 <div class="slide"><img src="Image 2.jpg"><p>I want to look at you forever 💫</p></div>
 <div class="slide"><img src="Image 3.jpg"><p>We dance through life together 💙</p></div>
 <div class="slide"><img src="Image 4.jpg"><p>Adventures with you 🌎</p></div>
+<div class="slide"><img src="Image 6.jpg"><p>Grow old with you 👴🏻👵🏻</p></div>
 <div class="slide"><img src="Image 7.jpg"><p>You are my safe place 💖</p></div>
 <div class="slide"><img src="Image 8.jpg"><p>My favorite view 😍</p></div>
 
-<!-- him photos auto -->
+<!-- him images -->
 <script>
 let msgs=[
-
- "That smile is my favorite place 💫",
-"Your eyes tell me I'm home 🏠",
+"You are the calm in my chaos 🤍",
+"Your eyes feel like home 🏠",
 "You + Me = My favorite story 💕",
 "I fall for you more every day 🌙",
 "Your look melts my heart 😍",
@@ -142,7 +163,8 @@ let msgs=[
 "My soul smiles because of you 😊",
 "I love every version of you 💫",
 "You're my dream come true 🌙",
-"I choose you always and forever 💍"
+"I choose you always 💍",
+"My forever begins with you 💖"
 ];
 
 for(let i=1;i<=24;i++){
@@ -156,11 +178,13 @@ document.write(`
 </script>
 
 <!-- proposal -->
-<div class="slide">
+<div class="slide proposal">
 <h1>Will you marry me Ram? 💍</h1>
 <p>You are my today, my tomorrow, and my forever.</p>
 <button onclick="yesFinal()">YES 💖</button>
 </div>
+
+<div id="spotlight"></div>
 
 <script>
 let slides=document.querySelectorAll(".slide");
@@ -170,6 +194,10 @@ function show(i){
 slides[index].classList.remove("active");
 index=i;
 slides[index].classList.add("active");
+
+if(slides[index].classList.contains("proposal")){
+document.getElementById("spotlight").style.opacity="1";
+}
 }
 
 function start(){
@@ -183,10 +211,10 @@ let timer=setInterval(()=>{
 show(i);
 i++;
 if(i>=slides.length) clearInterval(timer);
-},3500);
+},5000);
 }
 
-/* love timer */
+/* LIVE TIMER */
 function update(){
 let start=new Date("July 1, 2025 00:00:00");
 let now=new Date();
@@ -203,9 +231,9 @@ document.getElementById("countdown").innerHTML=
 setInterval(update,60000);
 update();
 
-/* final yes */
+/* YES celebration */
 function yesFinal(){
-for(let i=0;i<60;i++){
+for(let i=0;i<70;i++){
 setTimeout(()=>{
 let e=document.createElement("div");
 e.innerHTML="💙";
@@ -216,17 +244,10 @@ e.style.fontSize="30px";
 e.style.animation="boom 1.5s forwards";
 document.body.appendChild(e);
 setTimeout(()=>e.remove(),1500);
-},i*50);
+},i*40);
 }
 }
 </script>
-
-<style>
-@keyframes boom{
-0%{transform:scale(0);opacity:1;}
-100%{transform:scale(4);opacity:0;}
-}
-</style>
 
 </body>
 </html>
