@@ -5,266 +5,275 @@
 <title>For My Love 💙</title>
 
 <style>
-body {
-  margin: 0;
-  font-family: Georgia;
-  background: linear-gradient(#010f24, #03274a); /* Darker, smoother background */
-  color: #ffffff; /* Bright white text for contrast */
-  overflow: hidden;
-  text-align: center;
+body{
+margin:0;
+font-family:Georgia;
+background:linear-gradient(#021a30,#00101f);
+color:black;
+overflow:hidden;
+text-align:center;
 }
 
 /* slides */
-.slide {
-  position: absolute;
-  width: 100%;
-  height: 100vh;
-  display: none;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  padding: 20px;
-  box-sizing: border-box;
+.slide{
+position:absolute;
+width:100%;
+height:100vh;
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+opacity:0;
+transition:1s;
+padding:20px;
+box-sizing:border-box;
 }
-
-.active { display: flex; }
-
-/* headings */
-h1 {
-  font-size: 3em;
-  color: #ffffff;
-  text-shadow: 0 0 25px #7fdfff;
-}
-
-/* paragraphs */
-p {
-  font-size: 1.6em;
-  color: #e5faff; /* brighter color for readability */
-  max-width: 700px;
-}
+.active{opacity:1}
 
 /* button */
-button {
-  padding: 16px 40px;
-  font-size: 20px;
-  border: none;
-  border-radius: 30px;
-  background: #0ea5e9;
-  color: white;
-  cursor: pointer;
-  margin-top: 20px;
-  box-shadow: 0 0 20px #38bdf8;
+button{
+padding:15px 35px;
+font-size:20px;
+border:none;
+border-radius:40px;
+background:#0a84ff;
+color:white;
+cursor:pointer;
+margin:10px;
 }
 
 /* images */
-img {
-  width: 300px;
-  border-radius: 20px;
-  margin: 25px 0;
-  box-shadow: 0 0 40px #38bdf8;
-}
-
-/* stars */
-.star {
-  position: absolute;
-  width: 2px;
-  height: 2px;
-  background: white;
-  animation: twinkle 2s infinite alternate;
-}
-@keyframes twinkle {
-  from { opacity: .2; }
-  to { opacity: 1; }
+img{
+width:260px;
+border-radius:25px;
+box-shadow:0 0 30px #7fd8ff;
+margin:20px;
 }
 
 /* flowers */
-.flower {
-  position: absolute;
-  font-size: 22px;
-  animation: fall linear infinite;
+.flower{
+position:absolute;
+font-size:25px;
+animation:fall linear infinite;
 }
-@keyframes fall {
-  from { transform: translateY(-10vh); }
-  to { transform: translateY(110vh); }
+@keyframes fall{
+0%{transform:translateY(-100px)}
+100%{transform:translateY(110vh)}
+}
+
+/* stars */
+.star{
+position:absolute;
+width:3px;
+height:3px;
+background:white;
+border-radius:50%;
+animation:twinkle 2s infinite alternate;
+}
+@keyframes twinkle{
+from{opacity:.2}
+to{opacity:1}
 }
 
 /* fireworks */
-.firework {
-  position: absolute;
-  font-size: 28px;
-  animation: boom 1s ease-out forwards;
+.spark{
+position:absolute;
+width:6px;
+height:6px;
+background:#7fd8ff;
+border-radius:50%;
+animation:boom 1s linear forwards;
 }
-@keyframes boom {
-  0% { transform: scale(0); }
-  100% { transform: scale(3); opacity: 0; }
+@keyframes boom{
+0%{opacity:1}
+100%{transform:translate(var(--x),var(--y));opacity:0}
 }
 
 /* ending */
-#countdown {
-  font-size: 2em;
-  color: #aee8ff;
-  margin-top: 20px;
+#ending{
+font-size:40px;
+font-weight:bold;
+animation:pulse 1.5s infinite;
+}
+@keyframes pulse{
+0%,100%{transform:scale(1)}
+50%{transform:scale(1.1)}
 }
 </style>
 </head>
+
 <body>
 
-<!-- stars -->
-<script>
-for (let i = 0; i < 160; i++) {
-  let s = document.createElement("div");
-  s.className = "star";
-  s.style.left = Math.random() * 100 + "vw";
-  s.style.top = Math.random() * 100 + "vh";
-  document.body.appendChild(s);
-}
-</script>
-
-<!-- flowers -->
-<script>
-setInterval(() => {
-  let f = document.createElement("div");
-  f.className = "flower";
-  f.innerHTML = "🌸";
-  f.style.left = Math.random() * 100 + "vw";
-  f.style.animationDuration = (Math.random() * 5 + 5) + "s";
-  document.body.appendChild(f);
-  setTimeout(() => f.remove(), 9000);
-}, 500);
-</script>
-
-<!-- music (with controls for testing & autoplay after interaction) -->
+<!-- MUSIC -->
 <audio id="music" loop>
-  <source src="music.mp3" type="audio/mpeg">
-  Your browser does not support the audio tag.
+<source src="WhatsApp Audio 2026-02-19 at 6.08.26 PM.mpeg" type="audio/mpeg">
 </audio>
-
-<!-- test button for sound -->
-<!-- (optional: remove later when you finish testing) -->
-<button style="position:fixed;bottom:15px;right:15px;z-index:99;"
-onclick="document.getElementById('music').play()">🔊 Play Music</button>
 
 <!-- SLIDE 1 -->
 <div class="slide active">
-  <h1>I’m sorry for misunderstanding 💙</h1>
-  <button onclick="start()">Open My Heart ❤️</button>
+<h1>I'm sorry for misunderstanding 💙</h1>
+<button onclick="startExperience()">Open My Heart ❤️</button>
 </div>
 
 <!-- SLIDE 2 PROPOSAL -->
 <div class="slide">
-  <h1>Will you be my forever home? 💍</h1>
-  <button onclick="yes()">YES 💖</button>
-  <button onclick="no()">NO 😭</button>
-  <p id="noMsg"></p>
+<h2>Will you be my forever home? 💍</h2>
+<button onclick="yes()">YES 💖</button>
+<button onclick="no()">NO 😜</button>
+<p id="noMsg"></p>
+</div>
+
+<!-- SLIDE 3 SECRET -->
+<div class="slide">
+<h2>My secret 💫</h2>
+<p>I will always choose you. Always. 💙</p>
 </div>
 
 <!-- IMAGE SLIDES -->
 <div class="slide">
-  <img src="Image%201.jpg">
-  <p>I want a life where we always find peace in each other's arms 🤍</p>
+<img src="Image 1.jpg">
+<p>I just want us together forever 🌍</p>
 </div>
 
 <div class="slide">
-  <img src="Image%202.jpg">
-  <p>I want to look at you every day like the first day 💫</p>
+<img src="Image 2.jpg">
+<p>You are my peace 🕊️</p>
 </div>
 
 <div class="slide">
-  <img src="Image%203.jpg">
-  <p>I want us to dance through every high and low together 💙</p>
+<img src="Image 3.jpg">
+<p>Every moment with you is magic ✨</p>
 </div>
 
 <div class="slide">
-  <img src="Image%204.jpg">
-  <p>I want adventures with you 🌎</p>
+<img src="Image 4.jpg">
+<p>You + Me = Always 💞</p>
 </div>
 
 <div class="slide">
-  <img src="Image%205.jpg">
-  <p>I want endless memories together 📸</p>
+<img src="Image 5.jpg">
+<p>You are my safe place 🤍</p>
 </div>
 
 <div class="slide">
-  <img src="Image%207.jpg">
-  <p>I want to grow old beside you 👴🏻👵🏻</p>
+<img src="Image 7.jpg">
+<p>My favorite story is us 📖</p>
 </div>
 
 <div class="slide">
-  <img src="Image%208.jpg">
-  <p>You are my safe place 💖</p>
+<img src="Image 8.jpg">
+<p>Forever with you 💙</p>
 </div>
 
-<!-- FINAL EMOTIONAL SCREEN -->
+<!-- COUNTDOWN -->
 <div class="slide">
-  <h1>You are my forever 💙</h1>
-  <p>I don't need the world… only you ❤️</p>
-  <div id="countdown"></div>
+<h2>I have loved you for 💙</h2>
+<h1 id="timer"></h1>
+</div>
+
+<!-- ENDING -->
+<div class="slide">
+<div id="ending">You are my forever ❤️</div>
 </div>
 
 <script>
-let slides = document.querySelectorAll(".slide");
-let index = 0;
+let slides=document.querySelectorAll(".slide");
+let i=0;
 
-function show(i) {
-  slides[index].classList.remove("active");
-  index = i;
-  slides[index].classList.add("active");
+/* start */
+function startExperience(){
+playMusic();
+nextSlide();
 }
 
-function start() {
-  document.getElementById("music").play().catch(err => console.log(err));
-  show(1);
+/* next slide */
+function nextSlide(){
+slides[i].classList.remove("active");
+i++;
+if(i<slides.length){
+slides[i].classList.add("active");
+}
 }
 
-function yes() {
-  fireworks();
-  show(2);
-  autoSlides();
+/* yes */
+function yes(){
+fireworks();
+setTimeout(nextSlide,1500);
 }
 
-function no() {
-  document.getElementById("noMsg").innerHTML =
-    "Please click YES 🥺 I know you love me deeply 💙";
+/* no button */
+function no(){
+document.getElementById("noMsg").innerHTML=
+"😜 I know you love me… click YES 💖";
 }
 
-function autoSlides() {
-  let i = 2;
-  let timer = setInterval(() => {
-    i++;
-    if (i >= slides.length) {
-      clearInterval(timer);
-    } else {
-      show(i);
-    }
-  }, 5500);
+/* auto slide */
+setInterval(()=>{
+if(i>1 && i<slides.length-1){
+nextSlide();
+}
+},4000);
+
+/* fireworks */
+function fireworks(){
+for(let j=0;j<60;j++){
+let s=document.createElement("div");
+s.className="spark";
+s.style.left="50%";
+s.style.top="50%";
+s.style.setProperty("--x",(Math.random()*600-300)+"px");
+s.style.setProperty("--y",(Math.random()*600-300)+"px");
+document.body.appendChild(s);
+setTimeout(()=>s.remove(),1000);
+}
 }
 
-function fireworks() {
-  for (let i = 0; i < 40; i++) {
-    let f = document.createElement("div");
-    f.className = "firework";
-    f.innerHTML = "💙";
-    f.style.left = Math.random() * 100 + "vw";
-    f.style.top = Math.random() * 100 + "vh";
-    document.body.appendChild(f);
-    setTimeout(() => f.remove(), 1000);
-  }
+/* music */
+function playMusic(){
+let m=document.getElementById("music");
+m.volume=0;
+m.play().catch(()=>{});
+let v=0;
+let fade=setInterval(()=>{
+if(v<1){
+v+=0.05;
+m.volume=v;
+}else clearInterval(fade);
+},200);
 }
 
-/* countdown */
-function update() {
-  let start = new Date("July 17, 2025 00:00:00");
-  let now = new Date();
-  let diff = now - start;
-  let days = Math.floor(diff / 86400000);
-  let hours = Math.floor(diff / 3600000);
-  let months = Math.floor(days / 30);
+/* countdown from July 17 2025 */
+let startDate=new Date("July 17, 2025 00:00:00").getTime();
+setInterval(()=>{
+let now=new Date().getTime();
+let diff=now-startDate;
 
-  document.getElementById("countdown").innerHTML =
-    "I have loved you for 💙 " + months + " months " + days + " days " + hours + " hours";
+let days=Math.floor(diff/(1000*60*60*24));
+let hours=Math.floor((diff%(1000*60*60*24))/(1000*60*60));
+
+document.getElementById("timer").innerHTML=
+days+" days "+hours+" hours";
+},1000);
+
+/* flowers */
+setInterval(()=>{
+let f=document.createElement("div");
+f.className="flower";
+f.innerHTML="🌸";
+f.style.left=Math.random()*100+"vw";
+f.style.animationDuration=(5+Math.random()*5)+"s";
+document.body.appendChild(f);
+setTimeout(()=>f.remove(),10000);
+},700);
+
+/* stars */
+for(let s=0;s<80;s++){
+let star=document.createElement("div");
+star.className="star";
+star.style.left=Math.random()*100+"vw";
+star.style.top=Math.random()*100+"vh";
+document.body.appendChild(star);
 }
-setInterval(update, 1000);
-update();
 </script>
 
 </body>
