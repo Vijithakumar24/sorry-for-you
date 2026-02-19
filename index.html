@@ -9,9 +9,9 @@ body{
 margin:0;
 font-family:Georgia;
 background:linear-gradient(#021a30,#00101f);
-color:black;
-overflow:hidden;
+color:white;
 text-align:center;
+overflow:hidden;
 }
 
 /* slides */
@@ -19,24 +19,24 @@ text-align:center;
 position:absolute;
 width:100%;
 height:100vh;
-display:flex;
-flex-direction:column;
+display:none;
 justify-content:center;
 align-items:center;
-opacity:0;
-transition:1s;
-padding:20px;
-box-sizing:border-box;
+flex-direction:column;
+z-index:5;
 }
-.active{opacity:1}
+
+.active{
+display:flex;
+}
 
 /* button */
 button{
-padding:15px 35px;
+padding:15px 40px;
 font-size:20px;
 border:none;
 border-radius:40px;
-background:#0a84ff;
+background:#1da1f2;
 color:white;
 cursor:pointer;
 margin:10px;
@@ -45,34 +45,32 @@ margin:10px;
 /* images */
 img{
 width:260px;
-border-radius:25px;
-box-shadow:0 0 30px #7fd8ff;
+border-radius:20px;
 margin:20px;
-}
-
-/* flowers */
-.flower{
-position:absolute;
-font-size:25px;
-animation:fall linear infinite;
-}
-@keyframes fall{
-0%{transform:translateY(-100px)}
-100%{transform:translateY(110vh)}
+box-shadow:0 0 30px #7fdfff;
 }
 
 /* stars */
 .star{
 position:absolute;
-width:3px;
-height:3px;
+width:2px;
+height:2px;
 background:white;
 border-radius:50%;
-animation:twinkle 2s infinite alternate;
+opacity:.7;
+pointer-events:none;
 }
-@keyframes twinkle{
-from{opacity:.2}
-to{opacity:1}
+
+/* flowers */
+.flower{
+position:absolute;
+font-size:22px;
+animation:fall linear infinite;
+pointer-events:none;
+}
+@keyframes fall{
+0%{transform:translateY(-10vh)}
+100%{transform:translateY(110vh)}
 }
 
 /* fireworks */
@@ -80,24 +78,20 @@ to{opacity:1}
 position:absolute;
 width:6px;
 height:6px;
-background:#7fd8ff;
+background:#7fdfff;
 border-radius:50%;
 animation:boom 1s linear forwards;
+pointer-events:none;
 }
 @keyframes boom{
 0%{opacity:1}
 100%{transform:translate(var(--x),var(--y));opacity:0}
 }
 
-/* ending */
-#ending{
-font-size:40px;
-font-weight:bold;
-animation:pulse 1.5s infinite;
-}
-@keyframes pulse{
-0%,100%{transform:scale(1)}
-50%{transform:scale(1.1)}
+#timer{
+font-size:32px;
+margin-top:20px;
+color:#aee8ff;
 }
 </style>
 </head>
@@ -106,30 +100,29 @@ animation:pulse 1.5s infinite;
 
 <!-- MUSIC -->
 <audio id="music" loop>
-<source src="WhatsApp Audio 2026-02-19 at 6.08.26 PM.mpeg" type="audio/mpeg">
+<source src="music.mp3" type="audio/mpeg">
 </audio>
 
 <!-- SLIDE 1 -->
 <div class="slide active">
 <h1>I'm sorry for misunderstanding 💙</h1>
-<button onclick="startExperience()">Open My Heart ❤️</button>
+<button onclick="startSlides()">Open My Heart ❤️</button>
 </div>
 
-<!-- SLIDE 2 PROPOSAL -->
+<!-- SLIDE 2 -->
 <div class="slide">
-<h2>Will you be my forever home? 💍</h2>
+<h1>Will you be my forever home? 💍</h1>
 <button onclick="yes()">YES 💖</button>
 <button onclick="no()">NO 😜</button>
 <p id="noMsg"></p>
 </div>
 
-<!-- SLIDE 3 SECRET -->
+<!-- MESSAGE -->
 <div class="slide">
-<h2>My secret 💫</h2>
-<p>I will always choose you. Always. 💙</p>
+<h1>You are my peace 💙</h1>
 </div>
 
-<!-- IMAGE SLIDES -->
+<!-- IMAGES -->
 <div class="slide">
 <img src="Image 1.jpg">
 <p>I just want us together forever 🌍</p>
@@ -137,7 +130,7 @@ animation:pulse 1.5s infinite;
 
 <div class="slide">
 <img src="Image 2.jpg">
-<p>You are my peace 🕊️</p>
+<p>You are my safe place 🤍</p>
 </div>
 
 <div class="slide">
@@ -152,12 +145,12 @@ animation:pulse 1.5s infinite;
 
 <div class="slide">
 <img src="Image 5.jpg">
-<p>You are my safe place 🤍</p>
+<p>My favorite story is us 📖</p>
 </div>
 
 <div class="slide">
 <img src="Image 7.jpg">
-<p>My favorite story is us 📖</p>
+<p>I want to grow old beside you 👴🏻👵🏻</p>
 </div>
 
 <div class="slide">
@@ -165,29 +158,25 @@ animation:pulse 1.5s infinite;
 <p>Forever with you 💙</p>
 </div>
 
-<!-- COUNTDOWN -->
+<!-- TIMER -->
 <div class="slide">
-<h2>I have loved you for 💙</h2>
-<h1 id="timer"></h1>
+<h1>I have loved you for 💙</h1>
+<div id="timer"></div>
 </div>
 
-<!-- ENDING -->
+<!-- END -->
 <div class="slide">
-<div id="ending">You are my forever ❤️</div>
+<h1>You are my forever ❤️</h1>
 </div>
 
 <script>
+
+/* slide logic */
 let slides=document.querySelectorAll(".slide");
 let i=0;
 
-/* start */
-function startExperience(){
-playMusic();
-nextSlide();
-}
-
 /* next slide */
-function nextSlide(){
+function next(){
 slides[i].classList.remove("active");
 i++;
 if(i<slides.length){
@@ -195,34 +184,45 @@ slides[i].classList.add("active");
 }
 }
 
+/* start button */
+function startSlides(){
+playMusic();
+next();
+}
+
 /* yes */
 function yes(){
 fireworks();
-setTimeout(nextSlide,1500);
+setTimeout(()=>{
+next();
+autoSlides();
+},1200);
 }
 
-/* no button */
+/* no */
 function no(){
 document.getElementById("noMsg").innerHTML=
-"😜 I know you love me… click YES 💖";
+"I know you love me 😌 click YES 💙";
 }
 
 /* auto slide */
+function autoSlides(){
 setInterval(()=>{
-if(i>1 && i<slides.length-1){
-nextSlide();
+if(i<slides.length-1){
+next();
 }
 },4000);
+}
 
 /* fireworks */
 function fireworks(){
-for(let j=0;j<60;j++){
+for(let k=0;k<40;k++){
 let s=document.createElement("div");
 s.className="spark";
 s.style.left="50%";
 s.style.top="50%";
-s.style.setProperty("--x",(Math.random()*600-300)+"px");
-s.style.setProperty("--y",(Math.random()*600-300)+"px");
+s.style.setProperty("--x",(Math.random()*500-250)+"px");
+s.style.setProperty("--y",(Math.random()*500-250)+"px");
 document.body.appendChild(s);
 setTimeout(()=>s.remove(),1000);
 }
@@ -242,8 +242,8 @@ m.volume=v;
 },200);
 }
 
-/* countdown from July 17 2025 */
-let startDate=new Date("July 17, 2025 00:00:00").getTime();
+/* countdown */
+let startDate=new Date("July 17, 2025").getTime();
 setInterval(()=>{
 let now=new Date().getTime();
 let diff=now-startDate;
@@ -254,6 +254,15 @@ let hours=Math.floor((diff%(1000*60*60*24))/(1000*60*60));
 document.getElementById("timer").innerHTML=
 days+" days "+hours+" hours";
 },1000);
+
+/* stars */
+for(let s=0;s<80;s++){
+let star=document.createElement("div");
+star.className="star";
+star.style.left=Math.random()*100+"vw";
+star.style.top=Math.random()*100+"vh";
+document.body.appendChild(star);
+}
 
 /* flowers */
 setInterval(()=>{
@@ -266,14 +275,6 @@ document.body.appendChild(f);
 setTimeout(()=>f.remove(),10000);
 },700);
 
-/* stars */
-for(let s=0;s<80;s++){
-let star=document.createElement("div");
-star.className="star";
-star.style.left=Math.random()*100+"vw";
-star.style.top=Math.random()*100+"vh";
-document.body.appendChild(star);
-}
 </script>
 
 </body>
