@@ -103,4 +103,187 @@ z-index:99;
 /* secret */
 .secret{
 display:none;
-font-size:
+font-size:24px;
+color:#7fd6ff;
+margin-top:20px;
+}
+
+/* slides */
+@keyframes fadeIn{
+from{opacity:0;transform:scale(.9)}
+to{opacity:1;transform:scale(1)}
+}
+
+/* fireworks */
+.fire{
+position:fixed;
+font-size:25px;
+animation:boom 1s linear forwards;
+}
+@keyframes boom{
+0%{transform:scale(.2);opacity:1}
+100%{transform:scale(2);opacity:0}
+}
+
+#count{
+font-size:22px;
+color:#7fd6ff;
+margin-top:40px;
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- music -->
+<audio id="music" loop>
+<source src="music.mp3" type="audio/mpeg">
+</audio>
+
+<!-- intro -->
+<div id="intro">
+<div id="heart">💙</div>
+<h1>For My Love</h1>
+</div>
+
+<!-- proposal -->
+<div id="proposal">
+<div class="box">
+<h2>Will you be my forever home? 💍</h2>
+<button onclick="yes()">YES 💖</button>
+</div>
+</div>
+
+<!-- content -->
+<div class="box">
+<h1>💙</h1>
+
+<p>
+I'm sorry for every misunderstanding...<br>
+Meeting you on that bus was the best moment of my life.<br>
+Since that day I keep loving you more and more 💙
+</p>
+
+<button onclick="openHeart()">Open My Heart ❤️</button>
+
+<div id="secret" class="secret"></div>
+
+<div id="slides"></div>
+
+<div id="count"></div>
+
+</div>
+
+<script>
+
+/* intro fade */
+setTimeout(()=>{
+document.getElementById("intro").style.display="none";
+},3000);
+
+/* stars */
+for(let i=0;i<120;i++){
+let s=document.createElement("div");
+s.className="star";
+s.style.left=Math.random()*100+"vw";
+s.style.top=Math.random()*100+"vh";
+s.style.animationDuration=Math.random()*3+1+"s";
+document.body.appendChild(s);
+}
+
+/* petals */
+setInterval(()=>{
+let p=document.createElement("div");
+p.className="petal";
+p.innerHTML="💙";
+p.style.left=Math.random()*100+"vw";
+p.style.animationDuration=Math.random()*5+5+"s";
+document.body.appendChild(p);
+setTimeout(()=>p.remove(),8000);
+},500);
+
+/* open proposal */
+function openHeart(){
+document.getElementById("proposal").style.display="flex";
+}
+
+/* YES clicked */
+function yes(){
+
+document.getElementById("proposal").style.display="none";
+
+/* music fade */
+let music=document.getElementById("music");
+music.volume=0;
+music.play();
+
+let v=0;
+let fade=setInterval(()=>{
+if(v<1){
+v+=0.02;
+music.volume=v;
+}else clearInterval(fade);
+},120);
+
+/* fireworks */
+for(let i=0;i<40;i++){
+let f=document.createElement("div");
+f.className="fire";
+f.innerHTML="✨";
+f.style.left=Math.random()*100+"vw";
+f.style.top=Math.random()*100+"vh";
+document.body.appendChild(f);
+setTimeout(()=>f.remove(),1000);
+}
+
+/* secret message */
+let s=document.getElementById("secret");
+s.style.display="block";
+s.innerHTML="He said yes 💍💙";
+
+/* start slides */
+showSlides();
+}
+
+/* slides */
+const data=[
+["Image 1.jpg","With you, even silence feels beautiful 💙"],
+["Image 2.jpg","Every second with you is my favorite moment ✨"],
+["Image 3.jpg","I just want us together forever 🌍"],
+["Image 4.jpg","Walking beside you is happiness 🚶‍♀️"],
+["Image 5.jpg","Your love is my home 🏡"],
+["Image 7.jpg","I see my forever in you 💫"],
+["Image 8.jpg","I don't need the world… only you ❤️"]
+];
+
+let i=0;
+function showSlides(){
+
+const box=document.getElementById("slides");
+
+box.innerHTML=`
+<div style="animation:fadeIn 2s">
+<img src="${data[i][0]}" style="width:320px;border-radius:20px;box-shadow:0 0 30px #7fd6ff">
+<p style="font-size:22px;color:#7fd6ff">${data[i][1]}</p>
+</div>
+`;
+
+i++;
+if(i<data.length)setTimeout(showSlides,3500);
+}
+
+/* countdown since July 1 2025 */
+const start=new Date("July 1 2025");
+
+setInterval(()=>{
+let now=new Date()-start;
+let hrs=Math.floor(now/3600000);
+document.getElementById("count").innerHTML=
+"I have loved you for 💙 "+hrs+" hours";
+},1000);
+
+</script>
+
+</body>
+</html>
