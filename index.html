@@ -63,6 +63,7 @@ margin:25px 0;
 box-shadow:0 0 40px rgba(56,189,248,.7);
 }
 
+/* stars */
 .star{
 position:absolute;
 width:2px;height:2px;
@@ -71,6 +72,7 @@ animation:twinkle 2s infinite alternate;
 }
 @keyframes twinkle{from{opacity:.2}to{opacity:1}}
 
+/* floating */
 .flower,.heart{
 position:absolute;
 animation:fall linear infinite;
@@ -80,6 +82,7 @@ from{transform:translateY(-10vh)}
 to{transform:translateY(110vh)}
 }
 
+/* fireworks */
 .firework{
 position:absolute;
 font-size:35px;
@@ -154,10 +157,10 @@ onclick="document.getElementById('music').play()">🔊 Music</button>
 <p id="noMsg"></p>
 </div>
 
-<!-- memory slides container -->
+<!-- dynamic slides container -->
 <div id="memorySlides"></div>
 
-<!-- final slide -->
+<!-- final -->
 <div class="slide">
 <h1>You are my forever 💙</h1>
 <p>Every second with you is a gift I cherish forever.</p>
@@ -165,8 +168,12 @@ onclick="document.getElementById('music').play()">🔊 Music</button>
 </div>
 
 <script>
-let slides=document.querySelectorAll(".slide");
+let slides=[];
 let index=0;
+
+function collectSlides(){
+slides=document.querySelectorAll(".slide");
+}
 
 function show(i){
 slides[index].classList.remove("active");
@@ -175,6 +182,7 @@ slides[index].classList.add("active");
 }
 
 function start(){
+collectSlides();
 document.getElementById("music").play();
 autoSlides();
 }
@@ -190,6 +198,7 @@ if(i===7)clearInterval(timer);
 
 function yes(){
 fireworks();
+collectSlides();
 let i=8;
 show(i);
 
@@ -231,7 +240,7 @@ document.getElementById("countdown").innerHTML=
 setInterval(update,60000);
 update();
 
-/* memories */
+/* memory slides */
 const memories=[
 {img:"letter1.jpeg",msg:"Every word from you is a treasure 💌"},
 {img:"letter2.jpeg",msg:"Your letters live in my heart forever 💙"},
