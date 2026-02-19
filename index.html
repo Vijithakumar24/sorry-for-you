@@ -1,51 +1,22 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
 <meta charset="UTF-8">
 <title>For My Love 💙</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
-
 body{
 margin:0;
 font-family:Georgia;
+text-align:center;
 background:linear-gradient(#000814,#001d3d);
 color:white;
-text-align:center;
 overflow-x:hidden;
-}
-
-/* stars */
-.star{
-position:fixed;
-width:2px;
-height:2px;
-background:white;
-border-radius:50%;
-animation:twinkle 2s infinite alternate;
-}
-@keyframes twinkle{
-from{opacity:.2}
-to{opacity:1}
-}
-
-/* petals */
-.petal{
-position:fixed;
-color:#7fd6ff;
-animation:fall linear infinite;
-}
-@keyframes fall{
-0%{transform:translateY(-10vh)}
-100%{transform:translateY(110vh)}
 }
 
 /* intro */
 #intro{
 position:fixed;
-top:0;
-left:0;
 width:100%;
 height:100%;
 background:black;
@@ -55,23 +26,27 @@ justify-content:center;
 align-items:center;
 z-index:999;
 }
+
 #heart{
 font-size:80px;
 animation:beat 1s infinite;
 }
+
 @keyframes beat{
-0%{transform:scale(1)}
+0%,100%{transform:scale(1)}
 50%{transform:scale(1.3)}
-100%{transform:scale(1)}
 }
 
-/* box */
-.box{
-background:rgba(255,255,255,.05);
-padding:30px;
-border-radius:25px;
-margin:40px auto;
-max-width:600px;
+/* stars */
+.star{
+position:absolute;
+background:white;
+border-radius:50%;
+animation:twinkle 2s infinite alternate;
+}
+@keyframes twinkle{
+from{opacity:.2}
+to{opacity:1}
 }
 
 /* buttons */
@@ -84,9 +59,12 @@ color:white;
 font-size:18px;
 cursor:pointer;
 }
-button:hover{transform:scale(1.1)}
+button:hover{
+background:#00b4d8;
+transform:scale(1.1);
+}
 
-/* proposal popup */
+/* popup */
 #proposal{
 display:none;
 position:fixed;
@@ -94,130 +72,119 @@ top:0;
 left:0;
 width:100%;
 height:100%;
-background:rgba(0,0,0,.9);
+background:rgba(0,0,0,.85);
 justify-content:center;
 align-items:center;
 z-index:99;
 }
 
-/* secret */
-.secret{
-display:none;
-font-size:24px;
-color:#7fd6ff;
-margin-top:20px;
+/* slides */
+.box{
+background:rgba(255,255,255,.05);
+padding:30px;
+margin:40px auto;
+border-radius:25px;
+width:80%;
+max-width:500px;
 }
 
-/* slides */
-@keyframes fadeIn{
+img{
+margin-top:20px;
+border-radius:20px;
+box-shadow:0 0 30px #7fd6ff;
+width:320px;
+}
+
+.fade{
+animation:fade 2s;
+}
+@keyframes fade{
 from{opacity:0;transform:scale(.9)}
 to{opacity:1;transform:scale(1)}
 }
 
+#count{
+margin-top:30px;
+font-size:24px;
+color:#7fd6ff;
+}
+
 /* fireworks */
-.fire{
-position:fixed;
-font-size:25px;
+.spark{
+position:absolute;
+font-size:24px;
 animation:boom 1s linear forwards;
 }
 @keyframes boom{
-0%{transform:scale(.2);opacity:1}
-100%{transform:scale(2);opacity:0}
+to{transform:translateY(-200px);opacity:0}
 }
-
-#count{
-font-size:22px;
-color:#7fd6ff;
-margin-top:40px;
-}
-
 </style>
 </head>
 
 <body>
 
-<!-- music -->
+<!-- MUSIC -->
 <audio id="music" loop>
 <source src="music.mp3" type="audio/mpeg">
 </audio>
 
-<!-- intro -->
+<!-- INTRO -->
 <div id="intro">
 <div id="heart">💙</div>
-<h1>For My Love</h1>
+<h2>For My Love</h2>
 </div>
 
-<!-- proposal -->
+<!-- PROPOSAL -->
 <div id="proposal">
 <div class="box">
 <h2>Will you be my forever home? 💍</h2>
-<button onclick="yes()">YES 💖</button>
+<button onclick="yes()">YES ❤️</button>
 </div>
 </div>
 
-<!-- content -->
-<div class="box">
-<h1>💙</h1>
-
-<p>
-I'm sorry for every misunderstanding...<br>
-Meeting you on that bus was the best moment of my life.<br>
-Since that day I keep loving you more and more 💙
-</p>
+<!-- CONTENT -->
+<div style="padding-top:100px">
 
 <button onclick="openHeart()">Open My Heart ❤️</button>
 
-<div id="secret" class="secret"></div>
-
 <div id="slides"></div>
-
 <div id="count"></div>
 
 </div>
 
 <script>
 
-/* intro fade */
+/* intro disappear */
 setTimeout(()=>{
 document.getElementById("intro").style.display="none";
-},3000);
+},2500);
 
 /* stars */
 for(let i=0;i<120;i++){
 let s=document.createElement("div");
 s.className="star";
+s.style.width=s.style.height=Math.random()*3+"px";
 s.style.left=Math.random()*100+"vw";
 s.style.top=Math.random()*100+"vh";
-s.style.animationDuration=Math.random()*3+1+"s";
 document.body.appendChild(s);
 }
 
-/* petals */
-setInterval(()=>{
-let p=document.createElement("div");
-p.className="petal";
-p.innerHTML="💙";
-p.style.left=Math.random()*100+"vw";
-p.style.animationDuration=Math.random()*5+5+"s";
-document.body.appendChild(p);
-setTimeout(()=>p.remove(),8000);
-},500);
-
-/* open proposal */
+/* open popup */
 function openHeart(){
 document.getElementById("proposal").style.display="flex";
 }
 
-/* YES clicked */
+/* when YES */
 function yes(){
 
 document.getElementById("proposal").style.display="none";
 
-/* music fade */
+/* PLAY MUSIC */
 let music=document.getElementById("music");
 music.volume=0;
 music.play();
 
+/* fade volume */
 let v=0;
 let fade=setInterval(()=>{
 if(v<1){
@@ -228,26 +195,23 @@ music.volume=v;
 
 /* fireworks */
 for(let i=0;i<40;i++){
-let f=document.createElement("div");
-f.className="fire";
-f.innerHTML="✨";
-f.style.left=Math.random()*100+"vw";
-f.style.top=Math.random()*100+"vh";
-document.body.appendChild(f);
-setTimeout(()=>f.remove(),1000);
+let s=document.createElement("div");
+s.className="spark";
+s.innerHTML="✨";
+s.style.left=Math.random()*100+"vw";
+s.style.top="80vh";
+document.body.appendChild(s);
+setTimeout(()=>s.remove(),1000);
 }
-
-/* secret message */
-let s=document.getElementById("secret");
-s.style.display="block";
-s.innerHTML="He said yes 💍💙";
 
 /* start slides */
 showSlides();
 }
 
-/* slides */
+/* SLIDES DATA */
 const data=[
+["","I'm sorry for the misunderstandings… 💙"],
+
 ["Image 1.jpg","With you, even silence feels beautiful 💙"],
 ["Image 2.jpg","Every second with you is my favorite moment ✨"],
 ["Image 3.jpg","I just want us together forever 🌍"],
@@ -258,32 +222,59 @@ const data=[
 ];
 
 let i=0;
+
 function showSlides(){
 
-const box=document.getElementById("slides");
+let box=document.getElementById("slides");
 
+if(i < data.length){
+
+if(data[i][0]==""){
 box.innerHTML=`
-<div style="animation:fadeIn 2s">
-<img src="${data[i][0]}" style="width:320px;border-radius:20px;box-shadow:0 0 30px #7fd6ff">
+<div class="box fade">
+<p style="font-size:26px;color:#7fd6ff">${data[i][1]}</p>
+</div>`;
+}else{
+box.innerHTML=`
+<div class="box fade">
+<img src="${data[i][0]}">
 <p style="font-size:22px;color:#7fd6ff">${data[i][1]}</p>
-</div>
-`;
-
-i++;
-if(i<data.length)setTimeout(showSlides,3500);
+</div>`;
 }
 
-/* countdown since July 1 2025 */
-const start=new Date("July 1 2025");
+i++;
+setTimeout(showSlides,3500);
+
+}else{
+startTimer();
+}
+
+}
+
+/* TIMER LAST PAGE */
+function startTimer(){
+
+const start=new Date("July 17 2025");
 
 setInterval(()=>{
-let now=new Date()-start;
-let hrs=Math.floor(now/3600000);
+
+let now=new Date();
+let diff=now-start;
+
+let months=Math.floor(diff/(1000*60*60*24*30));
+let days=Math.floor(diff/(1000*60*60*24))%30;
+let hours=Math.floor(diff/(1000*60*60))%24;
+
 document.getElementById("count").innerHTML=
-"I have loved you for 💙 "+hrs+" hours";
+"I have loved you for 💙 "+
+months+" months "+
+days+" days "+
+hours+" hours";
+
 },1000);
 
-</script>
+}
 
+</script>
 </body>
 </html>
