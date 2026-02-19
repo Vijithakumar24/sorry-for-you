@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>For You 💙</title>
+<title>For My Love 💙</title>
 
 <style>
 
@@ -26,10 +26,9 @@ flex-direction:column;
 justify-content:center;
 align-items:center;
 z-index:9999;
-cursor:pointer;
 }
 
-/* heart beat */
+/* heartbeat */
 #beatHeart{
 font-size:90px;
 animation:beat 1s infinite;
@@ -100,11 +99,12 @@ z-index:999;
 /* secret message */
 .secret{
 display:none;
-font-size:24px;
+font-size:26px;
 margin-top:20px;
 color:#7fd6ff;
 }
 
+/* images */
 img{
 width:100%;
 max-width:500px;
@@ -122,14 +122,13 @@ margin-top:20px;
 <source src="music.mp3" type="audio/mpeg">
 </audio>
 
-<!-- INTRO -->
-<div id="intro" onclick="closeIntro()">
+<!-- INTRO SCREEN -->
+<div id="intro">
 <div id="beatHeart">💙</div>
 <h2>For My Love</h2>
-<p>(click anywhere)</p>
 </div>
 
-<!-- POPUP -->
+<!-- PROPOSAL POPUP -->
 <div id="proposal">
 <div class="box">
 <h2>Will you be my forever home? 💍</h2>
@@ -137,7 +136,7 @@ margin-top:20px;
 </div>
 </div>
 
-<!-- MAIN CONTENT -->
+<!-- MAIN MESSAGE -->
 <div class="box">
 
 <h1>💙</h1>
@@ -154,7 +153,7 @@ Since that day I keep loving you more and more 💙
 
 </div>
 
-<!-- IMAGES -->
+<!-- DREAM LIFE IMAGES -->
 <div class="box">
 <h2>The Life I Wish To Live With You 💙</h2>
 
@@ -177,16 +176,16 @@ Since that day I keep loving you more and more 💙
 <p>I want a future filled with love, warmth, and dreams together.</p>
 
 <img src="Image 8.jpg">
-<p>I want forever with you — always and always. 💙</p>
+<p>I want forever with you — always and always 💙</p>
 
 </div>
 
 <script>
 
-/* CLOSE INTRO */
-function closeIntro(){
+/* AUTO INTRO CLOSE */
+setTimeout(()=>{
 document.getElementById("intro").style.display="none";
-}
+},3500);
 
 /* STARS */
 for(let i=0;i<120;i++){
@@ -198,7 +197,7 @@ s.style.top=Math.random()*100+"vh";
 document.body.appendChild(s);
 }
 
-/* HEART FLOAT */
+/* FLOAT HEARTS */
 setInterval(()=>{
 let h=document.createElement("div");
 h.className="heart";
@@ -220,11 +219,12 @@ function yes(){
 
 document.getElementById("proposal").style.display="none";
 
-/* PLAY MUSIC */
+/* MUSIC START */
 let music=document.getElementById("music");
 music.volume=0;
 music.play();
 
+/* VOLUME FADE */
 let vol=0;
 let fade=setInterval(()=>{
 if(vol<1){
@@ -240,7 +240,7 @@ let m=document.getElementById("secretMsg");
 m.style.display="block";
 m.innerHTML="He said yes 💍💙";
 
-/* GLOW */
+/* GLOW EFFECT */
 document.body.style.boxShadow="inset 0 0 200px #7fd6ff";
 
 /* HEART FIREWORKS */
@@ -251,7 +251,6 @@ h.innerHTML="💙";
 h.style.left="50%";
 h.style.top="50%";
 h.style.fontSize="30px";
-h.style.position="fixed";
 h.style.transform=`translate(${Math.random()*600-300}px,${Math.random()*600-300}px)`;
 document.body.appendChild(h);
 setTimeout(()=>h.remove(),2000);
