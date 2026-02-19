@@ -2,237 +2,265 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>To My Soulmate 💍</title>
+<title>My Heart to Yours 💙</title>
 
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&family=Playfair+Display:ital@0;1&display=swap');
-
-body {
-  margin: 0;
-  font-family: 'Playfair Display', serif;
-  background: radial-gradient(circle, #03274a 0%, #010f24 100%); 
-  color: #000000;
-  overflow: hidden;
-  text-align: center;
+body{
+margin:0;
+font-family:Georgia,serif;
+background:linear-gradient(#010f24,#03274a);
+overflow:hidden;
+text-align:center;
 }
 
-/* Slides */
-.slide {
-  position: absolute;
-  width: 100%;
-  height: 100vh;
-  display: none;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  padding: 20px;
-  box-sizing: border-box;
-  animation: fadeIn 3s ease-in-out;
+.slide{
+position:absolute;
+width:100%;
+height:100vh;
+display:none;
+justify-content:center;
+align-items:center;
+flex-direction:column;
+padding:40px;
+animation:fade 2s;
+}
+.active{display:flex;}
+@keyframes fade{from{opacity:0}to{opacity:1}}
+
+h1{
+font-size:2.8em;
+color:#fff;
+text-shadow:0 0 20px white;
 }
 
-@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-.active { display: flex; }
-
-/* Text Blocks */
-h1 {
-  font-size: 2.2em;
-  color: #fff;
-  text-shadow: 0 0 15px #38bdf8;
-  margin-bottom: 20px;
-  background: rgba(255, 255, 255, 0.1);
-  padding: 10px 30px;
-  border-radius: 50px;
-  backdrop-filter: blur(5px);
+p{
+font-size:1.5em;
+max-width:800px;
+background:rgba(255,255,255,.4);
+padding:30px;
+border-radius:20px;
+color:#000;
+backdrop-filter:blur(5px);
 }
 
-p {
-  font-size: 1.3em;
-  line-height: 1.5;
-  color: #000;
-  max-width: 800px;
-  background: rgba(255, 255, 255, 0.75);
-  padding: 18px 25px;
-  border-radius: 20px;
-  backdrop-filter: blur(10px);
-  box-shadow: 0 10px 30px rgba(0,0,0,0.4);
-  margin-top: 15px;
+button{
+padding:18px 45px;
+font-size:22px;
+border:none;
+border-radius:50px;
+background:#0ea5e9;
+color:white;
+cursor:pointer;
+margin-top:25px;
+box-shadow:0 0 25px #38bdf8;
+}
+button:hover{transform:scale(1.1)}
+
+img{
+max-height:50vh;
+border-radius:20px;
+margin:25px 0;
+box-shadow:0 0 40px rgba(56,189,248,.7);
 }
 
-.handwriting {
-  font-family: 'Dancing Script', cursive;
-  font-size: 1.6em;
+.star{
+position:absolute;
+width:2px;height:2px;
+background:white;
+animation:twinkle 2s infinite alternate;
+}
+@keyframes twinkle{from{opacity:.2}to{opacity:1}}
+
+.flower,.heart{
+position:absolute;
+animation:fall linear infinite;
+}
+@keyframes fall{
+from{transform:translateY(-10vh)}
+to{transform:translateY(110vh)}
 }
 
-/* Images */
-img {
-  max-height: 55vh;
-  max-width: 85%;
-  border-radius: 15px;
-  border: 5px solid white;
-  box-shadow: 0 15px 35px rgba(0,0,0,0.6);
-  transition: transform 1s ease;
+.firework{
+position:absolute;
+font-size:35px;
+animation:boom 1.5s forwards;
+}
+@keyframes boom{
+0%{transform:scale(0);opacity:1}
+100%{transform:scale(4);opacity:0}
 }
 
-.collage-box {
-  display: flex;
-  gap: 10px;
-  justify-content: center;
-  align-items: center;
+#countdown{
+font-size:1.4em;
+background:rgba(255,255,255,.5);
+padding:15px 25px;
+border-radius:15px;
 }
-
-.img-small { height: 40vh; }
-
-/* Buttons */
-button {
-  padding: 18px 45px;
-  font-size: 22px;
-  border: none;
-  border-radius: 50px;
-  background: #0ea5e9;
-  color: white;
-  cursor: pointer;
-  box-shadow: 0 0 25px #38bdf8;
-  z-index: 100;
-}
-
-.pulse { animation: pulse-animation 2s infinite; }
-@keyframes pulse-animation { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.05); } }
-
-/* Ambient Background */
-.star { position: absolute; width: 2px; height: 2px; background: white; border-radius: 50%; opacity: 0.5; }
-.flower { position: absolute; pointer-events: none; animation: fall linear infinite; z-index: 10; font-size: 20px; }
-@keyframes fall { from { transform: translateY(-10vh) rotate(0deg); } to { transform: translateY(110vh) rotate(360deg); } }
-
-#countdown { font-size: 1.4em; color: white; margin-top: 20px; font-weight: bold; text-shadow: 0 0 10px #000; }
 </style>
 </head>
 <body>
 
-<div id="star-field"></div>
+<script>
+for(let i=0;i<200;i++){
+let s=document.createElement("div");
+s.className="star";
+s.style.left=Math.random()*100+"vw";
+s.style.top=Math.random()*100+"vh";
+s.style.animationDelay=Math.random()*2+"s";
+document.body.appendChild(s);
+}
+</script>
+
+<script>
+setInterval(()=>{
+let f=document.createElement("div");
+f.className=Math.random()>.7?"heart":"flower";
+f.innerHTML=Math.random()>.7?"💙":"🌸";
+f.style.left=Math.random()*100+"vw";
+f.style.fontSize=(Math.random()*10+15)+"px";
+f.style.animationDuration=(Math.random()*8+7)+"s";
+document.body.appendChild(f);
+setTimeout(()=>f.remove(),15000);
+},600);
+</script>
 
 <audio id="music" loop>
-  <source src="WhatsApp Audio 2026-02-19 at 6.08.26 PM.mpeg" type="audio/mpeg">
+<source src="WhatsApp Audio 2026-02-19 at 6.08.26 PM.mpeg" type="audio/mpeg">
 </audio>
 
+<button style="position:fixed;bottom:15px;right:15px;z-index:99"
+onclick="document.getElementById('music').play()">🔊 Music</button>
+
+<!-- intro -->
 <div class="slide active">
-  <h1 style="font-size:3.5em;">My Heart to Yours...</h1>
-  <button onclick="startJourney()" class="pulse">Open My Heart ❤️</button>
+<h1>I have something to tell you…</h1>
+<button onclick="start()">Open My Heart ❤️</button>
 </div>
 
-<div class="slide"><p class="handwriting">I’m truly sorry for all the misunderstandings... I realize that maybe I didn’t express myself in the right way.</p></div>
-<div class="slide"><p class="handwriting">What we share means the world to me. I never wanted things to feel heavy between us. I value you more than words can say.</p></div>
+<!-- apology slides -->
+<div class="slide"><p>I’m truly sorry for all the misunderstandings between us…</p></div>
+<div class="slide"><p>I didn’t express myself the right way and I regret that.</p></div>
+<div class="slide"><p>What we share means the world to me.</p></div>
+<div class="slide"><p>I never wanted to hurt you or confuse you.</p></div>
+<div class="slide"><p>I just wanted us to understand each other better ❤️</p></div>
+<div class="slide"><p>I believe in us. I always will.</p></div>
+<div class="slide"><p>I’m sorry… and I love you more than words.</p></div>
 
-<div class="slide"><img src="him1.jpeg"><p>Every Thursday night with you is a memory I keep in my heart forever. ✨</p></div>
-<div class="slide"><img src="him 2.jpeg"><p>That "hey" and that smile... it's the highlight of my entire day. 🤍</p></div>
-<div class="slide"><img src="him 3.jpeg"><p>Life is always "Thursdaying" when I'm walking beside you. 👣</p></div>
-<div class="slide"><img src="him 4.jpeg"><p>I love the way our hands look together. It just feels right. 🤝</p></div>
-<div class="slide"><img src="him 5.jpeg"><p>Looking at you is my favorite thing to do. You are my manifestation come true. 🧿</p></div>
-<div class="slide"><img src="him 6.jpeg"><p>I see my whole future in those eyes. 💫</p></div>
-<div class="slide"><img src="him 7.jpeg"><p>The way you look at me makes everything else in the world disappear. 🌌</p></div>
-<div class="slide"><img src="him 8.jpeg"><p>My safe place. My home. My favorite person. 🏠❤️</p></div>
-<div class="slide"><img src="him 9.jpeg"><p>No matter where we go, as long as I'm with you, I'm happy. 🌎</p></div>
-<div class="slide"><img src="him 10.jpeg"><p>You are the dream I never want to wake up from. ✨</p></div>
-<div class="slide"><img src="him 11.jpeg"><p>Every version of you is my favorite version. 💖</p></div>
-<div class="slide"><img src="him 12.jpeg"><p>Just a glimpse of you makes my heart skip a beat. 💓</p></div>
-<div class="slide"><img src="him 13.jpeg"><p>Thank you for being you, exactly as you are. 🙏</p></div>
-<div class="slide"><img src="him 14.jpeg"><p>That soft "hello" that melts my heart every single time. 😊</p></div>
-<div class="slide"><img src="him 15.jpeg"><p>8:00 PM or any time, as long as it's our time, it's perfect. 🕗</p></div>
-<div class="slide"><img src="him 16.jpeg"><p>"Who cares?" about the world when we have each other? 🤷‍♂️💙</p></div>
-<div class="slide"><img src="him 17.jpeg"><p>Even when we're being little devils, you're an angel to me. 😈❤️</p></div>
-<div class="slide"><img src="him 18.jpeg"><p>My favorite view in the entire world. 🏔️</p></div>
-<div class="slide"><img src="him 19.jpeg"><p>All the hearts in the world aren't enough to show how much I love you. 💕</p></div>
-<div class="slide"><img src="him 20.jpeg"><p>I could sit next to you on a bus forever and never get bored. 🚌</p></div>
-<div class="slide"><img src="him 21.jpeg"><p>A beautiful Wednesday morning because it started with you. ☀️</p></div>
-<div class="slide"><img src="him 22.jpeg"><p>That pink heart on your chin... you're just too cute! 🥰</p></div>
-<div class="slide"><img src="him 23.jpeg"><p>I love your style, your vibe, and most of all, your heart. 👕✨</p></div>
-<div class="slide"><img src="him 24.jpeg"><p>Flowers in your hair and love in our hearts. Forever to go. 🌸💍</p></div>
-
+<!-- proposal -->
 <div class="slide">
-  <div class="collage-box">
-    <img src="letter1.jpeg" class="img-small">
-    <img src="bouquet.jpeg" style="height:45vh">
-    <img src="letter2.jpeg" class="img-small">
-  </div>
-  <p>I’ve kept every flower and every word you’ve ever given me. These aren't just gifts; they are pieces of your heart that I promise to keep safe forever. 🌸✍️</p>
+<h1>Will you be my forever? 💍</h1>
+<button onclick="yes()">YES 💖</button>
+<button onclick="no()">NO 😭</button>
+<p id="noMsg"></p>
 </div>
 
-<div class="slide">
-  <h1 style="font-size:3.5em;">Will you marry me? 💍</h1>
-  <div style="display:flex; gap:20px;">
-    <button onclick="yes()" class="pulse">YES, Forever 💖</button>
-    <button onclick="alert('You know we are soulmates! 🥺')">Hold me first 🥺</button>
-  </div>
-</div>
+<!-- memory slides container -->
+<div id="memorySlides"></div>
 
+<!-- final slide -->
 <div class="slide">
-  <h1 style="font-size:3em;">Our Forever Begins 💙</h1>
-  <div id="countdown"></div>
+<h1>You are my forever 💙</h1>
+<p>Every second with you is a gift I cherish forever.</p>
+<div id="countdown"></div>
 </div>
 
 <script>
-// Background Stars
-const starField = document.getElementById('star-field');
-for (let i = 0; i < 150; i++) {
-  let s = document.createElement("div");
-  s.className = "star";
-  s.style.left = Math.random() * 100 + "vw";
-  s.style.top = Math.random() * 100 + "vh";
-  starField.appendChild(s);
+let slides=document.querySelectorAll(".slide");
+let index=0;
+
+function show(i){
+slides[index].classList.remove("active");
+index=i;
+slides[index].classList.add("active");
 }
 
-// Falling Flowers & Hearts
-setInterval(() => {
-  let f = document.createElement("div");
-  f.className = "flower";
-  f.innerHTML = Math.random() > 0.5 ? "🌸" : "💙";
-  f.style.left = Math.random() * 100 + "vw";
-  f.style.animationDuration = (Math.random() * 5 + 5) + "s";
-  document.body.appendChild(f);
-  setTimeout(() => f.remove(), 10000);
-}, 1000);
-
-let slides = document.querySelectorAll(".slide");
-let currentIndex = 0;
-
-function showSlide(n) {
-  slides[currentIndex].classList.remove("active");
-  currentIndex = n;
-  slides[currentIndex].classList.add("active");
+function start(){
+document.getElementById("music").play();
+autoSlides();
 }
 
-function startJourney() {
-  document.getElementById("music").play().catch(e => console.log("Audio play blocked"));
-  let i = 0;
-  // 30 Seconds interval (30000ms)
-  let timer = setInterval(() => {
-    i++;
-    if (i === slides.length - 2) { 
-      clearInterval(timer);
-    }
-    showSlide(i);
-  }, 30000); 
+function autoSlides(){
+let i=0;
+let timer=setInterval(()=>{
+i++;
+show(i);
+if(i===7)clearInterval(timer);
+},4000);
 }
 
-function yes() {
-  showSlide(slides.length - 1);
+function yes(){
+fireworks();
+let i=8;
+show(i);
+
+let timer=setInterval(()=>{
+i++;
+if(i>=slides.length)clearInterval(timer);
+else show(i);
+},3500);
 }
 
-// Countdown Calculation
-function updateCountdown() {
-  let startDate = new Date("July 17, 2025 00:00:00");
-  let now = new Date();
-  let diff = now - startDate;
-  
-  let days = Math.floor(diff / (1000 * 60 * 60 * 24));
-  let months = Math.floor(days / 30.44);
-  let hours = now.getHours();
-  
-  document.getElementById("countdown").innerHTML = 
-    "I have loved you for 💙<br><b>" + months + " months, " + (days % 30) + " days, and " + hours + " hours</b>";
+function no(){
+document.getElementById("noMsg").innerHTML="My heart only accepts YES 🥺";
 }
-setInterval(updateCountdown, 1000);
-updateCountdown();
+
+function fireworks(){
+for(let i=0;i<40;i++){
+setTimeout(()=>{
+let f=document.createElement("div");
+f.className="firework";
+f.innerHTML="💙";
+f.style.left=Math.random()*100+"vw";
+f.style.top=Math.random()*100+"vh";
+document.body.appendChild(f);
+setTimeout(()=>f.remove(),1500);
+},i*100);
+}
+}
+
+/* countdown */
+function update(){
+let start=new Date("July 17, 2025");
+let now=new Date();
+let diff=now-start;
+let days=Math.floor(diff/86400000);
+let months=Math.floor(days/30.44);
+document.getElementById("countdown").innerHTML=
+"I have loved you for<br><b>"+months+" months and "+(days%30)+" days</b>";
+}
+setInterval(update,60000);
+update();
+
+/* memories */
+const memories=[
+{img:"letter1.jpeg",msg:"Every word from you is a treasure 💌"},
+{img:"letter2.jpeg",msg:"Your letters live in my heart forever 💙"},
+{img:"bouquet1.jpeg",msg:"I kept your flowers because they carry your love 🌸"},
+
+{img:"Image1.jpeg",msg:"I want a life where we always find peace in each other's arms 🤍"},
+{img:"Image2.jpeg",msg:"I want to look at you every day like the first day 💫"},
+{img:"Image3.jpeg",msg:"I want us to dance through every high and low together 💙"},
+{img:"Image4.jpeg",msg:"I want adventures with you 🌎"},
+{img:"Image6.jpeg",msg:"I want to grow old beside you 👴🏻👵🏻"},
+{img:"Image7.jpeg",msg:"You are my safe place 💖"},
+{img:"Image8.jpeg",msg:"My favorite view in the whole world is you 😍"}
+];
+
+for(let i=1;i<=24;i++){
+memories.push({
+img:`him${i}.jpeg`,
+msg:"You are my favorite person in every universe 💖"
+});
+}
+
+const container=document.getElementById("memorySlides");
+
+memories.forEach(m=>{
+let d=document.createElement("div");
+d.className="slide";
+d.innerHTML=`<img src="${m.img}"><p>${m.msg}</p>`;
+container.appendChild(d);
+});
 </script>
 
 </body>
