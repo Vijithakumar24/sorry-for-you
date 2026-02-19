@@ -1,15 +1,15 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>For My Love 💙</title>
+<title>My Heart to Yours 💙</title>
 
 <style>
 body {
   margin: 0;
-  font-family: Georgia, serif;
+  font-family: 'Georgia', serif;
   background: linear-gradient(#010f24, #03274a); 
-  color: #000000; /* Global text color set to black */
+  color: #000000;
   overflow: hidden;
   text-align: center;
 }
@@ -23,114 +23,125 @@ body {
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  padding: 20px;
+  padding: 40px;
   box-sizing: border-box;
+  animation: fadeIn 3s;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
 }
 
 .active { display: flex; }
 
 /* headings */
 h1 {
-  font-size: 3em;
-  color: #000000; /* Black text */
-  text-shadow: 0 0 10px rgba(255,255,255,0.5); /* Soft glow to help black stand out */
-  background: rgba(255, 255, 255, 0.2); /* Light backing for readability */
-  padding: 10px 20px;
-  border-radius: 15px;
+  font-size: 2.8em;
+  color: #000000;
+  text-shadow: 0 0 15px rgba(255,255,255,0.6);
+  background: rgba(255, 255, 255, 0.25);
+  padding: 20px 30px;
+  border-radius: 50px;
+  border: 1px solid rgba(255,255,255,0.3);
 }
 
-/* paragraphs */
+/* paragraphs / letter text */
 p {
-  font-size: 1.6em;
-  color: #000000; /* Black text */
-  max-width: 700px;
-  background: rgba(255, 255, 255, 0.3); /* Semi-transparent white background */
-  padding: 15px;
-  border-radius: 10px;
-  margin-top: 10px;
+  font-size: 1.5em;
+  line-height: 1.6;
+  color: #000000;
+  max-width: 800px;
+  background: rgba(255, 255, 255, 0.4);
+  padding: 30px;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+  backdrop-filter: blur(5px);
 }
 
 /* button */
 button {
-  padding: 16px 40px;
-  font-size: 20px;
+  padding: 18px 45px;
+  font-size: 22px;
   border: none;
-  border-radius: 30px;
+  border-radius: 50px;
   background: #0ea5e9;
-  color: white; /* Buttons keep white text for UI standard */
+  color: white;
   cursor: pointer;
-  margin-top: 20px;
-  box-shadow: 0 0 20px #38bdf8;
-  transition: transform 0.2s;
+  margin-top: 25px;
+  box-shadow: 0 0 25px #38bdf8;
+  transition: all 0.3s;
 }
 
 button:hover {
-  transform: scale(1.05);
+  transform: scale(1.1);
+  background: #0284c7;
+}
+
+.pulse {
+  animation: pulse-animation 2s infinite;
+}
+
+@keyframes pulse-animation {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); }
 }
 
 /* images */
 img {
-  width: 300px;
+  max-height: 50vh;
+  width: auto;
   border-radius: 20px;
   margin: 25px 0;
-  box-shadow: 0 0 40px #38bdf8;
+  box-shadow: 0 0 50px rgba(56, 189, 248, 0.6);
+  border: 5px solid rgba(255,255,255,0.2);
 }
 
-/* stars */
-.star {
-  position: absolute;
-  width: 2px;
-  height: 2px;
-  background: white;
-  animation: twinkle 2s infinite alternate;
-}
-@keyframes twinkle {
-  from { opacity: .2; }
-  to { opacity: 1; }
-}
+/* Ambient Elements */
+.star { position: absolute; width: 2px; height: 2px; background: white; animation: twinkle 2s infinite alternate; }
+@keyframes twinkle { from { opacity: .2; } to { opacity: 1; } }
 
-/* flowers */
-.flower {
+.flower, .heart-float {
   position: absolute;
-  font-size: 22px;
+  pointer-events: none;
   animation: fall linear infinite;
-  z-index: 10;
-}
-@keyframes fall {
-  from { transform: translateY(-10vh); }
-  to { transform: translateY(110vh); }
 }
 
-/* fireworks */
+@keyframes fall {
+  from { transform: translateY(-10vh) rotate(0deg); }
+  to { transform: translateY(110vh) rotate(360deg); }
+}
+
 .firework {
   position: absolute;
-  font-size: 28px;
-  animation: boom 1s ease-out forwards;
+  font-size: 35px;
+  animation: boom 1.5s ease-out forwards;
 }
 @keyframes boom {
-  0% { transform: scale(0); }
-  100% { transform: scale(3); opacity: 0; }
+  0% { transform: scale(0); opacity: 1; }
+  100% { transform: scale(4); opacity: 0; }
 }
 
-/* ending */
 #countdown {
-  font-size: 1.8em;
+  font-size: 1.5em;
   color: #000000;
   margin-top: 20px;
-  background: rgba(255, 255, 255, 0.4);
-  padding: 10px;
-  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.5);
+  padding: 15px 25px;
+  border-radius: 15px;
 }
 </style>
 </head>
 <body>
 
 <script>
-for (let i = 0; i < 160; i++) {
+for (let i = 0; i < 200; i++) {
   let s = document.createElement("div");
   s.className = "star";
   s.style.left = Math.random() * 100 + "vw";
   s.style.top = Math.random() * 100 + "vh";
+  s.style.animationDelay = Math.random() * 2 + "s";
   document.body.appendChild(s);
 }
 </script>
@@ -138,75 +149,78 @@ for (let i = 0; i < 160; i++) {
 <script>
 setInterval(() => {
   let f = document.createElement("div");
-  f.className = "flower";
-  f.innerHTML = "🌸";
+  let isHeart = Math.random() > 0.7;
+  f.className = isHeart ? "heart-float" : "flower";
+  f.innerHTML = isHeart ? "💙" : "🌸";
   f.style.left = Math.random() * 100 + "vw";
-  f.style.animationDuration = (Math.random() * 5 + 5) + "s";
+  f.style.fontSize = (Math.random() * 10 + 15) + "px";
+  f.style.animationDuration = (Math.random() * 8 + 7) + "s";
+  f.style.opacity = Math.random();
   document.body.appendChild(f);
-  setTimeout(() => f.remove(), 9000);
-}, 500);
+  setTimeout(() => f.remove(), 15000);
+}, 600);
 </script>
 
 <audio id="music" loop>
   <source src="WhatsApp Audio 2026-02-19 at 6.08.26 PM.mpeg" type="audio/mpeg">
-  Your browser does not support the audio tag.
 </audio>
 
-<button style="position:fixed;bottom:15px;right:15px;z-index:99; padding: 10px 20px; font-size: 14px;"
-onclick="document.getElementById('music').play()">🔊 Play Music</button>
+<button style="position:fixed;bottom:15px;right:15px;z-index:99; padding: 10px; font-size: 12px; opacity: 0.5;"
+onclick="document.getElementById('music').play()">🔊 Music</button>
 
 <div class="slide active">
-  <h1>I’m sorry for misunderstanding 💙</h1>
-  <button onclick="start()">Open My Heart ❤️</button>
+  <h1 style="background:none; text-shadow: 0 0 20px #fff; color:#fff;">I have something to tell you...</h1>
+  <button onclick="start()" class="pulse">Open My Heart ❤️</button>
+</div>
+
+<div class="slide">
+  <p>I’m truly sorry for all the misunderstandings that happened between us. I’ve been thinking a lot about our conversation and about everything we said...</p>
+</div>
+
+<div class="slide">
+  <p>I realize that maybe I didn’t express myself in the right way or explain my expectations clearly. I never wanted things to feel heavy or confusing between us.</p>
+</div>
+
+<div class="slide">
+  <p>What we share means so much to me. My intention was never to hurt you, upset you, or make you feel pressured.</p>
+</div>
+
+<div class="slide">
+  <p>I just wanted you to understand my feelings and what I hope for from us. I value you, I care about you deeply, and I really don’t want small misunderstandings to create distance.</p>
+</div>
+
+<div class="slide">
+  <p>I believe in us. I want us to communicate openly, understand each other better, and grow stronger together. ❤️</p>
+</div>
+
+<div class="slide">
+  <p>Please don’t think my words came from anger or ego; they came from love, concern, and the desire to make our relationship more beautiful and clear.</p>
+</div>
+
+<div class="slide">
+  <p>I’m sorry if anything I said sounded wrong or hurt you—that was never my intention. I just want peace between us, your smile, and the warmth we always share. ❤️</p>
 </div>
 
 <div class="slide">
   <h1>Will you be my forever home? 💍</h1>
   <div style="display: flex; gap: 20px;">
-    <button onclick="yes()">YES 💖</button>
+    <button onclick="yes()" class="pulse">YES 💖</button>
     <button onclick="no()">NO 😭</button>
   </div>
-  <p id="noMsg" style="background:none;"></p>
+  <p id="noMsg" style="background:none; box-shadow:none;"></p>
 </div>
 
-<div class="slide">
-  <img src="Image%201.jpg">
-  <p>I want a life where we always find peace in each other's arms 🤍</p>
-</div>
-
-<div class="slide">
-  <img src="Image%202.jpg">
-  <p>I want to look at you every day like the first day 💫</p>
-</div>
-
-<div class="slide">
-  <img src="Image%203.jpg">
-  <p>I want us to dance through every high and low together 💙</p>
-</div>
-
-<div class="slide">
-  <img src="Image%204.jpg">
-  <p>I want adventures with you 🌎</p>
-</div>
-
-<div class="slide">
-  <img src="Image%205.jpg">
-  <p>I want endless memories together 📸</p>
-</div>
-
-<div class="slide">
-  <img src="Image%207.jpg">
-  <p>I want to grow old beside you 👴🏻👵🏻</p>
-</div>
-
-<div class="slide">
-  <img src="Image%208.jpg">
-  <p>You are my safe place 💖</p>
-</div>
+<div class="slide"><img src="Image%201.jpg"><p>I want a life where we always find peace in each other's arms 🤍</p></div>
+<div class="slide"><img src="Image%202.jpg"><p>I want to look at you every day like the first day 💫</p></div>
+<div class="slide"><img src="Image%203.jpg"><p>I want us to dance through every high and low together 💙</p></div>
+<div class="slide"><img src="Image%204.jpg"><p>I want adventures with you 🌎</p></div>
+<div class="slide"><img src="Image%205.jpg"><p>I want endless memories together 📸</p></div>
+<div class="slide"><img src="Image%207.jpg"><p>I want to grow old beside you 👴🏻👵🏻</p></div>
+<div class="slide"><img src="Image%208.jpg"><p>You are my safe place 💖</p></div>
 
 <div class="slide">
   <h1>You are my forever 💙</h1>
-  <p>I don't need the world… only you ❤️</p>
+  <p>Every second spent with you is a gift I promise to cherish forever.</p>
   <div id="countdown"></div>
 </div>
 
@@ -221,59 +235,68 @@ function show(i) {
 }
 
 function start() {
-  document.getElementById("music").play().catch(err => console.log("Audio play blocked: ", err));
-  show(1);
+  document.getElementById("music").play();
+  autoLetterSlides();
+}
+
+// Letter slides transition every 12 seconds to ensure they read it slowly
+function autoLetterSlides() {
+  let i = 0;
+  let timer = setInterval(() => {
+    i++;
+    show(i);
+    if (i === 7) { // Stop at the Proposal slide
+      clearInterval(timer);
+    }
+  }, 12000); 
 }
 
 function yes() {
   fireworks();
-  show(2);
-  autoSlides();
-}
-
-function no() {
-  document.getElementById("noMsg").innerHTML =
-    "Please click YES 🥺 I know you love me deeply 💙";
-}
-
-function autoSlides() {
-  let i = 2;
-  let timer = setInterval(() => {
+  let i = 8;
+  show(i);
+  // Image slides transition even slower (15 seconds) for a long 15-min feel
+  let photoTimer = setInterval(() => {
     i++;
     if (i >= slides.length) {
-      clearInterval(timer);
+      clearInterval(photoTimer);
     } else {
       show(i);
     }
-  }, 5500);
+  }, 15000);
+}
+
+function no() {
+  document.getElementById("noMsg").innerHTML = "My heart only knows one answer... Please click YES 🥺";
 }
 
 function fireworks() {
-  for (let i = 0; i < 40; i++) {
-    let f = document.createElement("div");
-    f.className = "firework";
-    f.innerHTML = "💙";
-    f.style.left = Math.random() * 100 + "vw";
-    f.style.top = Math.random() * 100 + "vh";
-    document.body.appendChild(f);
-    setTimeout(() => f.remove(), 1000);
+  for (let i = 0; i < 50; i++) {
+    setTimeout(() => {
+      let f = document.createElement("div");
+      f.className = "firework";
+      f.innerHTML = "💙";
+      f.style.left = Math.random() * 100 + "vw";
+      f.style.top = Math.random() * 100 + "vh";
+      document.body.appendChild(f);
+      setTimeout(() => f.remove(), 1500);
+    }, i * 100);
   }
 }
 
-/* countdown */
 function update() {
   let start = new Date("July 17, 2025 00:00:00");
   let now = new Date();
   let diff = now - start;
-  
   let days = Math.floor(diff / (1000 * 60 * 60 * 24));
   let hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-  let months = Math.floor(days / 30.44); // more accurate month average
+  let mins = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+  let months = Math.floor(days / 30.44);
 
   document.getElementById("countdown").innerHTML =
-    "I have loved you for 💙 " + months + " months, " + (days % 30) + " days, and " + hours + " hours";
+    "I have loved you for<br><b>" + months + " months, " + (days % 30) + " days, " + hours + " hours, and " + mins + " minutes</b>";
 }
-setInterval(update, 1000);
+setInterval(update, 60000);
 update();
 </script>
 
