@@ -5,104 +5,105 @@
 <title>For My Love 💙</title>
 
 <style>
-body{
-margin:0;
-font-family:Georgia;
-background:linear-gradient(#021a33,#063b6b);
-color:#ffffff;
-overflow:hidden;
-text-align:center;
+body {
+  margin: 0;
+  font-family: Georgia;
+  background: linear-gradient(#010f24, #03274a); /* Darker, smoother background */
+  color: #ffffff; /* Bright white text for contrast */
+  overflow: hidden;
+  text-align: center;
 }
 
 /* slides */
-.slide{
-position:absolute;
-width:100%;
-height:100vh;
-display:none;
-justify-content:center;
-align-items:center;
-flex-direction:column;
-padding:20px;
-box-sizing:border-box;
+.slide {
+  position: absolute;
+  width: 100%;
+  height: 100vh;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding: 20px;
+  box-sizing: border-box;
 }
 
-.active{display:flex}
+.active { display: flex; }
 
 /* headings */
-h1{
-font-size:3em;
-color:#ffffff;
-text-shadow:0 0 25px #7fdfff;
+h1 {
+  font-size: 3em;
+  color: #ffffff;
+  text-shadow: 0 0 25px #7fdfff;
 }
 
-p{
-font-size:1.6em;
-color:#dff6ff;
-max-width:700px;
+/* paragraphs */
+p {
+  font-size: 1.6em;
+  color: #e5faff; /* brighter color for readability */
+  max-width: 700px;
 }
 
 /* button */
-button{
-padding:16px 40px;
-font-size:20px;
-border:none;
-border-radius:30px;
-background:#0ea5e9;
-color:white;
-cursor:pointer;
-margin-top:20px;
-box-shadow:0 0 20px #38bdf8;
+button {
+  padding: 16px 40px;
+  font-size: 20px;
+  border: none;
+  border-radius: 30px;
+  background: #0ea5e9;
+  color: white;
+  cursor: pointer;
+  margin-top: 20px;
+  box-shadow: 0 0 20px #38bdf8;
 }
 
 /* images */
-img{
-width:300px;
-border-radius:20px;
-margin:25px 0;
-box-shadow:0 0 40px #38bdf8;
+img {
+  width: 300px;
+  border-radius: 20px;
+  margin: 25px 0;
+  box-shadow: 0 0 40px #38bdf8;
 }
 
 /* stars */
-.star{
-position:absolute;
-width:2px;
-height:2px;
-background:white;
-animation:twinkle 2s infinite alternate;
+.star {
+  position: absolute;
+  width: 2px;
+  height: 2px;
+  background: white;
+  animation: twinkle 2s infinite alternate;
 }
-@keyframes twinkle{
-from{opacity:.2}
-to{opacity:1}
+@keyframes twinkle {
+  from { opacity: .2; }
+  to { opacity: 1; }
 }
 
 /* flowers */
-.flower{
-position:absolute;
-font-size:22px;
-animation:fall linear infinite;
+.flower {
+  position: absolute;
+  font-size: 22px;
+  animation: fall linear infinite;
 }
-@keyframes fall{
-from{transform:translateY(-10vh)}
-to{transform:translateY(110vh)}
+@keyframes fall {
+  from { transform: translateY(-10vh); }
+  to { transform: translateY(110vh); }
 }
 
 /* fireworks */
-.firework{
-position:absolute;
-font-size:28px;
-animation:boom 1s ease-out forwards;
+.firework {
+  position: absolute;
+  font-size: 28px;
+  animation: boom 1s ease-out forwards;
 }
-@keyframes boom{
-0%{transform:scale(0)}
-100%{transform:scale(3);opacity:0}
+@keyframes boom {
+  0% { transform: scale(0); }
+  100% { transform: scale(3); opacity: 0; }
 }
 
 /* ending */
-#countdown{
-font-size:2em;
-color:#aee8ff;
-margin-top:20px;
+#countdown {
+  font-size: 2em;
+  color: #aee8ff;
+  margin-top: 20px;
 }
 </style>
 </head>
@@ -110,154 +111,159 @@ margin-top:20px;
 
 <!-- stars -->
 <script>
-for(let i=0;i<160;i++){
-let s=document.createElement("div");
-s.className="star";
-s.style.left=Math.random()*100+"vw";
-s.style.top=Math.random()*100+"vh";
-document.body.appendChild(s);
+for (let i = 0; i < 160; i++) {
+  let s = document.createElement("div");
+  s.className = "star";
+  s.style.left = Math.random() * 100 + "vw";
+  s.style.top = Math.random() * 100 + "vh";
+  document.body.appendChild(s);
 }
 </script>
 
 <!-- flowers -->
 <script>
-setInterval(()=>{
-let f=document.createElement("div");
-f.className="flower";
-f.innerHTML="🌸";
-f.style.left=Math.random()*100+"vw";
-f.style.animationDuration=(Math.random()*5+5)+"s";
-document.body.appendChild(f);
-setTimeout(()=>f.remove(),9000);
-},500);
+setInterval(() => {
+  let f = document.createElement("div");
+  f.className = "flower";
+  f.innerHTML = "🌸";
+  f.style.left = Math.random() * 100 + "vw";
+  f.style.animationDuration = (Math.random() * 5 + 5) + "s";
+  document.body.appendChild(f);
+  setTimeout(() => f.remove(), 9000);
+}, 500);
 </script>
 
-<!-- music -->
+<!-- music (with controls for testing & autoplay after interaction) -->
 <audio id="music" loop>
-<source src="WhatsApp Audio 2026-02-19 at 6.08.26 PM.mpeg" type="audio/mpeg">
+  <source src="music.mp3" type="audio/mpeg">
+  Your browser does not support the audio tag.
 </audio>
+
+<!-- test button for sound -->
+<!-- (optional: remove later when you finish testing) -->
+<button style="position:fixed;bottom:15px;right:15px;z-index:99;"
+onclick="document.getElementById('music').play()">🔊 Play Music</button>
 
 <!-- SLIDE 1 -->
 <div class="slide active">
-<h1>I’m sorry for misunderstanding 💙</h1>
-<button onclick="start()">Open My Heart ❤️</button>
+  <h1>I’m sorry for misunderstanding 💙</h1>
+  <button onclick="start()">Open My Heart ❤️</button>
 </div>
 
 <!-- SLIDE 2 PROPOSAL -->
 <div class="slide">
-<h1>Will you be my forever home? 💍</h1>
-<button onclick="yes()">YES 💖</button>
-<button onclick="no()">NO 😭</button>
-<p id="noMsg"></p>
+  <h1>Will you be my forever home? 💍</h1>
+  <button onclick="yes()">YES 💖</button>
+  <button onclick="no()">NO 😭</button>
+  <p id="noMsg"></p>
 </div>
 
 <!-- IMAGE SLIDES -->
 <div class="slide">
-<img src="Image%201.jpg">
-<p>I want a life where we always find peace in each other's arms 🤍</p>
+  <img src="Image%201.jpg">
+  <p>I want a life where we always find peace in each other's arms 🤍</p>
 </div>
 
 <div class="slide">
-<img src="Image%202.jpg">
-<p>I want to look at you every day like the first day 💫</p>
+  <img src="Image%202.jpg">
+  <p>I want to look at you every day like the first day 💫</p>
 </div>
 
 <div class="slide">
-<img src="Image%203.jpg">
-<p>I want us to dance through every high and low together 💙</p>
+  <img src="Image%203.jpg">
+  <p>I want us to dance through every high and low together 💙</p>
 </div>
 
 <div class="slide">
-<img src="Image%204.jpg">
-<p>I want adventures with you 🌎</p>
+  <img src="Image%204.jpg">
+  <p>I want adventures with you 🌎</p>
 </div>
 
 <div class="slide">
-<img src="Image%205.jpg">
-<p>I want endless memories together 📸</p>
+  <img src="Image%205.jpg">
+  <p>I want endless memories together 📸</p>
 </div>
 
 <div class="slide">
-<img src="Image%207.jpg">
-<p>I want to grow old beside you 👴🏻👵🏻</p>
+  <img src="Image%207.jpg">
+  <p>I want to grow old beside you 👴🏻👵🏻</p>
 </div>
 
 <div class="slide">
-<img src="Image%208.jpg">
-<p>You are my safe place 💖</p>
+  <img src="Image%208.jpg">
+  <p>You are my safe place 💖</p>
 </div>
 
 <!-- FINAL EMOTIONAL SCREEN -->
 <div class="slide">
-<h1>You are my forever 💙</h1>
-<p>I don't need the world… only you ❤️</p>
-<div id="countdown"></div>
+  <h1>You are my forever 💙</h1>
+  <p>I don't need the world… only you ❤️</p>
+  <div id="countdown"></div>
 </div>
 
 <script>
-let slides=document.querySelectorAll(".slide");
-let index=0;
+let slides = document.querySelectorAll(".slide");
+let index = 0;
 
-function show(i){
-slides[index].classList.remove("active");
-index=i;
-slides[index].classList.add("active");
-}
-
-function start(){
-document.getElementById("music").play().catch(()=>{});
-show(1);
+function show(i) {
+  slides[index].classList.remove("active");
+  index = i;
+  slides[index].classList.add("active");
 }
 
-function yes(){
-fireworks();
-show(2);
-autoSlides();
+function start() {
+  document.getElementById("music").play().catch(err => console.log(err));
+  show(1);
 }
 
-function no(){
-document.getElementById("noMsg").innerHTML=
-"Please click YES 🥺 I know you love me deeply 💙";
+function yes() {
+  fireworks();
+  show(2);
+  autoSlides();
 }
 
-function autoSlides(){
-let i=2;
-let timer=setInterval(()=>{
-i++;
-if(i>=slides.length){
-clearInterval(timer);
-}else{
-show(i);
-}
-},5500);
+function no() {
+  document.getElementById("noMsg").innerHTML =
+    "Please click YES 🥺 I know you love me deeply 💙";
 }
 
-function fireworks(){
-for(let i=0;i<40;i++){
-let f=document.createElement("div");
-f.className="firework";
-f.innerHTML="💙";
-f.style.left=Math.random()*100+"vw";
-f.style.top=Math.random()*100+"vh";
-document.body.appendChild(f);
-setTimeout(()=>f.remove(),1000);
+function autoSlides() {
+  let i = 2;
+  let timer = setInterval(() => {
+    i++;
+    if (i >= slides.length) {
+      clearInterval(timer);
+    } else {
+      show(i);
+    }
+  }, 5500);
 }
+
+function fireworks() {
+  for (let i = 0; i < 40; i++) {
+    let f = document.createElement("div");
+    f.className = "firework";
+    f.innerHTML = "💙";
+    f.style.left = Math.random() * 100 + "vw";
+    f.style.top = Math.random() * 100 + "vh";
+    document.body.appendChild(f);
+    setTimeout(() => f.remove(), 1000);
+  }
 }
 
 /* countdown */
-function update(){
-let start=new Date("July 17, 2025 00:00:00");
-let now=new Date();
-let diff=now-start;
+function update() {
+  let start = new Date("July 17, 2025 00:00:00");
+  let now = new Date();
+  let diff = now - start;
+  let days = Math.floor(diff / 86400000);
+  let hours = Math.floor(diff / 3600000);
+  let months = Math.floor(days / 30);
 
-let days=Math.floor(diff/86400000);
-let hours=Math.floor(diff/3600000);
-let months=Math.floor(days/30);
-
-document.getElementById("countdown").innerHTML=
-"I have loved you for 💙 "+months+" months "+days+" days "+hours+" hours";
+  document.getElementById("countdown").innerHTML =
+    "I have loved you for 💙 " + months + " months " + days + " days " + hours + " hours";
 }
-setInterval(update,1000);
+setInterval(update, 1000);
 update();
 </script>
 
