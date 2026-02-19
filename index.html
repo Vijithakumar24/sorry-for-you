@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>To My Soulmate 💍</title>
 
 <style>
@@ -10,204 +11,195 @@
 body {
   margin: 0;
   font-family: 'Playfair Display', serif;
-  background: linear-gradient(#010f24, #03274a); 
+  background: radial-gradient(circle, #03274a 0%, #010f24 100%); 
   color: #000000;
   overflow: hidden;
   text-align: center;
+  height: 100vh;
 }
 
 /* slides */
 .slide {
   position: absolute;
+  top: 0; left: 0;
   width: 100%;
   height: 100vh;
   display: none;
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  padding: 30px;
+  padding: 20px;
   box-sizing: border-box;
-  animation: fadeIn 3.5s;
 }
 
+.active { display: flex; animation: fadeIn 2s forwards; }
+
 @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-.active { display: flex; }
 
 /* Letter/Note styling */
 p {
-  font-size: 1.4em;
-  line-height: 1.5;
+  font-size: 1.3em;
+  line-height: 1.4;
   color: #000000;
-  max-width: 800px;
-  background: rgba(255, 255, 255, 0.45);
-  padding: 25px;
-  border-radius: 20px;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.4);
-  backdrop-filter: blur(10px);
-  z-index: 5;
+  max-width: 700px;
+  background: rgba(255, 255, 255, 0.6);
+  padding: 20px;
+  border-radius: 15px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+  backdrop-filter: blur(8px);
 }
 
-.handwriting {
-  font-family: 'Dancing Script', cursive;
-  font-size: 1.6em;
-}
+.handwriting { font-family: 'Dancing Script', cursive; font-size: 1.6em; }
 
-/* Image Layouts */
+/* Images */
 .collage-container {
   display: flex;
-  gap: 15px;
+  gap: 10px;
   justify-content: center;
   align-items: center;
-  margin-bottom: 20px;
+  margin-bottom: 15px;
+  flex-wrap: wrap;
 }
 
 img {
-  border-radius: 15px;
-  box-shadow: 0 0 30px rgba(56, 189, 248, 0.4);
-  border: 4px solid rgba(255,255,255,0.3);
-  transition: transform 12s linear;
+  border-radius: 12px;
+  box-shadow: 0 0 20px rgba(56, 189, 248, 0.4);
+  border: 3px solid white;
+  max-height: 45vh;
+  object-fit: contain;
 }
 
-.active img { transform: scale(1.08); }
-
-/* Sizes for different types of images */
-.img-bouquet { height: 40vh; }
-.img-letter { height: 45vh; border: 2px solid #ffd700; }
-.img-him { height: 50vh; border: 5px solid #fff; }
+.img-small { max-height: 35vh; }
 
 /* Buttons */
 button {
-  padding: 18px 45px;
-  font-size: 22px;
+  padding: 15px 35px;
+  font-size: 20px;
   border: none;
   border-radius: 50px;
   background: #0ea5e9;
   color: white;
   cursor: pointer;
-  box-shadow: 0 0 25px #38bdf8;
-  margin-top: 20px;
+  box-shadow: 0 0 20px #38bdf8;
+  z-index: 100;
 }
-.pulse { animation: pulse-animation 2s infinite; }
-@keyframes pulse-animation { 0% { transform: scale(1); } 50% { transform: scale(1.05); } 100% { transform: scale(1); } }
 
-/* Background Elements */
-.star { position: absolute; width: 2px; height: 2px; background: white; animation: twinkle 2s infinite alternate; }
-@keyframes twinkle { from { opacity: .2; } to { opacity: 1; } }
-.flower { position: absolute; pointer-events: none; animation: fall linear infinite; z-index: 10; }
+.pulse { animation: pulse-animation 2s infinite; }
+@keyframes pulse-animation { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.05); } }
+
+/* Ambient */
+.star { position: absolute; width: 2px; height: 2px; background: white; border-radius: 50%; }
+.flower { position: absolute; pointer-events: none; animation: fall linear infinite; z-index: 1; }
 @keyframes fall { from { transform: translateY(-10vh) rotate(0deg); } to { transform: translateY(110vh) rotate(360deg); } }
 
-#countdown { font-size: 1.3em; margin-top: 20px; background: rgba(255,255,255,0.6); padding: 15px; border-radius: 15px; color: black; }
+#countdown { color: black; font-weight: bold; background: rgba(255,255,255,0.7); padding: 10px; border-radius: 10px; }
 </style>
 </head>
 <body>
 
-<script>
-for (let i = 0; i < 150; i++) {
-  let s = document.createElement("div");
-  s.className = "star";
-  s.style.left = Math.random() * 100 + "vw";
-  s.style.top = Math.random() * 100 + "vh";
-  document.body.appendChild(s);
-}
-setInterval(() => {
-  let f = document.createElement("div");
-  f.className = "flower";
-  f.innerHTML = "🌸";
-  f.style.left = Math.random() * 100 + "vw";
-  f.style.animationDuration = (Math.random() * 8 + 7) + "s";
-  document.body.appendChild(f);
-  setTimeout(() => f.remove(), 15000);
-}, 800);
-</script>
+<div id="star-container"></div>
 
-<audio id="music" loop>
+<audio id="music" preload="auto">
   <source src="WhatsApp Audio 2026-02-19 at 6.08.26 PM.mpeg" type="audio/mpeg">
 </audio>
 
-<div class="slide active">
+<div class="slide active" id="slide0">
   <h1 style="color:white; text-shadow:0 0 20px #0ea5e9;">To My Everything...</h1>
-  <button onclick="start()" class="pulse">Open My Heart ❤️</button>
+  <p style="background:none; color:white; box-shadow:none;">Please make sure your volume is up 🔊</p>
+  <button onclick="startShow()" class="pulse">Open My Heart ❤️</button>
 </div>
 
 <div class="slide"><p class="handwriting">I’m truly sorry for all the misunderstandings... I realize that maybe I didn’t express myself in the right way.</p></div>
 <div class="slide"><p class="handwriting">What we share means so much to me. I never wanted things to feel heavy. My intention was never to hurt you.</p></div>
 
 <div class="slide">
-  <img src="him.jpeg" class="img-him">
-  <p><b>How I Manifested You:</b><br>I used to dream of a love that felt like home. I wrote down the qualities of the person I wanted to walk through life with... and then there you were. You are the proof that the universe listens. You are my dream come true. ✨</p>
+  <img src="him.jpeg" onerror="this.src='https://via.placeholder.com/300?text=His+Photo+Missing'">
+  <p><b>How I Manifested You:</b><br>I used to dream of a love that felt like home. You are the proof that the universe listens. ✨</p>
 </div>
 
 <div class="slide">
   <div class="collage-container">
-    <img src="letter1.jpeg" class="img-letter">
-    <img src="bouquet.jpeg" class="img-bouquet">
-    <img src="letter2.jpeg" class="img-letter">
+    <img src="letter1.jpeg" class="img-small" onerror="this.style.display='none'">
+    <img src="bouquet.jpeg" onerror="this.style.display='none'">
+    <img src="letter2.jpeg" class="img-small" onerror="this.style.display='none'">
   </div>
-  <p>I’ve kept every flower and every word you’ve ever given me. These aren't just gifts; they are pieces of your heart that I promise to keep safe forever. 🌸✍️</p>
+  <p>I’ve kept every flower and every word you’ve ever given me. 🌸✍️</p>
 </div>
 
-<div class="slide"><img src="Image%201.jpeg" style="height:50vh;"><p>I want us to dance through every high and low together 💙</p></div>
-<div class="slide"><img src="Image%202.jpeg" style="height:50vh;"><p>I want adventures with you 🌎</p></div>
-<div class="slide"><img src="Image%203.jpeg" style="height:50vh;"><p>I want to look at you every day like the first day 💫</p></div>
-<div class="slide"><img src="Image%208.jpeg" style="height:50vh;"><p>You are my safe place 💖</p></div>
+<div class="slide"><img src="Image%201.jpeg" onerror="this.src='https://via.placeholder.com/300?text=Image1+Missing'"><p>I want us to dance through every high and low together 💙</p></div>
+<div class="slide"><img src="Image%208.jpeg" onerror="this.src='https://via.placeholder.com/300?text=Image8+Missing'"><p>You are my safe place 💖</p></div>
 
 <div class="slide">
-  <h1 style="font-size:3.5em; color:white; text-shadow:0 0 30px #0ea5e9;">Will you marry me? 💍</h1>
+  <h1 style="color:white; text-shadow:0 0 30px #0ea5e9; font-size: 3em;">Will you marry me? 💍</h1>
   <div style="display:flex; gap:20px;">
-    <button onclick="yes()" class="pulse">YES, Forever 💖</button>
-    <button onclick="no()">Hold me first 🥺</button>
+    <button onclick="nextSlide()">YES, Forever 💖</button>
   </div>
 </div>
 
 <div class="slide">
-  <h1 style="color:white; text-shadow:0 0 20px #0ea5e9;">Our Forever Begins 💙</h1>
+  <h1 style="color:white;">Our Forever Begins 💙</h1>
   <div id="countdown"></div>
 </div>
 
 <script>
+// Generate Stars
+const starContainer = document.getElementById('star-container');
+for (let i = 0; i < 100; i++) {
+  let s = document.createElement("div");
+  s.className = "star";
+  s.style.left = Math.random() * 100 + "vw";
+  s.style.top = Math.random() * 100 + "vh";
+  s.style.opacity = Math.random();
+  starContainer.appendChild(s);
+}
+
+// Falling Flowers
+setInterval(() => {
+  let f = document.createElement("div");
+  f.className = "flower";
+  f.innerHTML = "🌸";
+  f.style.left = Math.random() * 100 + "vw";
+  f.style.animationDuration = (Math.random() * 5 + 5) + "s";
+  document.body.appendChild(f);
+  setTimeout(() => f.remove(), 8000);
+}, 1000);
+
 let slides = document.querySelectorAll(".slide");
-let index = 0;
+let currentIdx = 0;
+let music = document.getElementById("music");
 
-function show(i) {
-  slides[index].classList.remove("active");
-  index = i;
-  slides[index].classList.add("active");
+function showSlide(n) {
+  slides.forEach(s => s.classList.remove("active"));
+  slides[n].classList.add("active");
 }
 
-function start() {
-  document.getElementById("music").play().catch(e => console.log("Music play error:", e));
-  let i = 0;
-  // Setting a long interval (25 seconds) to help reach that 15-minute goal
-  let timer = setInterval(() => {
-    i++;
-    if (i === slides.length - 2) { 
-      clearInterval(timer);
+function startShow() {
+  music.play().catch(e => alert("Audio could not play. Please check the file name."));
+  nextSlide();
+  // Auto advance every 20 seconds
+  setInterval(() => {
+    if (currentIdx > 0 && currentIdx < slides.length - 2) {
+      nextSlide();
     }
-    show(i);
-  }, 25000); 
+  }, 20000);
 }
 
-function yes() {
-  show(slides.length - 1);
+function nextSlide() {
+  if (currentIdx < slides.length - 1) {
+    currentIdx++;
+    showSlide(currentIdx);
+  }
 }
 
-function no() {
-  alert("You're stuck with me! 💙");
-}
-
-function update() {
+// Countdown Logic
+function updateTime() {
   let start = new Date("July 17, 2025 00:00:00");
   let now = new Date();
   let diff = now - start;
-  let days = Math.floor(diff / (1000 * 60 * 60 * 24));
-  let hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-  let months = Math.floor(days / 30.44);
-
-  document.getElementById("countdown").innerHTML =
-    "I have loved you for 💙<br><b>" + months + " months, " + (days % 30) + " days, and " + hours + " hours</b>";
+  let days = Math.floor(diff / 86400000);
+  document.getElementById("countdown").innerHTML = "Loved you for " + days + " days and counting... 💙";
 }
-setInterval(update, 1000);
-update();
+updateTime();
 </script>
 
 </body>
