@@ -12,7 +12,6 @@ background:linear-gradient(#010f24,#03274a);
 overflow:hidden;
 text-align:center;
 }
-
 .slide{
 position:absolute;
 width:100%;
@@ -22,117 +21,63 @@ justify-content:center;
 align-items:center;
 flex-direction:column;
 padding:40px;
-animation:fade 2s;
+animation:fade 1.5s;
 }
 .active{display:flex;}
 @keyframes fade{from{opacity:0}to{opacity:1}}
 
-h1{
-font-size:2.8em;
-color:#fff;
-text-shadow:0 0 20px white;
-}
+h1{color:#fff;font-size:2.5em;text-shadow:0 0 20px white;}
 
 p{
 font-size:1.5em;
-max-width:800px;
 background:rgba(255,255,255,.4);
-padding:30px;
+padding:25px;
 border-radius:20px;
-color:#000;
-backdrop-filter:blur(5px);
+max-width:700px;
+}
+
+img{
+max-height:50vh;
+border-radius:20px;
+margin:20px;
+box-shadow:0 0 40px #38bdf8;
 }
 
 button{
-padding:18px 45px;
-font-size:22px;
+padding:18px 40px;
+font-size:20px;
 border:none;
 border-radius:50px;
 background:#0ea5e9;
 color:white;
 cursor:pointer;
-margin-top:25px;
-box-shadow:0 0 25px #38bdf8;
-}
-button:hover{transform:scale(1.1)}
-
-img{
-max-height:50vh;
-border-radius:20px;
-margin:25px 0;
-box-shadow:0 0 40px rgba(56,189,248,.7);
 }
 
-/* stars */
 .star{
 position:absolute;
 width:2px;height:2px;
 background:white;
 animation:twinkle 2s infinite alternate;
 }
-@keyframes twinkle{from{opacity:.2}to{opacity:1}}
-
-/* floating */
-.flower,.heart{
-position:absolute;
-animation:fall linear infinite;
-}
-@keyframes fall{
-from{transform:translateY(-10vh)}
-to{transform:translateY(110vh)}
-}
-
-/* fireworks */
-.firework{
-position:absolute;
-font-size:35px;
-animation:boom 1.5s forwards;
-}
-@keyframes boom{
-0%{transform:scale(0);opacity:1}
-100%{transform:scale(4);opacity:0}
-}
-
-#countdown{
-font-size:1.4em;
-background:rgba(255,255,255,.5);
-padding:15px 25px;
-border-radius:15px;
-}
+@keyframes twinkle{from{opacity:.3}to{opacity:1}}
 </style>
 </head>
 <body>
 
+<!-- stars -->
 <script>
 for(let i=0;i<200;i++){
 let s=document.createElement("div");
 s.className="star";
 s.style.left=Math.random()*100+"vw";
 s.style.top=Math.random()*100+"vh";
-s.style.animationDelay=Math.random()*2+"s";
 document.body.appendChild(s);
 }
 </script>
 
-<script>
-setInterval(()=>{
-let f=document.createElement("div");
-f.className=Math.random()>.7?"heart":"flower";
-f.innerHTML=Math.random()>.7?"💙":"🌸";
-f.style.left=Math.random()*100+"vw";
-f.style.fontSize=(Math.random()*10+15)+"px";
-f.style.animationDuration=(Math.random()*8+7)+"s";
-document.body.appendChild(f);
-setTimeout(()=>f.remove(),15000);
-},600);
-</script>
-
 <audio id="music" loop>
-<source src="WhatsApp Audio 2026-02-19 at 6.08.26 PM.mpeg" type="audio/mpeg">
+<source src="WhatsApp Audio 2026-02-19 at 6.08.26 PM.mpeg">
 </audio>
-
-<button style="position:fixed;bottom:15px;right:15px;z-index:99"
-onclick="document.getElementById('music').play()">🔊 Music</button>
 
 <!-- intro -->
 <div class="slide active">
@@ -140,40 +85,54 @@ onclick="document.getElementById('music').play()">🔊 Music</button>
 <button onclick="start()">Open My Heart ❤️</button>
 </div>
 
-<!-- apology slides -->
-<div class="slide"><p>I’m truly sorry for all the misunderstandings between us…</p></div>
-<div class="slide"><p>I didn’t express myself the right way and I regret that.</p></div>
-<div class="slide"><p>What we share means the world to me.</p></div>
-<div class="slide"><p>I never wanted to hurt you or confuse you.</p></div>
-<div class="slide"><p>I just wanted us to understand each other better ❤️</p></div>
-<div class="slide"><p>I believe in us. I always will.</p></div>
+<!-- apology -->
+<div class="slide"><p>I’m truly sorry for all misunderstandings…</p></div>
+<div class="slide"><p>I didn’t express myself the right way.</p></div>
+<div class="slide"><p>What we share means everything to me.</p></div>
+<div class="slide"><p>I never wanted to hurt you.</p></div>
+<div class="slide"><p>I believe in us ❤️</p></div>
 <div class="slide"><p>I’m sorry… and I love you more than words.</p></div>
 
 <!-- proposal -->
 <div class="slide">
 <h1>Will you be my forever? 💍</h1>
 <button onclick="yes()">YES 💖</button>
-<button onclick="no()">NO 😭</button>
-<p id="noMsg"></p>
 </div>
 
-<!-- dynamic slides container -->
-<div id="memorySlides"></div>
+<!-- letters -->
+<div class="slide"><img src="letter1.jpeg"><p>Your words are my treasure 💌</p></div>
+<div class="slide"><img src="letter2.jpeg"><p>I keep every letter forever 💙</p></div>
+<div class="slide"><img src="bouquet1.jpeg"><p>Your flowers still hold your love 🌸</p></div>
 
-<!-- final -->
+<!-- images -->
+<div class="slide"><img src="Image1.jpeg"><p>Life feels peaceful with you 🤍</p></div>
+<div class="slide"><img src="Image2.jpeg"><p>I want to look at you forever 💫</p></div>
+<div class="slide"><img src="Image3.jpeg"><p>We dance through life together 💙</p></div>
+<div class="slide"><img src="Image4.jpeg"><p>Adventures with you 🌎</p></div>
+<div class="slide"><img src="Image6.jpeg"><p>Grow old with you 👴🏻👵🏻</p></div>
+<div class="slide"><img src="Image7.jpeg"><p>You are my safe place 💖</p></div>
+<div class="slide"><img src="Image8.jpeg"><p>My favorite view 😍</p></div>
+
+<!-- him 1-24 -->
+<script>
+for(let i=1;i<=24;i++){
+document.write(`
+<div class="slide">
+<img src="him ${i}.jpeg">
+<p>You are my favorite person 💖</p>
+</div>
+`);
+}
+</script>
+
+<!-- ending -->
 <div class="slide">
 <h1>You are my forever 💙</h1>
-<p>Every second with you is a gift I cherish forever.</p>
-<div id="countdown"></div>
 </div>
 
 <script>
-let slides=[];
+let slides=document.querySelectorAll(".slide");
 let index=0;
-
-function collectSlides(){
-slides=document.querySelectorAll(".slide");
-}
 
 function show(i){
 slides[index].classList.remove("active");
@@ -182,94 +141,28 @@ slides[index].classList.add("active");
 }
 
 function start(){
-collectSlides();
 document.getElementById("music").play();
-autoSlides();
+nextSlide();
 }
 
-function autoSlides(){
-let i=0;
+function nextSlide(){
+let i=1;
 let timer=setInterval(()=>{
-i++;
 show(i);
-if(i===7)clearInterval(timer);
-},4000);
+i++;
+if(i>=slides.length) clearInterval(timer);
+},3000);
 }
 
 function yes(){
-fireworks();
-collectSlides();
 let i=8;
 show(i);
-
 let timer=setInterval(()=>{
 i++;
-if(i>=slides.length)clearInterval(timer);
+if(i>=slides.length) clearInterval(timer);
 else show(i);
-},3500);
+},3000);
 }
-
-function no(){
-document.getElementById("noMsg").innerHTML="My heart only accepts YES 🥺";
-}
-
-function fireworks(){
-for(let i=0;i<40;i++){
-setTimeout(()=>{
-let f=document.createElement("div");
-f.className="firework";
-f.innerHTML="💙";
-f.style.left=Math.random()*100+"vw";
-f.style.top=Math.random()*100+"vh";
-document.body.appendChild(f);
-setTimeout(()=>f.remove(),1500);
-},i*100);
-}
-}
-
-/* countdown */
-function update(){
-let start=new Date("July 17, 2025");
-let now=new Date();
-let diff=now-start;
-let days=Math.floor(diff/86400000);
-let months=Math.floor(days/30.44);
-document.getElementById("countdown").innerHTML=
-"I have loved you for<br><b>"+months+" months and "+(days%30)+" days</b>";
-}
-setInterval(update,60000);
-update();
-
-/* memory slides */
-const memories=[
-{img:"letter1.jpeg",msg:"Every word from you is a treasure 💌"},
-{img:"letter2.jpeg",msg:"Your letters live in my heart forever 💙"},
-{img:"bouquet1.jpeg",msg:"I kept your flowers because they carry your love 🌸"},
-
-{img:"Image1.jpeg",msg:"I want a life where we always find peace in each other's arms 🤍"},
-{img:"Image2.jpeg",msg:"I want to look at you every day like the first day 💫"},
-{img:"Image3.jpeg",msg:"I want us to dance through every high and low together 💙"},
-{img:"Image4.jpeg",msg:"I want adventures with you 🌎"},
-{img:"Image6.jpeg",msg:"I want to grow old beside you 👴🏻👵🏻"},
-{img:"Image7.jpeg",msg:"You are my safe place 💖"},
-{img:"Image8.jpeg",msg:"My favorite view in the whole world is you 😍"}
-];
-
-for(let i=1;i<=24;i++){
-memories.push({
-img:`him${i}.jpeg`,
-msg:"You are my favorite person in every universe 💖"
-});
-}
-
-const container=document.getElementById("memorySlides");
-
-memories.forEach(m=>{
-let d=document.createElement("div");
-d.className="slide";
-d.innerHTML=`<img src="${m.img}"><p>${m.msg}</p>`;
-container.appendChild(d);
-});
 </script>
 
 </body>
