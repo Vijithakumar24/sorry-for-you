@@ -246,8 +246,37 @@ function openHeart(){
 document.getElementById("proposal").style.display="flex";
 }
 
-/* yes */
 function yes(){
+
+document.getElementById("proposal").style.display="none";
+
+/* play music */
+let music = document.getElementById("music");
+music.volume = 0;
+music.play();
+
+/* smooth volume increase */
+let vol = 0;
+let fade = setInterval(()=>{
+if(vol < 1){
+vol += 0.02;
+music.volume = vol;
+}else{
+clearInterval(fade);
+}
+},120);
+
+/* show message */
+let m=document.getElementById("secretMsg");
+m.style.display="block";
+m.innerHTML="He said yes 💍💙";
+
+/* glow effect */
+document.body.style.boxShadow="inset 0 0 200px #7fdbff";
+
+}
+
+
 document.getElementById("proposal").style.display="none";
 let m=document.getElementById("secretMsg");
 m.style.display="block";
