@@ -1,10 +1,11 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
 <meta charset="UTF-8">
-<title>For Ram 💙</title>
+<title>For You 💙</title>
 
 <style>
+
 body{
 margin:0;
 font-family:Georgia;
@@ -14,11 +15,9 @@ text-align:center;
 overflow-x:hidden;
 }
 
-/* intro */
+/* INTRO */
 #intro{
 position:fixed;
-top:0;
-left:0;
 width:100%;
 height:100%;
 background:black;
@@ -27,15 +26,18 @@ flex-direction:column;
 justify-content:center;
 align-items:center;
 z-index:9999;
-transition:1.5s;
+cursor:pointer;
 }
 
+/* heart beat */
 #beatHeart{
-font-size:80px;
+font-size:90px;
 animation:beat 1s infinite;
 }
 @keyframes beat{
+0%{transform:scale(1)}
 50%{transform:scale(1.3)}
+100%{transform:scale(1)}
 }
 
 /* stars */
@@ -43,7 +45,7 @@ animation:beat 1s infinite;
 position:fixed;
 background:white;
 border-radius:50%;
-animation: twinkle 2s infinite alternate;
+animation:twinkle 2s infinite alternate;
 }
 @keyframes twinkle{
 from{opacity:.3}
@@ -53,26 +55,24 @@ to{opacity:1}
 /* floating hearts */
 .heart{
 position:fixed;
-color:#7fdbff;
-animation: floatUp linear infinite;
+color:#7fd6ff;
+animation:floatUp linear forwards;
 }
 @keyframes floatUp{
-0%{transform:translateY(100vh)}
-100%{transform:translateY(-10vh)}
+from{transform:translateY(100vh)}
+to{transform:translateY(-10vh)}
 }
 
-/* content */
-.container{
-padding:40px 20px;
-max-width:800px;
-margin:auto;
+/* box */
+.box{
+background:rgba(255,255,255,.05);
+padding:30px;
+border-radius:25px;
+margin:40px auto;
+max-width:700px;
 }
 
-h1{
-font-size:3rem;
-text-shadow:0 0 20px #7fdbff;
-}
-
+/* button */
 button{
 padding:15px 30px;
 border:none;
@@ -81,37 +81,6 @@ background:#0077b6;
 color:white;
 font-size:18px;
 cursor:pointer;
-margin-top:20px;
-}
-button:hover{
-background:#00b4d8;
-transform:scale(1.1);
-}
-
-.box{
-background:rgba(255,255,255,.05);
-padding:30px;
-border-radius:25px;
-margin:40px auto;
-}
-
-.story img{
-width:100%;
-max-width:500px;
-border-radius:15px;
-margin-top:25px;
-}
-
-.story p{
-color:#7fdbff;
-font-style:italic;
-margin-top:10px;
-}
-
-#counter{
-margin-top:40px;
-color:#90e0ef;
-font-size:20px;
 }
 
 /* popup */
@@ -122,35 +91,45 @@ top:0;
 left:0;
 width:100%;
 height:100%;
-background:rgba(0,0,0,.85);
-z-index:999;
+background:rgba(0,0,0,.9);
 justify-content:center;
 align-items:center;
+z-index:999;
 }
 
+/* secret message */
 .secret{
 display:none;
-margin-top:30px;
-color:#7fdbff;
 font-size:24px;
+margin-top:20px;
+color:#7fd6ff;
 }
+
+img{
+width:100%;
+max-width:500px;
+border-radius:15px;
+margin-top:20px;
+}
+
 </style>
 </head>
 
 <body>
 
-<!-- music -->
+<!-- MUSIC -->
 <audio id="music" loop>
 <source src="music.mp3" type="audio/mpeg">
 </audio>
 
-<!-- intro -->
-<div id="intro">
+<!-- INTRO -->
+<div id="intro" onclick="closeIntro()">
 <div id="beatHeart">💙</div>
 <h2>For My Love</h2>
+<p>(click anywhere)</p>
 </div>
 
-<!-- popup -->
+<!-- POPUP -->
 <div id="proposal">
 <div class="box">
 <h2>Will you be my forever home? 💍</h2>
@@ -158,12 +137,13 @@ font-size:24px;
 </div>
 </div>
 
-<div class="container">
+<!-- MAIN CONTENT -->
+<div class="box">
 
-<h1>Ram 💙</h1>
+<h1>💙</h1>
 
 <p>
-I'm sorry for every misunderstanding…<br>
+I'm sorry for every misunderstanding...<br>
 Meeting you on that bus was the best moment of my life.<br>
 Since that day I keep loving you more and more 💙
 </p>
@@ -172,8 +152,10 @@ Since that day I keep loving you more and more 💙
 
 <div id="secretMsg" class="secret"></div>
 
+</div>
+
 <!-- IMAGES -->
-<div class="box story">
+<div class="box">
 <h2>The Life I Wish To Live With You 💙</h2>
 
 <img src="Image 1.jpg">
@@ -186,40 +168,27 @@ Since that day I keep loving you more and more 💙
 <p>I want us to dance through every high and low together forever.</p>
 
 <img src="Image 4.jpg">
-<p>I want a life full of adventures where every path leads me back to you.</p>
+<p>I want to explore the world with you beside me always.</p>
 
 <img src="Image 5.jpg">
-<p>I want a life where every journey feels beautiful because you’re beside me.</p>
+<p>I want endless laughter and smiles with you every day.</p>
 
 <img src="Image 7.jpg">
-<p>I want a future filled with laughter, love, and a home built with you.</p>
+<p>I want a future filled with love, warmth, and dreams together.</p>
 
 <img src="Image 8.jpg">
-<p>I want forever to feel soft, safe, and warm — just like your love.</p>
-
-</div>
-
-<div id="counter"></div>
+<p>I want forever with you — always and always. 💙</p>
 
 </div>
 
 <script>
 
-/* music start on first click */
-document.body.addEventListener("click",()=>{
-document.getElementById("music").play();
-},{once:true});
+/* CLOSE INTRO */
+function closeIntro(){
+document.getElementById("intro").style.display="none";
+}
 
-/* intro remove after load */
-window.onload = ()=>{
-setTimeout(()=>{
-let intro=document.getElementById("intro");
-intro.style.opacity="0";
-setTimeout(()=>intro.remove(),1500);
-},1500);
-};
-
-/* stars */
+/* STARS */
 for(let i=0;i<120;i++){
 let s=document.createElement("div");
 s.className="star";
@@ -229,7 +198,7 @@ s.style.top=Math.random()*100+"vh";
 document.body.appendChild(s);
 }
 
-/* floating hearts */
+/* HEART FLOAT */
 setInterval(()=>{
 let h=document.createElement("div");
 h.className="heart";
@@ -241,63 +210,56 @@ document.body.appendChild(h);
 setTimeout(()=>h.remove(),10000);
 },400);
 
-/* popup */
+/* OPEN PROPOSAL */
 function openHeart(){
 document.getElementById("proposal").style.display="flex";
 }
 
+/* YES CLICK */
 function yes(){
 
 document.getElementById("proposal").style.display="none";
 
-/* play music */
-let music = document.getElementById("music");
-music.volume = 0;
+/* PLAY MUSIC */
+let music=document.getElementById("music");
+music.volume=0;
 music.play();
 
-/* smooth volume increase */
-let vol = 0;
-let fade = setInterval(()=>{
-if(vol < 1){
-vol += 0.02;
-music.volume = vol;
+let vol=0;
+let fade=setInterval(()=>{
+if(vol<1){
+vol+=0.02;
+music.volume=vol;
 }else{
 clearInterval(fade);
 }
 },120);
 
-/* show message */
+/* MESSAGE */
 let m=document.getElementById("secretMsg");
 m.style.display="block";
 m.innerHTML="He said yes 💍💙";
 
-/* glow effect */
-document.body.style.boxShadow="inset 0 0 200px #7fdbff";
+/* GLOW */
+document.body.style.boxShadow="inset 0 0 200px #7fd6ff";
 
+/* HEART FIREWORKS */
+for(let i=0;i<80;i++){
+let h=document.createElement("div");
+h.className="heart";
+h.innerHTML="💙";
+h.style.left="50%";
+h.style.top="50%";
+h.style.fontSize="30px";
+h.style.position="fixed";
+h.style.transform=`translate(${Math.random()*600-300}px,${Math.random()*600-300}px)`;
+document.body.appendChild(h);
+setTimeout(()=>h.remove(),2000);
 }
 
-
-document.getElementById("proposal").style.display="none";
-let m=document.getElementById("secretMsg");
-m.style.display="block";
-m.innerHTML="My secret — I will always choose you. Always. 💙";
 }
-
-/* timer */
-const start=new Date("July 1 2025");
-setInterval(()=>{
-let d=new Date()-start;
-let days=Math.floor(d/86400000);
-let hrs=Math.floor(d/3600000)%24;
-let mins=Math.floor(d/60000)%60;
-let secs=Math.floor(d/1000)%60;
-
-document.getElementById("counter").innerHTML=
-"I've loved you for 💙<br>"+days+" days "+hrs+" hrs "+mins+" mins "+secs+" secs";
-},1000);
 
 </script>
 
 </body>
 </html>
-
