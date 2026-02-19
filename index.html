@@ -2,12 +2,14 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>My Heart to Yours 💙</title>
+<title>To My Soulmate 💍</title>
 
 <style>
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&family=Playfair+Display:ital@0;1&display=swap');
+
 body {
   margin: 0;
-  font-family: 'Georgia', serif;
+  font-family: 'Playfair Display', serif;
   background: linear-gradient(#010f24, #03274a); 
   color: #000000;
   overflow: hidden;
@@ -23,43 +25,57 @@ body {
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  padding: 40px;
+  padding: 30px;
   box-sizing: border-box;
-  animation: fadeIn 3s;
+  animation: fadeIn 3.5s;
 }
 
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
-}
-
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 .active { display: flex; }
 
-/* headings */
-h1 {
-  font-size: 2.8em;
-  color: #000000;
-  text-shadow: 0 0 15px rgba(255,255,255,0.6);
-  background: rgba(255, 255, 255, 0.25);
-  padding: 20px 30px;
-  border-radius: 50px;
-  border: 1px solid rgba(255,255,255,0.3);
-}
-
-/* paragraphs / letter text */
+/* Letter/Note styling */
 p {
-  font-size: 1.5em;
-  line-height: 1.6;
+  font-size: 1.4em;
+  line-height: 1.5;
   color: #000000;
   max-width: 800px;
-  background: rgba(255, 255, 255, 0.4);
-  padding: 30px;
+  background: rgba(255, 255, 255, 0.45);
+  padding: 25px;
   border-radius: 20px;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-  backdrop-filter: blur(5px);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+  backdrop-filter: blur(10px);
+  z-index: 5;
 }
 
-/* button */
+.handwriting {
+  font-family: 'Dancing Script', cursive;
+  font-size: 1.6em;
+}
+
+/* Image Layouts */
+.collage-container {
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+img {
+  border-radius: 15px;
+  box-shadow: 0 0 30px rgba(56, 189, 248, 0.4);
+  border: 4px solid rgba(255,255,255,0.3);
+  transition: transform 12s linear;
+}
+
+.active img { transform: scale(1.08); }
+
+/* Sizes for different types of images */
+.img-bouquet { height: 40vh; }
+.img-letter { height: 45vh; border: 2px solid #ffd700; }
+.img-him { height: 50vh; border: 5px solid #fff; }
+
+/* Buttons */
 button {
   padding: 18px 45px;
   font-size: 22px;
@@ -68,159 +84,83 @@ button {
   background: #0ea5e9;
   color: white;
   cursor: pointer;
-  margin-top: 25px;
   box-shadow: 0 0 25px #38bdf8;
-  transition: all 0.3s;
+  margin-top: 20px;
 }
+.pulse { animation: pulse-animation 2s infinite; }
+@keyframes pulse-animation { 0% { transform: scale(1); } 50% { transform: scale(1.05); } 100% { transform: scale(1); } }
 
-button:hover {
-  transform: scale(1.1);
-  background: #0284c7;
-}
-
-.pulse {
-  animation: pulse-animation 2s infinite;
-}
-
-@keyframes pulse-animation {
-  0% { transform: scale(1); }
-  50% { transform: scale(1.05); }
-  100% { transform: scale(1); }
-}
-
-/* images */
-img {
-  max-height: 50vh;
-  width: auto;
-  border-radius: 20px;
-  margin: 25px 0;
-  box-shadow: 0 0 50px rgba(56, 189, 248, 0.6);
-  border: 5px solid rgba(255,255,255,0.2);
-}
-
-/* Ambient Elements */
+/* Background Elements */
 .star { position: absolute; width: 2px; height: 2px; background: white; animation: twinkle 2s infinite alternate; }
 @keyframes twinkle { from { opacity: .2; } to { opacity: 1; } }
+.flower { position: absolute; pointer-events: none; animation: fall linear infinite; z-index: 10; }
+@keyframes fall { from { transform: translateY(-10vh) rotate(0deg); } to { transform: translateY(110vh) rotate(360deg); } }
 
-.flower, .heart-float {
-  position: absolute;
-  pointer-events: none;
-  animation: fall linear infinite;
-}
-
-@keyframes fall {
-  from { transform: translateY(-10vh) rotate(0deg); }
-  to { transform: translateY(110vh) rotate(360deg); }
-}
-
-.firework {
-  position: absolute;
-  font-size: 35px;
-  animation: boom 1.5s ease-out forwards;
-}
-@keyframes boom {
-  0% { transform: scale(0); opacity: 1; }
-  100% { transform: scale(4); opacity: 0; }
-}
-
-#countdown {
-  font-size: 1.5em;
-  color: #000000;
-  margin-top: 20px;
-  background: rgba(255, 255, 255, 0.5);
-  padding: 15px 25px;
-  border-radius: 15px;
-}
+#countdown { font-size: 1.3em; margin-top: 20px; background: rgba(255,255,255,0.6); padding: 15px; border-radius: 15px; color: black; }
 </style>
 </head>
 <body>
 
 <script>
-for (let i = 0; i < 200; i++) {
+for (let i = 0; i < 150; i++) {
   let s = document.createElement("div");
   s.className = "star";
   s.style.left = Math.random() * 100 + "vw";
   s.style.top = Math.random() * 100 + "vh";
-  s.style.animationDelay = Math.random() * 2 + "s";
   document.body.appendChild(s);
 }
-</script>
-
-<script>
 setInterval(() => {
   let f = document.createElement("div");
-  let isHeart = Math.random() > 0.7;
-  f.className = isHeart ? "heart-float" : "flower";
-  f.innerHTML = isHeart ? "💙" : "🌸";
+  f.className = "flower";
+  f.innerHTML = "🌸";
   f.style.left = Math.random() * 100 + "vw";
-  f.style.fontSize = (Math.random() * 10 + 15) + "px";
   f.style.animationDuration = (Math.random() * 8 + 7) + "s";
-  f.style.opacity = Math.random();
   document.body.appendChild(f);
   setTimeout(() => f.remove(), 15000);
-}, 600);
+}, 800);
 </script>
 
 <audio id="music" loop>
   <source src="WhatsApp Audio 2026-02-19 at 6.08.26 PM.mpeg" type="audio/mpeg">
 </audio>
 
-<button style="position:fixed;bottom:15px;right:15px;z-index:99; padding: 10px; font-size: 12px; opacity: 0.5;"
-onclick="document.getElementById('music').play()">🔊 Music</button>
-
 <div class="slide active">
-  <h1 style="background:none; text-shadow: 0 0 20px #fff; color:#fff;">I have something to tell you...</h1>
+  <h1 style="color:white; text-shadow:0 0 20px #0ea5e9;">To My Everything...</h1>
   <button onclick="start()" class="pulse">Open My Heart ❤️</button>
 </div>
 
+<div class="slide"><p class="handwriting">I’m truly sorry for all the misunderstandings... I realize that maybe I didn’t express myself in the right way.</p></div>
+<div class="slide"><p class="handwriting">What we share means so much to me. I never wanted things to feel heavy. My intention was never to hurt you.</p></div>
+
 <div class="slide">
-  <p>I’m truly sorry for all the misunderstandings that happened between us. I’ve been thinking a lot about our conversation and about everything we said...</p>
+  <img src="him.jpeg" class="img-him">
+  <p><b>How I Manifested You:</b><br>I used to dream of a love that felt like home. I wrote down the qualities of the person I wanted to walk through life with... and then there you were. You are the proof that the universe listens. You are my dream come true. ✨</p>
 </div>
 
 <div class="slide">
-  <p>I realize that maybe I didn’t express myself in the right way or explain my expectations clearly. I never wanted things to feel heavy or confusing between us.</p>
-</div>
-
-<div class="slide">
-  <p>What we share means so much to me. My intention was never to hurt you, upset you, or make you feel pressured.</p>
-</div>
-
-<div class="slide">
-  <p>I just wanted you to understand my feelings and what I hope for from us. I value you, I care about you deeply, and I really don’t want small misunderstandings to create distance.</p>
-</div>
-
-<div class="slide">
-  <p>I believe in us. I want us to communicate openly, understand each other better, and grow stronger together. ❤️</p>
-</div>
-
-<div class="slide">
-  <p>Please don’t think my words came from anger or ego; they came from love, concern, and the desire to make our relationship more beautiful and clear.</p>
-</div>
-
-<div class="slide">
-  <p>I’m sorry if anything I said sounded wrong or hurt you—that was never my intention. I just want peace between us, your smile, and the warmth we always share. ❤️</p>
-</div>
-
-<div class="slide">
-  <h1>Will you be my forever home? 💍</h1>
-  <div style="display: flex; gap: 20px;">
-    <button onclick="yes()" class="pulse">YES 💖</button>
-    <button onclick="no()">NO 😭</button>
+  <div class="collage-container">
+    <img src="letter1.jpeg" class="img-letter">
+    <img src="bouquet.jpeg" class="img-bouquet">
+    <img src="letter2.jpeg" class="img-letter">
   </div>
-  <p id="noMsg" style="background:none; box-shadow:none;"></p>
+  <p>I’ve kept every flower and every word you’ve ever given me. These aren't just gifts; they are pieces of your heart that I promise to keep safe forever. 🌸✍️</p>
 </div>
 
-<div class="slide"><img src="Image%201.jpg"><p>I want a life where we always find peace in each other's arms 🤍</p></div>
-<div class="slide"><img src="Image%202.jpg"><p>I want to look at you every day like the first day 💫</p></div>
-<div class="slide"><img src="Image%203.jpg"><p>I want us to dance through every high and low together 💙</p></div>
-<div class="slide"><img src="Image%204.jpg"><p>I want adventures with you 🌎</p></div>
-<div class="slide"><img src="Image%205.jpg"><p>I want endless memories together 📸</p></div>
-<div class="slide"><img src="Image%207.jpg"><p>I want to grow old beside you 👴🏻👵🏻</p></div>
-<div class="slide"><img src="Image%208.jpg"><p>You are my safe place 💖</p></div>
+<div class="slide"><img src="Image%201.jpeg" style="height:50vh;"><p>I want us to dance through every high and low together 💙</p></div>
+<div class="slide"><img src="Image%202.jpeg" style="height:50vh;"><p>I want adventures with you 🌎</p></div>
+<div class="slide"><img src="Image%203.jpeg" style="height:50vh;"><p>I want to look at you every day like the first day 💫</p></div>
+<div class="slide"><img src="Image%208.jpeg" style="height:50vh;"><p>You are my safe place 💖</p></div>
 
 <div class="slide">
-  <h1>You are my forever 💙</h1>
-  <p>Every second spent with you is a gift I promise to cherish forever.</p>
+  <h1 style="font-size:3.5em; color:white; text-shadow:0 0 30px #0ea5e9;">Will you marry me? 💍</h1>
+  <div style="display:flex; gap:20px;">
+    <button onclick="yes()" class="pulse">YES, Forever 💖</button>
+    <button onclick="no()">Hold me first 🥺</button>
+  </div>
+</div>
+
+<div class="slide">
+  <h1 style="color:white; text-shadow:0 0 20px #0ea5e9;">Our Forever Begins 💙</h1>
   <div id="countdown"></div>
 </div>
 
@@ -235,53 +175,24 @@ function show(i) {
 }
 
 function start() {
-  document.getElementById("music").play();
-  autoLetterSlides();
-}
-
-// Letter slides transition every 12 seconds to ensure they read it slowly
-function autoLetterSlides() {
+  document.getElementById("music").play().catch(e => console.log("Music play error:", e));
   let i = 0;
+  // Setting a long interval (25 seconds) to help reach that 15-minute goal
   let timer = setInterval(() => {
     i++;
-    show(i);
-    if (i === 7) { // Stop at the Proposal slide
+    if (i === slides.length - 2) { 
       clearInterval(timer);
     }
-  }, 12000); 
+    show(i);
+  }, 25000); 
 }
 
 function yes() {
-  fireworks();
-  let i = 8;
-  show(i);
-  // Image slides transition even slower (15 seconds) for a long 15-min feel
-  let photoTimer = setInterval(() => {
-    i++;
-    if (i >= slides.length) {
-      clearInterval(photoTimer);
-    } else {
-      show(i);
-    }
-  }, 15000);
+  show(slides.length - 1);
 }
 
 function no() {
-  document.getElementById("noMsg").innerHTML = "My heart only knows one answer... Please click YES 🥺";
-}
-
-function fireworks() {
-  for (let i = 0; i < 50; i++) {
-    setTimeout(() => {
-      let f = document.createElement("div");
-      f.className = "firework";
-      f.innerHTML = "💙";
-      f.style.left = Math.random() * 100 + "vw";
-      f.style.top = Math.random() * 100 + "vh";
-      document.body.appendChild(f);
-      setTimeout(() => f.remove(), 1500);
-    }, i * 100);
-  }
+  alert("You're stuck with me! 💙");
 }
 
 function update() {
@@ -290,13 +201,12 @@ function update() {
   let diff = now - start;
   let days = Math.floor(diff / (1000 * 60 * 60 * 24));
   let hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-  let mins = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
   let months = Math.floor(days / 30.44);
 
   document.getElementById("countdown").innerHTML =
-    "I have loved you for<br><b>" + months + " months, " + (days % 30) + " days, " + hours + " hours, and " + mins + " minutes</b>";
+    "I have loved you for 💙<br><b>" + months + " months, " + (days % 30) + " days, and " + hours + " hours</b>";
 }
-setInterval(update, 60000);
+setInterval(update, 1000);
 update();
 </script>
 
