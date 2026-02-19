@@ -215,21 +215,38 @@ if(i>=slides.length) clearInterval(timer);
 }
 
 /* LIVE TIMER */
-function update(){
-let start=new Date("July 1, 2025 00:00:00");
-let now=new Date();
-let diff=now-start;
+function updateLoveTimer(){
 
-let days=Math.floor(diff/86400000);
-let hours=Math.floor(diff%86400000/3600000);
-let mins=Math.floor(diff%3600000/60000);
-let months=Math.floor(days/30);
+let start = new Date("July 1, 2025 00:00:00").getTime();
+let now = new Date().getTime();
+let diff = now - start;
 
-document.getElementById("countdown").innerHTML=
-"I have loved you for 💙<br><b>"+months+" months, "+(days%30)+" days, "+hours+" hours, "+mins+" minutes</b>";
+/* time calculations */
+let seconds = Math.floor(diff/1000);
+let minutes = Math.floor(seconds/60);
+let hours = Math.floor(minutes/60);
+let days = Math.floor(hours/24);
+let months = Math.floor(days/30);
+
+/* remaining values */
+let remDays = days % 30;
+let remHours = hours % 24;
+let remMinutes = minutes % 60;
+let remSeconds = seconds % 60;
+
+/* display */
+document.getElementById("countdown").innerHTML =
+"I have loved you for 💙<br><b>" +
+months+" months, "+
+remDays+" days, "+
+remHours+" hours, "+
+remMinutes+" minutes, "+
+remSeconds+" seconds</b>";
 }
-setInterval(update,60000);
-update();
+
+/* update every second */
+setInterval(updateLoveTimer,1000);
+updateLoveTimer();
 
 /* YES celebration */
 function yesFinal(){
