@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>My Love 💙</title>
+<title>My Heart 💙</title>
 
 <style>
 body{
@@ -29,13 +29,13 @@ animation:fade 1.5s;
 @keyframes fade{from{opacity:0}to{opacity:1}}
 
 /* text */
-h1{color:black;font-size:2.5em;}
+h1{color:black;font-size:2.6em;}
 p{
+font-size:1.5em;
 color:black;
-background:rgba(255,255,255,.7);
+background:rgba(255,255,255,.6);
 padding:25px;
 border-radius:20px;
-font-size:1.4em;
 max-width:750px;
 }
 
@@ -48,6 +48,7 @@ border-radius:50px;
 background:#0ea5e9;
 color:white;
 cursor:pointer;
+margin-top:20px;
 }
 
 /* images */
@@ -56,11 +57,6 @@ max-height:55vh;
 border-radius:20px;
 margin:20px;
 box-shadow:0 0 40px #38bdf8;
-animation:zoom 7s infinite alternate;
-}
-@keyframes zoom{
-from{transform:scale(1);}
-to{transform:scale(1.07);}
 }
 
 /* petals */
@@ -68,31 +64,11 @@ to{transform:scale(1.07);}
 from{transform:translateY(-10vh) rotate(0deg);}
 to{transform:translateY(110vh) rotate(360deg);}
 }
-
-/* spotlight */
-#spotlight{
-position:fixed;
-top:0;
-left:0;
-width:100%;
-height:100%;
-background:radial-gradient(circle at center, transparent 120px, rgba(0,0,0,.9) 350px);
-opacity:0;
-transition:opacity 2s;
-pointer-events:none;
-z-index:999;
-}
-
-/* hearts boom */
-@keyframes boom{
-0%{transform:scale(0);opacity:1;}
-100%{transform:scale(4);opacity:0;}
-}
 </style>
 </head>
 <body>
 
-<!-- petals animation -->
+<!-- petals -->
 <script>
 setInterval(()=>{
 let f=document.createElement("div");
@@ -112,13 +88,13 @@ setTimeout(()=>f.remove(),8000);
 <source src="WhatsApp Audio 2026-02-19 at 6.08.26 PM.mpeg">
 </audio>
 
-<!-- first slide -->
+<!-- start -->
 <div class="slide active">
 <h1>I have something to tell you…</h1>
-<button onclick="startShow()">Open My Heart ❤️</button>
+<button onclick="start()">Open My Heart ❤️</button>
 </div>
 
-<!-- apology slides -->
+<!-- apology -->
 <div class="slide"><p>I’m truly sorry for all misunderstandings…</p></div>
 <div class="slide"><p>I didn’t express myself the right way.</p></div>
 <div class="slide"><p>What we share means everything to me.</p></div>
@@ -126,7 +102,7 @@ setTimeout(()=>f.remove(),8000);
 <div class="slide"><p>I believe in us ❤️</p></div>
 <div class="slide"><p>I’m sorry… and I love you more than words.</p></div>
 
-<!-- timer slide -->
+<!-- timer -->
 <div class="slide">
 <h1>My Love For You 💙</h1>
 <p id="countdown"></p>
@@ -140,11 +116,12 @@ setTimeout(()=>f.remove(),8000);
 <div class="slide"><img src="Image 7.jpg"><p>You are my safe place 💖</p></div>
 <div class="slide"><img src="Image 8.jpg"><p>My favorite view 😍</p></div>
 
-<!-- him photos -->
+<!-- him photos auto -->
 <script>
 let msgs=[
-"You are the calm in my chaos 🤍",
-"Your eyes feel like home 🏠",
+
+ "That smile is my favorite place 💫",
+"Your eyes tell me I'm home 🏠",
 "You + Me = My favorite story 💕",
 "I fall for you more every day 🌙",
 "Your look melts my heart 😍",
@@ -165,8 +142,7 @@ let msgs=[
 "My soul smiles because of you 😊",
 "I love every version of you 💫",
 "You're my dream come true 🌙",
-"I choose you always 💍",
-"My forever begins with you 💖"
+"I choose you always and forever 💍"
 ];
 
 for(let i=1;i<=24;i++){
@@ -180,71 +156,56 @@ document.write(`
 </script>
 
 <!-- proposal -->
-<div class="slide proposal">
+<div class="slide">
 <h1>Will you marry me Ram? 💍</h1>
 <p>You are my today, my tomorrow, and my forever.</p>
-<button onclick="celebrate()">YES 💖</button>
+<button onclick="yesFinal()">YES 💖</button>
 </div>
-
-<div id="spotlight"></div>
 
 <script>
 let slides=document.querySelectorAll(".slide");
 let index=0;
 
-function showSlide(i){
+function show(i){
 slides[index].classList.remove("active");
 index=i;
 slides[index].classList.add("active");
-
-if(slides[index].classList.contains("proposal")){
-document.getElementById("spotlight").style.opacity="1";
-}
 }
 
-function startShow(){
-
-// play music safely
-let music=document.getElementById("music");
-if(music){
-music.play().catch(()=>{});
+function start(){
+document.getElementById("music").play();
+auto();
 }
 
+function auto(){
 let i=1;
-
 let timer=setInterval(()=>{
-if(i>=slides.length){clearInterval(timer);return;}
-showSlide(i);
+show(i);
 i++;
-},4000);
+if(i>=slides.length) clearInterval(timer);
+},3500);
 }
 
-/* live timer */
-function updateTimer(){
-let start=new Date("July 1, 2025 00:00:00").getTime();
-let now=new Date().getTime();
+/* love timer */
+function update(){
+let start=new Date("July 1, 2025 00:00:00");
+let now=new Date();
 let diff=now-start;
 
-let s=Math.floor(diff/1000);
-let m=Math.floor(s/60);
-let h=Math.floor(m/60);
-let d=Math.floor(h/24);
-let months=Math.floor(d/30);
+let days=Math.floor(diff/86400000);
+let hours=Math.floor(diff%86400000/3600000);
+let mins=Math.floor(diff%3600000/60000);
+let months=Math.floor(days/30);
 
 document.getElementById("countdown").innerHTML=
-"I have loved you for 💙<br><b>"+
-months+" months, "+
-(d%30)+" days, "+
-(h%24)+" hours, "+
-(m%60)+" minutes, "+
-(s%60)+" seconds</b>";
+"I have loved you for 💙<br><b>"+months+" months, "+(days%30)+" days, "+hours+" hours, "+mins+" minutes</b>";
 }
-setInterval(updateTimer,1000);
-updateTimer();
+setInterval(update,60000);
+update();
 
-/* celebration */
-function celebrate(){
-for(let i=0;i<70;i++){
+/* final yes */
+function yesFinal(){
+for(let i=0;i<60;i++){
 setTimeout(()=>{
 let e=document.createElement("div");
 e.innerHTML="💙";
@@ -255,10 +216,17 @@ e.style.fontSize="30px";
 e.style.animation="boom 1.5s forwards";
 document.body.appendChild(e);
 setTimeout(()=>e.remove(),1500);
-},i*40);
+},i*50);
 }
 }
 </script>
+
+<style>
+@keyframes boom{
+0%{transform:scale(0);opacity:1;}
+100%{transform:scale(4);opacity:0;}
+}
+</style>
 
 </body>
 </html>
