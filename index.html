@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
 <meta charset="UTF-8">
-<title>My Heart 💙</title>
+<title>My Love 💙</title>
 
 <style>
 body{
@@ -11,9 +11,9 @@ font-family:Georgia,serif;
 background:linear-gradient(#010f24,#03274a);
 overflow:hidden;
 text-align:center;
+color:black;
 }
 
-/* slides */
 .slide{
 position:absolute;
 width:100%;
@@ -23,80 +23,73 @@ justify-content:center;
 align-items:center;
 flex-direction:column;
 padding:40px;
-animation:fade 1.5s;
+animation:fade 2s;
 }
-.active{display:flex;}
-@keyframes fade{from{opacity:0}to{opacity:1}}
 
-/* text */
-h1{color:black;font-size:2.6em;}
+.active{display:flex;}
+
+@keyframes fade{
+from{opacity:0}
+to{opacity:1}
+}
+
+h1{
+font-size:2.5em;
+background:rgba(255,255,255,.4);
+padding:20px;
+border-radius:40px;
+}
+
 p{
-font-size:1.5em;
-color:black;
+font-size:1.4em;
+max-width:800px;
 background:rgba(255,255,255,.6);
 padding:25px;
 border-radius:20px;
-max-width:750px;
 }
 
-/* button */
-button{
-padding:18px 40px;
-font-size:20px;
-border:none;
-border-radius:50px;
-background:#0ea5e9;
-color:white;
-cursor:pointer;
-margin-top:20px;
-}
-
-/* images */
 img{
 max-height:55vh;
 border-radius:20px;
 margin:20px;
-box-shadow:0 0 40px #38bdf8;
+box-shadow:0 0 40px rgba(255,255,255,.4);
 }
 
-/* petals */
-@keyframes fall{
-from{transform:translateY(-10vh) rotate(0deg);}
-to{transform:translateY(110vh) rotate(360deg);}
+button{
+padding:15px 40px;
+font-size:20px;
+border:none;
+border-radius:40px;
+background:#0ea5e9;
+color:white;
+cursor:pointer;
+}
+
+#countdown{
+font-size:1.3em;
+margin-top:20px;
+background:white;
+padding:15px 25px;
+border-radius:20px;
 }
 </style>
 </head>
+
 <body>
 
-<!-- petals -->
-<script>
-setInterval(()=>{
-let f=document.createElement("div");
-f.innerHTML="🌸";
-f.style.position="absolute";
-f.style.left=Math.random()*100+"vw";
-f.style.top="-20px";
-f.style.fontSize=(Math.random()*20+20)+"px";
-f.style.animation="fall 8s linear";
-document.body.appendChild(f);
-setTimeout(()=>f.remove(),8000);
-},500);
-</script>
-
-<!-- music -->
-<audio id="music" loop>
+<audio id="music" loop playsinline>
 <source src="WhatsApp Audio 2026-02-19 at 6.08.26 PM.mpeg">
 </audio>
 
 <!-- start -->
 <div class="slide active">
-<h1>I have something to tell you…</h1>
-<button onclick="start()">Open My Heart ❤️</button>
+<h1>I have something to tell you...</h1>
+<button onclick="startShow()">Open My Heart ❤️</button>
 </div>
 
 <!-- apology -->
-<div class="slide"><p>I’m truly sorry for all misunderstandings…</p></div>
-<div class="slide"><p>I didn’t express myself the right way.</p></div>
+<div class="slide"><p>I’m truly sorry for all misunderstandings.</p></div>
+<div class="slide"><p>I didn’t express myself right sometimes.</p></div>
 <div class="slide"><p>What we share means everything to me.</p></div>
 <div class="slide"><p>I never wanted to hurt you.</p></div>
 <div class="slide"><p>I believe in us ❤️</p></div>
@@ -108,125 +101,90 @@ setTimeout(()=>f.remove(),8000);
 <p id="countdown"></p>
 </div>
 
-<!-- couple photos -->
+<!-- memories -->
+<div class="slide"><img src="letter1.jpeg"><p>Your words are my treasure 💌</p></div>
+<div class="slide"><img src="letter2.jpeg"><p>I keep every letter forever 💙</p></div>
+<div class="slide"><img src="bouquet.jpeg"><p>Your flowers still hold your love 🌸</p></div>
+
+<!-- couple -->
 <div class="slide"><img src="Image 1.jpg"><p>Life feels peaceful with you 🤍</p></div>
 <div class="slide"><img src="Image 2.jpg"><p>I want to look at you forever 💫</p></div>
 <div class="slide"><img src="Image 3.jpg"><p>We dance through life together 💙</p></div>
-<div class="slide"><img src="Image 4.jpg"><p>Adventures with you 🌎</p></div>
-<div class="slide"><img src="Image 7.jpg"><p>You are my safe place 💖</p></div>
+<div class="slide"><img src="Image 4.jpg"><p>Adventures with you 🌍</p></div>
+<div class="slide"><img src="Image 7.jpg"><p>You are my safe place ❤️</p></div>
 <div class="slide"><img src="Image 8.jpg"><p>My favorite view 😍</p></div>
 
-<!-- him photos auto -->
-<script>
-let msgs=[
-
- "That smile is my favorite place 💫",
-"Your eyes tell me I'm home 🏠",
-"You + Me = My favorite story 💕",
-"I fall for you more every day 🌙",
-"Your look melts my heart 😍",
-"My safe place is beside you 🤍",
-"I see my future in you 💫",
-"Every moment with you is magic ✨",
-"You make ordinary days special ☀️",
-"I love how you look at me 💖",
-"My heart chose you forever 💍",
-"You’re my peace always 🌿",
-"With you life feels perfect 💙",
-"Your voice is my comfort 🎧",
-"Being yours is my favorite feeling 💞",
-"You make my world beautiful 🌎",
-"I never get tired of you 😘",
-"Your love is my strength 💪",
-"You are my forever person ❤️",
-"My soul smiles because of you 😊",
-"I love every version of you 💫",
-"You're my dream come true 🌙",
-"I choose you always and forever 💍"
-];
-
-for(let i=1;i<=24;i++){
-document.write(`
-<div class="slide">
-<img src="him ${i}.jpeg">
-<p>${msgs[i-1]}</p>
-</div>
-`);
-}
-</script>
+<!-- HIM PHOTOS -->
+<div class="slide"><img src="him 1.jpeg"><p>Your smile melts my heart every single time ❤️</p></div>
+<div class="slide"><img src="him 2.jpeg"><p>That look is my favorite view 💙</p></div>
+<div class="slide"><img src="him 3.jpeg"><p>Standing next to you feels like home 🤍</p></div>
+<div class="slide"><img src="him 4.jpeg"><p>You and me — my forever story 📖</p></div>
+<div class="slide"><img src="him 5.jpeg"><p>You make ordinary days magical ✨</p></div>
+<div class="slide"><img src="him 6.jpeg"><p>I see my future in your eyes 💫</p></div>
+<div class="slide"><img src="him 7.jpeg"><p>Everything feels right with you 🌙</p></div>
+<div class="slide"><img src="him 8.jpeg"><p>You are my calm in every storm 🌊</p></div>
+<div class="slide"><img src="him 9.jpeg"><p>I fall for you more every day 💕</p></div>
+<div class="slide"><img src="him 10.jpeg"><p>Your look brightens my world ☀️</p></div>
+<div class="slide"><img src="him 11.jpeg"><p>You are my peace 🤍</p></div>
+<div class="slide"><img src="him 12.jpeg"><p>Every version of you is my favorite 🥰</p></div>
+<div class="slide"><img src="him 13.jpeg"><p>I could stare at you forever 😍</p></div>
+<div class="slide"><img src="him 14.jpeg"><p>You make my heart smile 💖</p></div>
+<div class="slide"><img src="him 15.jpeg"><p>Time stops when I’m with you ⏳</p></div>
+<div class="slide"><img src="him 16.jpeg"><p>You are my safest place 🏡</p></div>
+<div class="slide"><img src="him 17.jpeg"><p>Your love is my favorite feeling 💗</p></div>
+<div class="slide"><img src="him 18.jpeg"><p>Life is beautiful because of you 🌸</p></div>
+<div class="slide"><img src="him 19.jpeg"><p>I never knew love like this until you 💘</p></div>
+<div class="slide"><img src="him 20.jpeg"><p>You are my dream come true ✨</p></div>
+<div class="slide"><img src="him 21.jpeg"><p>My heart chose you 💞</p></div>
+<div class="slide"><img src="him 22.jpeg"><p>Even silence is special with you 🌙</p></div>
+<div class="slide"><img src="him 23.jpeg"><p>You are my forever 💍</p></div>
+<div class="slide"><img src="him 24.jpeg"><p>I will always choose you ❤️</p></div>
 
 <!-- proposal -->
 <div class="slide">
 <h1>Will you marry me Ram? 💍</h1>
-<p>You are my today, my tomorrow, and my forever.</p>
-<button onclick="yesFinal()">YES 💖</button>
+<button onclick="alert('You just made me the happiest person alive 💙')">YES ❤️</button>
 </div>
 
 <script>
-let slides=document.querySelectorAll(".slide");
+const slides=document.querySelectorAll(".slide");
 let index=0;
 
-function show(i){
+function showSlide(i){
 slides[index].classList.remove("active");
 index=i;
 slides[index].classList.add("active");
 }
 
-function start(){
-document.getElementById("music").play();
-auto();
-}
+function startShow(){
+let music=document.getElementById("music");
+if(music){music.play().catch(()=>{});}
 
-function auto(){
 let i=1;
-let timer=setInterval(()=>{
-show(i);
+setInterval(()=>{
+if(i<slides.length){
+showSlide(i);
 i++;
-if(i>=slides.length) clearInterval(timer);
-},3500);
+}
+},4000);
 }
 
-/* love timer */
+/* timer */
 function update(){
-let start=new Date("July 1, 2025 00:00:00");
+let start=new Date("July 15 2025 00:00:00");
 let now=new Date();
 let diff=now-start;
 
-let days=Math.floor(diff/86400000);
-let hours=Math.floor(diff%86400000/3600000);
-let mins=Math.floor(diff%3600000/60000);
-let months=Math.floor(days/30);
+let d=Math.floor(diff/86400000);
+let h=Math.floor((diff%86400000)/3600000);
+let m=Math.floor((diff%3600000)/60000);
 
 document.getElementById("countdown").innerHTML=
-"I have loved you for 💙<br><b>"+months+" months, "+(days%30)+" days, "+hours+" hours, "+mins+" minutes</b>";
+"I've loved you for <br><b>"+d+" days "+h+" hours "+m+" minutes</b>";
 }
 setInterval(update,60000);
 update();
-
-/* final yes */
-function yesFinal(){
-for(let i=0;i<60;i++){
-setTimeout(()=>{
-let e=document.createElement("div");
-e.innerHTML="💙";
-e.style.position="absolute";
-e.style.left=Math.random()*100+"vw";
-e.style.top=Math.random()*100+"vh";
-e.style.fontSize="30px";
-e.style.animation="boom 1.5s forwards";
-document.body.appendChild(e);
-setTimeout(()=>e.remove(),1500);
-},i*50);
-}
-}
 </script>
-
-<style>
-@keyframes boom{
-0%{transform:scale(0);opacity:1;}
-100%{transform:scale(4);opacity:0;}
-}
-</style>
 
 </body>
 </html>
