@@ -24,7 +24,7 @@
         padding: 40px;
         opacity: 0;
         transform: scale(0.8);
-        transition: all 1.5s cubic-bezier(0.4, 0, 0.2, 1);
+        transition: all 1.2s cubic-bezier(0.4, 0, 0.2, 1);
     }
 
     .active {
@@ -33,7 +33,6 @@
         transform: scale(1);
     }
 
-    /* Letter Design */
     .letter-box {
         background: #fffdf5;
         color: #2d3436;
@@ -43,7 +42,6 @@
         box-shadow: 0 15px 50px rgba(0,0,0,0.6);
         line-height: 1.8;
         border-left: 8px solid #e11d48;
-        font-style: italic;
     }
 
     p {
@@ -58,7 +56,6 @@
         margin: 15px;
         border-radius: 15px;
         border: 6px solid white;
-        box-shadow: 0 10px 30px rgba(0,0,0,0.5);
     }
 
     button {
@@ -69,32 +66,28 @@
         background: #e11d48;
         color: white;
         cursor: pointer;
-        box-shadow: 0 5px 15px rgba(225, 29, 72, 0.4);
-        z-index: 100;
-        transition: 0.3s;
+        z-index: 1000;
     }
 
-    button:hover { transform: scale(1.1); background: #f43f5e; }
-
-    #time { font-size: 30px; color: #fb7185; font-weight: bold; margin-top: 15px; text-shadow: 0 0 10px rgba(251, 113, 133, 0.5); }
+    #time { font-size: 30px; color: #fb7185; font-weight: bold; }
 
     /* Animations */
     @keyframes fall {
-        0% { transform: translateY(-10vh) rotate(0deg) scale(1); opacity: 1; }
-        100% { transform: translateY(110vh) rotate(360deg) scale(0.5); opacity: 0; }
+        0% { transform: translateY(-10vh) rotate(0deg); opacity: 1; }
+        100% { transform: translateY(110vh) rotate(360deg); opacity: 0; }
     }
 
-    /* Hearts "Blast" on Yes */
     .heart-blast {
         position: fixed;
         pointer-events: none;
-        animation: blast 1s ease-out forwards;
         z-index: 9999;
+        font-size: 40px;
+        animation: blast-move 1.5s ease-out forwards;
     }
 
-    @keyframes blast {
-        0% { transform: translate(-50%, -50%) scale(0); opacity: 1; }
-        100% { transform: translate(var(--tw-x), var(--tw-y)) scale(1.5); opacity: 0; }
+    @keyframes blast-move {
+        0% { transform: translate(0, 0) scale(0.5); opacity: 1; }
+        100% { transform: translate(var(--x), var(--y)) scale(1.5) rotate(720deg); opacity: 0; }
     }
 </style>
 </head>
@@ -105,17 +98,15 @@
 </audio>
 
 <div class="slide active">
-    <h1 style="font-size: 3.5rem;">Hi Ram... ❤️</h1>
-    <p>I have something I've been waiting to say.</p>
+    <h1>Hi Ram... ❤️</h1>
     <button onclick="startJourney()">Open My Heart</button>
 </div>
 
 <div class="slide"><p>I’m truly sorry for all the misunderstandings.</p></div>
-<div class="slide"><p>I didn’t always express myself the right way.</p></div>
-<div class="slide"><p>But I believe in us more than anything in this world ❤️</p></div>
+<div class="slide"><p>I believe in us more than anything ❤️</p></div>
 
 <div class="slide">
-    <h2>The beautiful time we've shared:</h2>
+    <h2>Time with you:</h2>
     <div id="time"></div>
 </div>
 
@@ -147,32 +138,32 @@
 <div class="slide">
     <div class="letter-box">
         <h3>To my dearest Ram,</h3>
-        "You are the person who taught me what love truly feels like. Thank you for staying by my side and for being the light in my darkest days. I cherish every laugh and every memory we've built."
+        "You're the light in my world. I cherish every memory we build together."
     </div>
 </div>
 <div class="slide">
     <div class="letter-box">
-        <h3>My Promise to You,</h3>
-        "I promise to be your partner in everything. To support your dreams, to hold your hand, and to love you more with every heartbeat. You are my forever and my always."
+        <h3>My Promise,</h3>
+        "I promise to hold your hand through everything. You are my today and all of my tomorrows."
     </div>
 </div>
 
 <div class="slide">
-    <img src="bouquet.png" style="border:none; background:none; max-height: 60vh; filter: drop-shadow(0 0 15px #ff4d6d);">
-    <h2>A bouquet for the one who has my heart 💐</h2>
+    <img src="bouquet.png" style="border:none; max-height: 60vh;">
+    <h2>For you 💐</h2>
 </div>
 
 <div id="proposal-page" class="slide">
-    <h1 style="font-size: 4rem; text-shadow: 0 0 20px rgba(255,255,255,0.5);">Will you marry me, Ram? 💍</h1>
-    <div style="display:flex; gap:30px; margin-top: 30px;">
+    <h1 style="font-size: 3.5rem;">Will you marry me, Ram? 💍</h1>
+    <div style="display:flex; gap:30px;">
         <button onclick="acceptProposal()">YES! ❤️</button>
         <button id="no-btn" onmouseover="moveNo()">No</button>
     </div>
 </div>
 
 <div id="final-page" class="slide">
-    <h1 style="font-size: 5rem; letter-spacing: 5px;">FOREVER! 🥂</h1>
-    <p style="background:none; border:none; font-size: 1.5rem; color: #ffb1b1;">I love you infinitely!</p>
+    <h1 style="font-size: 5rem;">FOREVER! 🥂</h1>
+    <p style="background:none; border:none; font-size: 1.5rem;">I love you infinitely!</p>
 </div>
 
 <script>
@@ -181,19 +172,18 @@
     let autoPlay;
 
     function startJourney() {
-        document.getElementById("music").play().catch(() => {});
+        document.getElementById("music").play();
         moveToNext();
         autoPlay = setInterval(moveToNext, 4000); 
     }
 
     function moveToNext() {
-        slides[currentIdx].classList.remove("active");
-        currentIdx++;
-
-        if (currentIdx < slides.length) {
+        if (currentIdx < slides.length - 1) {
+            slides[currentIdx].classList.remove("active");
+            currentIdx++;
             slides[currentIdx].classList.add("active");
-            
-            // STOP at the proposal page
+
+            // If we reach the proposal page, STOP the timer
             if (slides[currentIdx].id === "proposal-page") {
                 clearInterval(autoPlay);
             }
@@ -201,20 +191,33 @@
     }
 
     function acceptProposal() {
-        // Switch page
         document.getElementById("proposal-page").classList.remove("active");
         document.getElementById("final-page").classList.add("active");
-        
-        // Romantic background change
         document.body.style.background = "#5e0b1f";
         
-        // START THE BLAST
-        setInterval(() => {
-            spawnBlast("❤️");
-            spawnBlast("💖");
-            spawnBlast("💍");
-            spawnBlast("🌸");
-        }, 50); // Very fast for a "blast" effect
+        // Massive Heart Blast
+        for(let i=0; i<100; i++) {
+            setTimeout(createBlastHeart, i * 20);
+        }
+        // Continuous Heart Rain
+        setInterval(createBlastHeart, 150);
+    }
+
+    function createBlastHeart() {
+        const heart = document.createElement("div");
+        heart.className = "heart-blast";
+        heart.innerHTML = ["❤️","💖","💍","✨"][Math.floor(Math.random()*4)];
+        heart.style.left = "50vw";
+        heart.style.top = "50vh";
+        
+        // Random explosion direction
+        const x = (Math.random() - 0.5) * 1500 + "px";
+        const y = (Math.random() - 0.5) * 1500 + "px";
+        heart.style.setProperty('--x', x);
+        heart.style.setProperty('--y', y);
+        
+        document.body.appendChild(heart);
+        setTimeout(() => heart.remove(), 1500);
     }
 
     function moveNo() {
@@ -232,44 +235,21 @@
         let h = Math.floor((diff / (1000 * 60 * 60)) % 24);
         let m = Math.floor((diff / (1000 * 60)) % 60);
         let s = Math.floor((diff / 1000) % 60);
-        let el = document.getElementById("time");
-        if(el) el.innerHTML = d + " days " + h + "h " + m + "m " + s + "s";
+        document.getElementById("time").innerHTML = d + "d " + h + "h " + m + "m " + s + "s";
     }
     setInterval(liveTimer, 1000);
 
-    // Regular falling petals for background
-    function spawnFalling(emoji) {
-        let e = document.createElement("div");
-        e.innerHTML = emoji;
-        e.style.position = "fixed";
-        e.style.left = Math.random() * 100 + "vw";
-        e.style.top = "-5vh";
-        e.style.fontSize = (Math.random() * 15 + 15) + "px";
-        e.style.animation = "fall 6s linear forwards";
-        e.style.opacity = "0.6";
-        document.body.appendChild(e);
-        setTimeout(() => e.remove(), 6000);
-    }
-    setInterval(() => spawnFalling("🌸"), 700);
-
-    // The Celebration Blast Function
-    function spawnBlast(emoji) {
-        let e = document.createElement("div");
-        e.className = "heart-blast";
-        e.innerHTML = emoji;
-        e.style.left = "50vw";
-        e.style.top = "50vh";
-        e.style.fontSize = (Math.random() * 30 + 20) + "px";
-        
-        // Calculate random explosion directions
-        const x = (Math.random() - 0.5) * 2000 + "px";
-        const y = (Math.random() - 0.5) * 2000 + "px";
-        e.style.setProperty('--tw-x', x);
-        e.style.setProperty('--tw-y', y);
-        
-        document.body.appendChild(e);
-        setTimeout(() => e.remove(), 1000);
-    }
+    // Initial background petals
+    setInterval(() => {
+        let p = document.createElement("div");
+        p.innerHTML = "🌸";
+        p.style.position = "fixed";
+        p.style.left = Math.random() * 100 + "vw";
+        p.style.top = "-5vh";
+        p.style.animation = "fall 6s linear forwards";
+        document.body.appendChild(p);
+        setTimeout(() => p.remove(), 6000);
+    }, 800);
 </script>
 
 </body>
