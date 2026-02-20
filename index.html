@@ -2,188 +2,180 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>My Love 💙</title>
+<title>For You ❤️</title>
 
 <style>
 body{
 margin:0;
-font-family:Georgia,serif;
-background:linear-gradient(#010f24,#03274a);
-overflow:hidden;
+font-family:Georgia;
+background:#081b33;
 text-align:center;
-color:black;
+overflow:hidden;
 }
 
+/* slides */
 .slide{
-position:absolute;
-width:100%;
-height:100vh;
 display:none;
+height:100vh;
 justify-content:center;
 align-items:center;
 flex-direction:column;
-padding:40px;
-animation:fade 2s;
+padding:30px;
 }
-
 .active{display:flex;}
 
-@keyframes fade{
-from{opacity:0}
-to{opacity:1}
-}
-
-h1{
-font-size:2.5em;
-background:rgba(255,255,255,.4);
-padding:20px;
-border-radius:40px;
-}
-
 p{
-font-size:1.4em;
-max-width:800px;
-background:rgba(255,255,255,.6);
-padding:25px;
-border-radius:20px;
+background:white;
+padding:20px;
+border-radius:15px;
+max-width:700px;
 }
 
 img{
 max-height:55vh;
-border-radius:20px;
 margin:20px;
-box-shadow:0 0 40px rgba(255,255,255,.4);
+border-radius:15px;
 }
 
 button{
-padding:15px 40px;
+padding:15px 35px;
 font-size:20px;
 border:none;
-border-radius:40px;
+border-radius:30px;
 background:#0ea5e9;
 color:white;
 cursor:pointer;
 }
 
-#countdown{
-font-size:1.3em;
-margin-top:20px;
-background:white;
-padding:15px 25px;
-border-radius:20px;
+/* petals */
+@keyframes fall{
+from{transform:translateY(-10vh) rotate(0deg);}
+to{transform:translateY(110vh) rotate(360deg);}
 }
 </style>
 </head>
 
 <body>
 
-<audio id="music" loop playsinline>
+<audio id="music" loop>
 <source src="WhatsApp Audio 2026-02-19 at 6.08.26 PM.mpeg">
 </audio>
 
 <!-- start -->
 <div class="slide active">
-<h1>I have something to tell you...</h1>
-<button onclick="startShow()">Open My Heart ❤️</button>
+<h1>I have something to tell you…</h1>
+<button onclick="start()">Open ❤️</button>
 </div>
 
 <!-- apology -->
 <div class="slide"><p>I’m truly sorry for all misunderstandings.</p></div>
 <div class="slide"><p>I didn’t express myself right sometimes.</p></div>
-<div class="slide"><p>What we share means everything to me.</p></div>
-<div class="slide"><p>I never wanted to hurt you.</p></div>
 <div class="slide"><p>I believe in us ❤️</p></div>
-<div class="slide"><p>I’m sorry… and I love you more than words.</p></div>
 
 <!-- timer -->
 <div class="slide">
-<h1>My Love For You 💙</h1>
-<p id="countdown"></p>
+<h2>Time with you 💙</h2>
+<p id="time"></p>
 </div>
 
-<!-- memories -->
-<div class="slide"><img src="letter1.jpeg"><p>Your words are my treasure 💌</p></div>
-<div class="slide"><img src="letter2.jpeg"><p>I keep every letter forever 💙</p></div>
-<div class="slide"><img src="bouquet.jpeg"><p>Your flowers still hold your love 🌸</p></div>
-
-<!-- couple -->
-<div class="slide"><img src="Image 1.jpg"><p>Life feels peaceful with you 🤍</p></div>
-<div class="slide"><img src="Image 2.jpg"><p>I want to look at you forever 💫</p></div>
-<div class="slide"><img src="Image 3.jpg"><p>We dance through life together 💙</p></div>
-<div class="slide"><img src="Image 4.jpg"><p>Adventures with you 🌍</p></div>
-<div class="slide"><img src="Image 7.jpg"><p>You are my safe place ❤️</p></div>
-<div class="slide"><img src="Image 8.jpg"><p>My favorite view 😍</p></div>
-
 <!-- HIM PHOTOS -->
-<div class="slide"><img src="him 1.jpeg"><p>Your smile melts my heart every single time ❤️</p></div>
-<div class="slide"><img src="him 2.jpeg"><p>That look is my favorite view 💙</p></div>
-<div class="slide"><img src="him 3.jpeg"><p>Standing next to you feels like home 🤍</p></div>
-<div class="slide"><img src="him 4.jpeg"><p>You and me — my forever story 📖</p></div>
-<div class="slide"><img src="him 5.jpeg"><p>You make ordinary days magical ✨</p></div>
-<div class="slide"><img src="him 6.jpeg"><p>I see my future in your eyes 💫</p></div>
-<div class="slide"><img src="him 7.jpeg"><p>Everything feels right with you 🌙</p></div>
-<div class="slide"><img src="him 8.jpeg"><p>You are my calm in every storm 🌊</p></div>
+<div class="slide"><img src="him 1.jpeg"><p>Your smile melts my heart ❤️</p></div>
+<div class="slide"><img src="him 2.jpeg"><p>I love looking at you 💙</p></div>
+<div class="slide"><img src="him 3.jpeg"><p>You feel like home 🤍</p></div>
+<div class="slide"><img src="him 4.jpeg"><p>My favorite person 💕</p></div>
+<div class="slide"><img src="him 5.jpeg"><p>You make life beautiful ✨</p></div>
+<div class="slide"><img src="him 6.jpeg"><p>I see my future in you 💫</p></div>
+<div class="slide"><img src="him 7.jpeg"><p>You calm my world 🌙</p></div>
+<div class="slide"><img src="him 8.jpeg"><p>You are my peace 🤍</p></div>
 <div class="slide"><img src="him 9.jpeg"><p>I fall for you more every day 💕</p></div>
-<div class="slide"><img src="him 10.jpeg"><p>Your look brightens my world ☀️</p></div>
-<div class="slide"><img src="him 11.jpeg"><p>You are my peace 🤍</p></div>
-<div class="slide"><img src="him 12.jpeg"><p>Every version of you is my favorite 🥰</p></div>
-<div class="slide"><img src="him 13.jpeg"><p>I could stare at you forever 😍</p></div>
-<div class="slide"><img src="him 14.jpeg"><p>You make my heart smile 💖</p></div>
-<div class="slide"><img src="him 15.jpeg"><p>Time stops when I’m with you ⏳</p></div>
+<div class="slide"><img src="him 10.jpeg"><p>You are my sunshine ☀️</p></div>
+<div class="slide"><img src="him 11.jpeg"><p>You make my heart happy 💖</p></div>
+<div class="slide"><img src="him 12.jpeg"><p>I love everything about you 🥰</p></div>
+<div class="slide"><img src="him 13.jpeg"><p>I could stare forever 😍</p></div>
+<div class="slide"><img src="him 14.jpeg"><p>You’re my favorite place ❤️</p></div>
+<div class="slide"><img src="him 15.jpeg"><p>Time stops with you ⏳</p></div>
 <div class="slide"><img src="him 16.jpeg"><p>You are my safest place 🏡</p></div>
-<div class="slide"><img src="him 17.jpeg"><p>Your love is my favorite feeling 💗</p></div>
+<div class="slide"><img src="him 17.jpeg"><p>Your love is my strength 💪</p></div>
 <div class="slide"><img src="him 18.jpeg"><p>Life is beautiful because of you 🌸</p></div>
-<div class="slide"><img src="him 19.jpeg"><p>I never knew love like this until you 💘</p></div>
-<div class="slide"><img src="him 20.jpeg"><p>You are my dream come true ✨</p></div>
-<div class="slide"><img src="him 21.jpeg"><p>My heart chose you 💞</p></div>
-<div class="slide"><img src="him 22.jpeg"><p>Even silence is special with you 🌙</p></div>
-<div class="slide"><img src="him 23.jpeg"><p>You are my forever 💍</p></div>
-<div class="slide"><img src="him 24.jpeg"><p>I will always choose you ❤️</p></div>
+<div class="slide"><img src="him 19.jpeg"><p>You are my dream come true ✨</p></div>
+<div class="slide"><img src="him 20.jpeg"><p>I choose you always 💍</p></div>
+<div class="slide"><img src="him 21.jpeg"><p>My heart belongs to you 💞</p></div>
+<div class="slide"><img src="him 22.jpeg"><p>You’re my forever 🌙</p></div>
+<div class="slide"><img src="him 23.jpeg"><p>You are my home 🤍</p></div>
+<div class="slide"><img src="him 24.jpeg"><p>I will always love you ❤️</p></div>
 
 <!-- proposal -->
 <div class="slide">
 <h1>Will you marry me Ram? 💍</h1>
-<button onclick="alert('You just made me the happiest person alive 💙')">YES ❤️</button>
 </div>
 
 <script>
-const slides=document.querySelectorAll(".slide");
-let index=0;
+let slides=document.querySelectorAll(".slide");
+let i=0;
 
-function showSlide(i){
-slides[index].classList.remove("active");
-index=i;
-slides[index].classList.add("active");
+function show(n){
+slides[i].classList.remove("active");
+i=n;
+slides[i].classList.add("active");
 }
 
-function startShow(){
-let music=document.getElementById("music");
-if(music){music.play().catch(()=>{});}
-
-let i=1;
+function start(){
+document.getElementById("music").play().catch(()=>{});
+let x=1;
 setInterval(()=>{
-if(i<slides.length){
-showSlide(i);
-i++;
+if(x<slides.length){
+show(x);
+x++;
 }
 },4000);
 }
 
-/* timer */
-function update(){
-let start=new Date("July 15 2025 00:00:00");
-let now=new Date();
-let diff=now-start;
+/* live timer */
+<script>
+function liveTimer(){
 
-let d=Math.floor(diff/86400000);
-let h=Math.floor((diff%86400000)/3600000);
-let m=Math.floor((diff%3600000)/60000);
+let startDate = new Date("July 15, 2025 00:00:00").getTime();
+let now = new Date().getTime();
 
-document.getElementById("countdown").innerHTML=
-"I've loved you for <br><b>"+d+" days "+h+" hours "+m+" minutes</b>";
+let diff = now - startDate;
+
+/* calculations */
+let seconds = Math.floor(diff/1000);
+let minutes = Math.floor(seconds/60);
+let hours = Math.floor(minutes/60);
+let days = Math.floor(hours/24);
+
+/* remainder values */
+let d = days;
+let h = hours % 24;
+let m = minutes % 60;
+let s = seconds % 60;
+
+/* display */
+document.getElementById("time").innerHTML =
+d + " days " +
+h + " hours " +
+m + " minutes " +
+s + " seconds";
 }
-setInterval(update,60000);
-update();
+
+/* update every second */
+setInterval(liveTimer,1000);
+liveTimer();
+</script>
+
+/* petals */
+setInterval(function(){
+var f=document.createElement("div");
+f.innerHTML="🌸";
+f.style.position="fixed";
+f.style.top="-20px";
+f.style.left=Math.random()*100+"vw";
+f.style.fontSize=(Math.random()*20+15)+"px";
+f.style.animation="fall 6s linear forwards";
+document.body.appendChild(f);
+setTimeout(function(){f.remove()},6000);
+},400);
 </script>
 
 </body>
