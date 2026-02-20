@@ -29,14 +29,25 @@ animation:fade 1.5s;
 @keyframes fade{from{opacity:0}to{opacity:1}}
 
 /* text */
-h1{color:black;font-size:2.6em;}
+h1{color:black;font-size:2.5em;}
 p{
 color:black;
-background:rgba(255,255,255,.65);
+background:rgba(255,255,255,.7);
 padding:25px;
 border-radius:20px;
-font-size:1.5em;
-max-width:700px;
+font-size:1.4em;
+max-width:750px;
+}
+
+/* button */
+button{
+padding:18px 40px;
+font-size:20px;
+border:none;
+border-radius:50px;
+background:#0ea5e9;
+color:white;
+cursor:pointer;
 }
 
 /* images */
@@ -72,15 +83,7 @@ pointer-events:none;
 z-index:999;
 }
 
-.proposal h1{
-animation:zoomIn 3s forwards;
-}
-@keyframes zoomIn{
-from{transform:scale(.6);opacity:0;}
-to{transform:scale(1.1);opacity:1;}
-}
-
-/* boom hearts */
+/* hearts boom */
 @keyframes boom{
 0%{transform:scale(0);opacity:1;}
 100%{transform:scale(4);opacity:0;}
@@ -89,7 +92,7 @@ to{transform:scale(1.1);opacity:1;}
 </head>
 <body>
 
-<!-- petals -->
+<!-- petals animation -->
 <script>
 setInterval(()=>{
 let f=document.createElement("div");
@@ -106,16 +109,16 @@ setTimeout(()=>f.remove(),8000);
 
 <!-- music -->
 <audio id="music" loop>
-<source src="WhatsApp Audio 2026-02-19 at 6.08.26 PM.mpeg">
+<source src="music.mp3">
 </audio>
 
-<!-- start -->
+<!-- first slide -->
 <div class="slide active">
 <h1>I have something to tell you…</h1>
-<button onclick="startMusic()">Open My Heart ❤️</button>
+<button onclick="startShow()">Open My Heart ❤️</button>
 </div>
 
-<!-- apology -->
+<!-- apology slides -->
 <div class="slide"><p>I’m truly sorry for all misunderstandings…</p></div>
 <div class="slide"><p>I didn’t express myself the right way.</p></div>
 <div class="slide"><p>What we share means everything to me.</p></div>
@@ -123,22 +126,21 @@ setTimeout(()=>f.remove(),8000);
 <div class="slide"><p>I believe in us ❤️</p></div>
 <div class="slide"><p>I’m sorry… and I love you more than words.</p></div>
 
-<!-- timer -->
+<!-- timer slide -->
 <div class="slide">
 <h1>My Love For You 💙</h1>
 <p id="countdown"></p>
 </div>
 
-<!-- couple -->
+<!-- couple photos -->
 <div class="slide"><img src="Image 1.jpg"><p>Life feels peaceful with you 🤍</p></div>
 <div class="slide"><img src="Image 2.jpg"><p>I want to look at you forever 💫</p></div>
 <div class="slide"><img src="Image 3.jpg"><p>We dance through life together 💙</p></div>
 <div class="slide"><img src="Image 4.jpg"><p>Adventures with you 🌎</p></div>
-<div class="slide"><img src="Image 5.jpg"><p>Grow old with you 👴🏻👵🏻</p></div>
 <div class="slide"><img src="Image 7.jpg"><p>You are my safe place 💖</p></div>
 <div class="slide"><img src="Image 8.jpg"><p>My favorite view 😍</p></div>
 
-<!-- him images -->
+<!-- him photos -->
 <script>
 let msgs=[
 "You are the calm in my chaos 🤍",
@@ -181,7 +183,7 @@ document.write(`
 <div class="slide proposal">
 <h1>Will you marry me Ram? 💍</h1>
 <p>You are my today, my tomorrow, and my forever.</p>
-<button onclick="yesFinal()">YES 💖</button>
+<button onclick="celebrate()">YES 💖</button>
 </div>
 
 <div id="spotlight"></div>
@@ -190,7 +192,7 @@ document.write(`
 let slides=document.querySelectorAll(".slide");
 let index=0;
 
-function show(i){
+function showSlide(i){
 slides[index].classList.remove("active");
 index=i;
 slides[index].classList.add("active");
@@ -200,56 +202,48 @@ document.getElementById("spotlight").style.opacity="1";
 }
 }
 
-function start(){
-document.getElementById("music").play();
-auto();
+function startShow(){
+
+// play music safely
+let music=document.getElementById("music");
+if(music){
+music.play().catch(()=>{});
 }
 
-function auto(){
 let i=1;
+
 let timer=setInterval(()=>{
-show(i);
+if(i>=slides.length){clearInterval(timer);return;}
+showSlide(i);
 i++;
-if(i>=slides.length) clearInterval(timer);
-},5000);
+},4000);
 }
 
-/* LIVE TIMER */
-function updateLoveTimer(){
+/* live timer */
+function updateTimer(){
+let start=new Date("July 1, 2025 00:00:00").getTime();
+let now=new Date().getTime();
+let diff=now-start;
 
-let start = new Date("July 1, 2025 00:00:00").getTime();
-let now = new Date().getTime();
-let diff = now - start;
+let s=Math.floor(diff/1000);
+let m=Math.floor(s/60);
+let h=Math.floor(m/60);
+let d=Math.floor(h/24);
+let months=Math.floor(d/30);
 
-/* time calculations */
-let seconds = Math.floor(diff/1000);
-let minutes = Math.floor(seconds/60);
-let hours = Math.floor(minutes/60);
-let days = Math.floor(hours/24);
-let months = Math.floor(days/30);
-
-/* remaining values */
-let remDays = days % 30;
-let remHours = hours % 24;
-let remMinutes = minutes % 60;
-let remSeconds = seconds % 60;
-
-/* display */
-document.getElementById("countdown").innerHTML =
-"I have loved you for 💙<br><b>" +
+document.getElementById("countdown").innerHTML=
+"I have loved you for 💙<br><b>"+
 months+" months, "+
-remDays+" days, "+
-remHours+" hours, "+
-remMinutes+" minutes, "+
-remSeconds+" seconds</b>";
+(d%30)+" days, "+
+(h%24)+" hours, "+
+(m%60)+" minutes, "+
+(s%60)+" seconds</b>";
 }
+setInterval(updateTimer,1000);
+updateTimer();
 
-/* update every second */
-setInterval(updateLoveTimer,1000);
-updateLoveTimer();
-
-/* YES celebration */
-function yesFinal(){
+/* celebration */
+function celebrate(){
 for(let i=0;i<70;i++){
 setTimeout(()=>{
 let e=document.createElement("div");
