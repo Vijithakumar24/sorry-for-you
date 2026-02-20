@@ -2,83 +2,117 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>For You ❤️</title>
-
+<title>For Ram ❤️</title>
 <style>
-body{
-margin:0;
-font-family:Georgia;
-background:#081b33;
-text-align:center;
-overflow:hidden;
-}
+    body {
+        margin: 0;
+        font-family: 'Georgia', serif;
+        background: #081b33;
+        color: white;
+        text-align: center;
+        overflow: hidden;
+        transition: background 3s ease;
+    }
 
-/* slides */
-.slide{
-display:none;
-height:100vh;
-justify-content:center;
-align-items:center;
-flex-direction:column;
-padding:30px;
-}
-.active{display:flex;}
+    /* Blooming Slide Animation */
+    .slide {
+        display: none;
+        height: 100vh;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        padding: 40px;
+        opacity: 0;
+        transform: scale(0.7) translateY(20px);
+        transition: all 2s cubic-bezier(0.4, 0, 0.2, 1);
+    }
 
-p{
-background:white;
-padding:20px;
-border-radius:15px;
-max-width:700px;
-}
+    .active {
+        display: flex;
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
 
-img{
-max-height:55vh;
-margin:20px;
-border-radius:15px;
-}
+    /* Letter Styling */
+    .letter-box {
+        background: rgba(255, 255, 255, 0.95);
+        color: #2d3436;
+        padding: 40px;
+        border-radius: 5px;
+        max-width: 600px;
+        line-height: 1.6;
+        box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+        border-left: 5px solid #e11d48;
+        font-style: italic;
+    }
 
-button{
-padding:15px 35px;
-font-size:20px;
-border:none;
-border-radius:30px;
-background:#0ea5e9;
-color:white;
-cursor:pointer;
-}
+    p {
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(5px);
+        padding: 15px 25px;
+        border-radius: 30px;
+        border: 1px solid rgba(255,255,255,0.3);
+    }
 
-/* petals */
-@keyframes fall{
-from{transform:translateY(-10vh) rotate(0deg);}
-to{transform:translateY(110vh) rotate(360deg);}
-}
+    img {
+        max-height: 50vh;
+        margin: 20px;
+        border-radius: 15px;
+        border: 8px solid white;
+        box-shadow: 0 15px 30px rgba(0,0,0,0.4);
+    }
+
+    .bouquet-img {
+        max-height: 60vh;
+        border: none;
+        filter: drop-shadow(0 0 20px #ff4d6d);
+    }
+
+    button {
+        padding: 15px 40px;
+        font-size: 22px;
+        border: none;
+        border-radius: 50px;
+        background: #e11d48;
+        color: white;
+        cursor: pointer;
+        box-shadow: 0 5px 15px rgba(225, 29, 72, 0.4);
+        transition: 0.3s;
+    }
+
+    button:hover { transform: scale(1.1); background: #fb7185; }
+
+    #time { font-size: 28px; font-weight: bold; color: #fb7185; display: block; margin-top: 10px; }
+
+    /* Falling Animations */
+    @keyframes fall {
+        from { transform: translateY(-10vh) rotate(0deg); opacity: 1; }
+        to { transform: translateY(110vh) rotate(360deg); opacity: 0; }
+    }
 </style>
 </head>
 
 <body>
 
 <audio id="music" loop>
-<source src="WhatsApp Audio 2026-02-19 at 6.08.26 PM.mpeg">
+    <source src="WhatsApp Audio 2026-02-19 at 6.08.26 PM.mpeg">
 </audio>
 
-<!-- start -->
 <div class="slide active">
-<h1>I have something to tell you…</h1>
-<button onclick="start()">Open ❤️</button>
+    <h1 style="font-size: 3rem;">Hi Ram... ❤️</h1>
+    <p>I have a message for you.</p>
+    <button onclick="startJourney()">Open My Heart</button>
 </div>
 
-<!-- apology -->
 <div class="slide"><p>I’m truly sorry for all misunderstandings.</p></div>
 <div class="slide"><p>I didn’t express myself right sometimes.</p></div>
-<div class="slide"><p>I believe in us ❤️</p></div>
+<div class="slide"><p>I believe in us more than anything ❤️</p></div>
 
-<!-- timer -->
 <div class="slide">
-<h2>Time with you 💙</h2>
-<p id="time"></p>
+    <h2>The time we've shared...</h2>
+    <div id="time">Calculating...</div>
 </div>
 
-<!-- HIM PHOTOS -->
 <div class="slide"><img src="him 1.jpeg"><p>Your smile melts my heart ❤️</p></div>
 <div class="slide"><img src="him 2.jpeg"><p>I love looking at you 💙</p></div>
 <div class="slide"><img src="him 3.jpeg"><p>You feel like home 🤍</p></div>
@@ -104,78 +138,115 @@ to{transform:translateY(110vh) rotate(360deg);}
 <div class="slide"><img src="him 23.jpeg"><p>You are my home 🤍</p></div>
 <div class="slide"><img src="him 24.jpeg"><p>I will always love you ❤️</p></div>
 
-<!-- proposal -->
 <div class="slide">
-<h1>Will you marry me Ram? 💍</h1>
+    <div class="letter-box">
+        <h3>My Letter to You #1</h3>
+        <p style="color:#333; background:none; border:none;">Ram, words aren't enough to describe how much you mean to me. Every moment with you is a treasure I keep in my heart forever...</p>
+    </div>
+</div>
+
+<div class="slide">
+    <div class="letter-box">
+        <h3>My Letter to You #2</h3>
+        <p style="color:#333; background:none; border:none;">I promise to stand by you, to grow with you, and to love you through every high and low. You are my today and all of my tomorrows.</p>
+    </div>
+</div>
+
+<div class="slide">
+    <img src="bouquet.png" class="bouquet-img" alt="Flowers for you">
+    <h2>A thousand flowers for you 💐</h2>
+</div>
+
+<div id="proposal-slide" class="slide">
+    <h1 style="font-size: 3.5rem;">Will you marry me, Ram? 💍</h1>
+    <div style="display:flex; gap:30px; margin-top:20px;">
+        <button onclick="acceptProposal()" style="background:#22c55e;">YES! ❤️</button>
+        <button id="no-btn" onmouseover="moveNo()" style="background:#64748b;">No</button>
+    </div>
+</div>
+
+<div id="celebration-slide" class="slide">
+    <h1 style="font-size: 4rem;">FOREVER! 🥂</h1>
+    <p>I love you infinitely!</p>
 </div>
 
 <script>
-let slides=document.querySelectorAll(".slide");
-let i=0;
+let slides = document.querySelectorAll(".slide");
+let current = 0;
+let journeyTimer;
 
-function show(n){
-slides[i].classList.remove("active");
-i=n;
-slides[i].classList.add("active");
+function startJourney() {
+    document.getElementById("music").play().catch(() => {});
+    nextSlide();
+    journeyTimer = setInterval(nextSlide, 4500); // 4.5 seconds per slide
 }
 
-function start(){
-document.getElementById("music").play().catch(()=>{});
-let x=1;
-setInterval(()=>{
-if(x<slides.length){
-show(x);
-x++;
-}
-},4000);
-}
-
-/* live timer */
-<script>
-function liveTimer(){
-
-let startDate = new Date("July 15, 2025 00:00:00").getTime();
-let now = new Date().getTime();
-
-let diff = now - startDate;
-
-/* calculations */
-let seconds = Math.floor(diff/1000);
-let minutes = Math.floor(seconds/60);
-let hours = Math.floor(minutes/60);
-let days = Math.floor(hours/24);
-
-/* remainder values */
-let d = days;
-let h = hours % 24;
-let m = minutes % 60;
-let s = seconds % 60;
-
-/* display */
-document.getElementById("time").innerHTML =
-d + " days " +
-h + " hours " +
-m + " minutes " +
-s + " seconds";
+function nextSlide() {
+    slides[current].classList.remove("active");
+    current++;
+    
+    if (current < slides.length) {
+        slides[current].classList.add("active");
+        
+        // Pause auto-sliding at the letters and the proposal so he can read/answer
+        if (current >= 27 || slides[current].id === "proposal-slide") {
+            clearInterval(journeyTimer);
+        }
+    }
 }
 
-/* update every second */
-setInterval(liveTimer,1000);
-liveTimer();
-</script>
+// REAL TIME TIMER
+function liveTimer() {
+    let startDate = new Date("July 15, 2025 00:00:00").getTime();
+    let now = new Date().getTime();
+    let diff = now - startDate;
 
-/* petals */
-setInterval(function(){
-var f=document.createElement("div");
-f.innerHTML="🌸";
-f.style.position="fixed";
-f.style.top="-20px";
-f.style.left=Math.random()*100+"vw";
-f.style.fontSize=(Math.random()*20+15)+"px";
-f.style.animation="fall 6s linear forwards";
-document.body.appendChild(f);
-setTimeout(function(){f.remove()},6000);
-},400);
+    let d = Math.floor(diff / (1000 * 60 * 60 * 24));
+    let h = Math.floor((diff / (1000 * 60 * 60)) % 24);
+    let m = Math.floor((diff / (1000 * 60)) % 60);
+    let s = Math.floor((diff / 1000) % 60);
+
+    document.getElementById("time").innerHTML = d + "d " + h + "h " + m + "m " + s + "s";
+}
+setInterval(liveTimer, 1000);
+
+// FALLING FLOWERS/HEARTS
+function spawn(emoji) {
+    let e = document.createElement("div");
+    e.innerHTML = emoji;
+    e.style.position = "fixed";
+    e.style.top = "-5vh";
+    e.style.left = Math.random() * 100 + "vw";
+    e.style.fontSize = (Math.random() * 20 + 20) + "px";
+    e.style.animation = `fall ${Math.random() * 2 + 4}s linear forwards`;
+    document.body.appendChild(e);
+    setTimeout(() => e.remove(), 5000);
+}
+
+setInterval(() => spawn("🌸"), 500);
+
+// PROPOSAL ACCEPTANCE
+function acceptProposal() {
+    document.getElementById("proposal-slide").classList.remove("active");
+    document.getElementById("celebration-slide").classList.add("active");
+    document.body.style.background = "#4c0519"; 
+    
+    // Intense Heart Shower
+    setInterval(() => {
+        spawn("❤️");
+        spawn("💖");
+        spawn("💍");
+        spawn("✨");
+    }, 100);
+}
+
+// "NO" BUTTON TRICK
+function moveNo() {
+    let btn = document.getElementById("no-btn");
+    btn.style.position = "absolute";
+    btn.style.top = Math.random() * 80 + "vh";
+    btn.style.left = Math.random() * 80 + "vw";
+}
 </script>
 
 </body>
